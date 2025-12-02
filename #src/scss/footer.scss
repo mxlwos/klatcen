@@ -1,0 +1,106 @@
+.footer {
+  background-color: #f7f7f7;
+  @include setProp(padding-top, 40, 32, 0);
+  @include setProp(padding-bottom, 56, 32, 0);
+
+  &__address {
+    @include setProp(margin-top, 16, 8, 0);
+    @include setProp(font-size, 24, 16, 0);
+  }
+  &__container {
+  }
+  &__copyright {
+    color: #b7b7b7;
+  }
+  &__email {
+    @include setProp(font-size, 40, 24, 0);
+    color: #212121;
+  }
+  &__info {
+    display: flex;
+    flex-direction: column;
+    @include setProp(gap, 32, 16, 0);
+  }
+  &__left {
+    display: grid;
+    grid-template-columns: 1fr 1.1fr;
+    @include setProp(gap, 131, 40, 0);
+	@media (max-width: $md2+px) {
+        grid-template-columns: 1fr;
+    }
+  }
+  &__logo {
+    @include setProp(width, 309, 188, 0);
+  }
+  &__menu {
+  }
+  &__part {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    @include setProp(gap, 32, 32, 0);
+  }
+  &__phone {
+    @include setProp(font-size, 40, 24, 0);
+    color: #212121;
+  }
+  &__policy {
+    color: #b7b7b7;
+    display: block;
+    text-decoration: underline;
+  }
+  &__policyright {
+    display: grid;
+    @include setProp(gap, 13, 13, 0);
+    @include setProp(font-size, 14, 14, 0);
+  }
+  &__right {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    @include setProp(gap, 140, 40, 0);
+	@media (max-width: $md2+px) {
+        grid-template-columns: 1fr;
+    }
+  }
+  &__social {
+  }
+  &__socials {
+    @include setProp(gap, 8, 8, 0);
+    display: flex;
+  }
+  &__start {
+    background: none;
+  }
+  &__wrapper {
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    @include setProp(gap, 160, 40, 0);
+	@media (max-width: $md2+px) {
+        grid-template-columns: 1fr;
+    }
+  }
+}
+.menu-footer {
+  display: flex;
+  flex-direction: column;
+  @include setProp(gap, 24, 24, 0);
+  &__link {
+    display: block;
+    @include setProp(font-size, 16, 16, 0);
+    color: #b7b7b7;
+    transition: .3s;
+	@media (min-width: $md2+px) {
+        &:hover {
+            color: #212121;
+        }
+    }
+  }
+  &__list {
+    display: flex;
+    flex-direction: column;
+    @include setProp(gap, 16, 16, 0);
+  }
+}
+//====================================================================================================
+
+//====================================================================================================

@@ -1,0 +1,70 @@
+//Подключение шрифта
+@mixin font($font_name, $file_name, $weight, $style) {
+	@font-face {
+		font-family: $font_name;
+		font-display: swap;
+		src: url("../fonts/#{$file_name}.woff2") format("woff2"),
+		url("../fonts/#{$file_name}.woff") format("woff");
+		font-weight: #{$weight};
+		font-style: #{$style};
+	}
+}
+
+//Адаптивное свойство
+
+//$property:  CSS-свойство (font-size, padding, margin и т.д.)
+//$startSize: Значение на максимальной ширине (в пикселях)
+//$minSize: Значение на минимальной ширине (в пикселях)
+//$type:   1 - с !important, 0 - без !important
+//$addSize:  Разница между максимальным и минимальным значением
+
+
+// #{} - это интерполяция (вставка значения переменной в строку)
+
+@mixin setProp($property, $startSize, $minSize, $type) {
+	// вычисляем разницу, сколько должно вырасти от минимума до максимума
+	$addSize: $startSize - $minSize;
+
+	// когда нужно перебить другие стили, тип = 1
+	@if $type==1 {
+		//Important
+		#{$property}: calc(#{$minSize / 10}rem + #{$addSize} * ((100vw - #{$minWidth / 10}rem) / #{$maxWidth - $minWidth})) !important;
+		// ((100vw - #{$minWidth / 10}rem) / #{$maxWidth - $minWidth})) - считает, насколько текущая ширина больше минимальной
+
+		// деление на 10, чтобы перевести пиксели в rem (в проекте настроено 10, обычно 16)
+
+		//-------------
+		// #{$property}: #{$minSize / 10}rem !important;
+		// @media (min-width: #{$adaptBreakpoint + px}) {
+		//   #{$property}: #{$startSize / 10}rem !important;
+		// }
+	}
+
+	//обычные стили
+	@else {
+		//Всегда
+		#{$property}: calc(#{$minSize / 10}rem + #{$addSize} * ((100vw - #{$minWidth / 10}rem) / #{$maxWidth - $minWidth}));
+		// #{$property}: #{$minSize / 10}rem;
+		// @media (min-width: #{$adaptBreakpoint + px}) {
+		// #{$property}: calc((100vw/1920) * #{$startSize});
+		// #{$property}: #{$startSize / 10}rem;
+		// }
+	}
+}
+
+//Адаптивное свойство до
+@mixin adaptiv-value-to($property, $startSize, $minSize, $minWidth) {
+	$addSize: $startSize - $minSize;
+
+	//#{$property}: $minSize + px;Ы
+	@media (min-width: #{$minWidth + px}) {
+		#{$property}: calc(#{$minSize + px} + #{$addSize} * (((100vw - #{$minWidth + px})) / ((#{$maxWidth - $minWidth}))));
+	}
+}
+
+//Адаптивное свойство десктоп full-size
+@mixin adaptiv-desc($property, $value) {
+	@media (min-width: #{$maxWidthContainer + px}) {
+		#{$property}: calc((100vw/1920) * #{$value});
+	}
+}

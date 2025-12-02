@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="css/style.min.css">
+    <title>Document</title>
+</head>
+<body>
+    <section class="page__fns fns-ref">
+        <div class="fns-ref__container">
+            <div class="fns-ref__info _container">
+                <h1 class="fns-ref__title">Справка для ФНС</h1>
+                <p class="fns-ref__subtitle">Уважаемые пациенты! Заказать справку для ФНС для возврата НДФЛ вы можете следующими способами:</p>
+                <div class="fns-ref__list">
+                    <div class="fns-ref__item">
+                        <p class="fns-ref__text">В электронном виде, заполнив форму на сайте</p>
+                    </div>
+                    <div class="fns-ref__item">
+                        <p class="fns-ref__text">В печатном виде лично в медицинском центре, в котором были оказаны услуги, предоставив:</p>
+                        <ul class="fns-ref__ul">
+                            <li class="fns-ref__li">документ, удостоверяющий личность;</li>
+                            <li class="fns-ref__li">заявление на получение справки по форме организации.</li>
+                        </ul>
+                    </div>
+                    <div class="fns-ref__item">
+                        <p class="fns-ref__text"><a href="#" class="fns-ref__link">Скачать</a> и распечатать заявление, заполнить и отправить скан на почту <a href="mailto:spravka.nalog@starclinic.ru" class="fns-ref__email">spravka.nalog@starclinic.ru</a></p>
+                    </div>
+                </div>
+            </div>
+            <form action="#" class="fns-ref__form form-ref">
+                <div class="form-ref__container _container">
+                    <p class="form-ref__title">Заказать справку для ФНС</p>
+                    <div class="form-ref__content">
+                        <div class="form-ref__block">
+                            <p class="form-ref__subtitle">Клиника и период</p>
+                            <div class="form-ref__inputs">
+                                <div class="form-ref__input-container">
+                                    <p class="form-ref__label">Налоговый период (год)*</p>
+                                    <input placeholder="2024" required name="period" type="text" class="form-ref__input">
+                                </div>
+                                <div class="form-ref__input-container">
+                                    <p class="form-ref__label">Филиал, в котором получали услуги*</p>
+                                    <select name="address" class="form-ref__select">
+                                        <option value="Карла Маркса 1">Карла Маркса</option>
+                                        <option value="Карла Маркса 2">Карла Маркса</option>
+                                        <option value="Карла Маркса 3">Карла Маркса</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-ref__block">
+                            <p class="form-ref__subtitle">Ваши данные</p>
+                            <div class="form-ref__inputs">
+                                <div class="form-ref__input-container">
+                                    <p class="form-ref__label">ФИО налогоплательщика*</p>
+                                    <input placeholder="Иванов Иван Иванович" required name="name" type="text" class="form-ref__input">
+                                </div>
+                                <div class="form-ref__input-container">
+                                    <p class="form-ref__label">Дата рождения*</p>
+                                    <input placeholder="15.08.1994" required name="year-birth" type="text" class="form-ref__input">
+                                </div>
+                            </div>
+                            <div class="form-ref__inputs">
+                                <div class="form-ref__input-container">
+                                    <p class="form-ref__label">ИНН*</p>
+                                    <input placeholder="781257493456" required name="inn" type="text" class="form-ref__input">
+                                </div>
+                            </div>
+                            <div class="form-ref__inputs">
+                                <div class="form-ref__input-container">
+                                    <p class="form-ref__label">Серия и номер*</p>
+                                    <input placeholder="9202  571934" required name="passport" type="text" class="form-ref__input">
+                                </div>
+                                <div class="form-ref__input-container">
+                                    <p class="form-ref__label">Дата выдачи*</p>
+                                    <input placeholder="12.05.2015" required name="year-take" type="text" class="form-ref__input">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-ref__block">
+                            <p class="form-ref__subtitle">Кому были оказаны медицинские услуги:</p>
+                            <div class="form-ref__radios">
+                                <label class="form-ref__radio radio">
+                                    <input class="radio__input" checked value="Мне" type="radio" name="customer" required>
+                                    <span class="radio__text">Мне</span>
+                                </label>
+                                <label class="form-ref__radio radio">
+                                    <input class="radio__input" value="Супруге" type="radio" name="customer" required>
+                                    <span class="radio__text">Супруге</span>
+                                </label>
+                                <label class="form-ref__radio radio">
+                                    <input class="radio__input" value="Сыну" type="radio" name="customer" required>
+                                    <span class="radio__text">Сыну</span>
+                                </label>
+                                <label class="form-ref__radio radio">
+                                    <input class="radio__input" value="Дочери" type="radio" name="customer" required>
+                                    <span class="radio__text">Дочери</span>
+                                </label>
+                                <label class="form-ref__radio radio">
+                                    <input class="radio__input" value="Матери" type="radio" name="customer" required>
+                                    <span class="radio__text">Матери</span>
+                                </label>
+                                <label class="form-ref__radio radio">
+                                    <input class="radio__input" value="Отцу" type="radio" name="customer" required>
+                                    <span class="radio__text">Отцу</span>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-ref__block additional-patient">
+                            <p class="form-ref__subtitle">Данные пациента</p>
+                            <div class="form-ref__inputs">
+                                <div class="form-ref__input-container">
+                                    <p class="form-ref__label">ФИО пациента*</p>
+                                    <input placeholder="Иванов Иван Иванович" required name="name-patient" type="text" class="form-ref__input">
+                                </div>
+                                <div class="form-ref__input-container">
+                                    <p class="form-ref__label">Дата рождения*</p>
+                                    <input placeholder="15.08.1994" required name="year-birth-patient" type="text" class="form-ref__input">
+                                </div>
+                            </div>
+                            <div class="form-ref__inputs">
+                                <div class="form-ref__input-container">
+                                    <p class="form-ref__label">ИНН*</p>
+                                    <input placeholder="781257493456" required name="inn-patient" type="text" class="form-ref__input">
+                                </div>
+                            </div>
+                            <div class="form-ref__inputs">
+                                <div class="form-ref__input-container">
+                                    <p class="form-ref__label">Серия и номер*</p>
+                                    <input placeholder="9202  571934" required name="passport-patient" type="text" class="form-ref__input">
+                                </div>
+                                <div class="form-ref__input-container">
+                                    <p class="form-ref__label">Дата выдачи*</p>
+                                    <input placeholder="12.05.2015" required name="year-take-patient" type="text" class="form-ref__input">
+                                </div>
+                            </div>
+                            <div class="form-ref__inputs">
+                                <div class="form-ref__input-container">
+                                    <p class="form-ref__label">Согласованная супругами сумма расходов конкретного супруга, обратившегося за выдачей справки*</p>
+                                    <input placeholder="15000" required name="sum" type="text" class="form-ref__input">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-ref__block">
+                            <p class="form-ref__subtitle">Форма получения справки:</p>
+                            <div class="form-ref__separator">
+                                <div class="form-ref__radios">
+                                    <label class="form-ref__radio radio">
+                                        <input class="radio__input" checked value="Очно, в регистратуре клиники" type="radio" name="get-type" required>
+                                        <span class="radio__text">Очно, в регистратуре клиники</span>
+                                    </label>
+                                    <label class="form-ref__radio radio">
+                                        <input class="radio__input" value="Скан на почту" type="radio" name="get-type" required>
+                                        <span class="radio__text">Скан на почту</span>
+                                    </label>
+                                </div>
+                                <div class="form-ref__email-container">
+                                    <input placeholder="Email" type="email" class="form-ref__input">
+                                </div>
+                            </div>
+                            <div class="form-ref__submit submit-ref">
+                                <p class="submit-ref__notice">Нажимая на кнопку, вы подтверждаете <span>правильность введенных данных</span></p>
+                                <div class="submit-ref__wrapper">
+                                    <button type="submit" class="submit-ref__button">Заказать справку</button>
+                                    <label class="form-ref__checkbox checkbox">
+                                        <input class="checkbox__input" checked value="Мне" type="checkbox" name="customer" required>
+                                        <span class="checkbox__text">Нажимая на кнопку, я соглашаюсь с <a href="#">политикой обработки персональных данных</a></span>
+                                    </label>
+                                </div>
+                                <p class="submit-ref__footnote">Справка предоставляется в течение 30 дней со дня подачи заявления (Приказ ФНС России от 08.11.2023г. № ЕА-7-11/824@).</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </section>
+    @@include('_js.html',{})
+</body>
+</html>

@@ -1,0 +1,508 @@
+//<ОСНОВНОЙ БЛОК>====================================================================================================
+
+//</ОСНОВНОЙ БЛОК>====================================================================================================
+
+//<ГОТОВЫЕ КЛАССЫ>====================================================================================================
+.row:after {
+	display: block;
+	content: "";
+	clear: both;
+}
+.rub:after {
+	content: "₽";
+}
+//====================================================================================================
+%noselect {
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+//====================================================================================================
+ol.counter {
+	list-style-type: none;
+	counter-reset: item;
+	li {
+		position: relative;
+		padding: 0px 0px 0px 45px;
+		&:before {
+			counter-increment: item;
+			content: counter(item);
+			position: absolute;
+			left: 0;
+			top: 0;
+			color: #818181;
+			font-size: 14px;
+			font-weight: 700;
+			text-align: center;
+			line-height: 26px;
+			border-radius: 50%;
+			width: 28px;
+			height: 28px;
+			border: 1px solid #4274bb;
+		}
+	}
+}
+//====================================================================================================
+.ellipsis {
+	display: block;
+	overflow: hidden;
+	width: 100%;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+.es {
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+//====================================================================================================
+.table {
+	display: table;
+	font-size: 0;
+	width: 100%;
+	//table-layout: fixed;
+}
+.trow {
+	display: table-row;
+}
+.cell {
+	display: table-cell;
+	&.full {
+		width: 100%;
+	}
+}
+//====================================================================================================
+._ibg {
+	position: relative;
+	img {
+		position: absolute;
+		width: 100%;
+		height: 100%;
+		top: 0;
+		left: 0;
+		object-fit: cover;
+	}
+}
+body.ie {
+	._ibg {
+		background-position: center;
+		background-size: cover;
+		background-repeat: no-repeat;
+	}
+	._ibg img {
+		width: 0;
+		height: 0;
+		opacity: 0;
+		visibility: hidden;
+	}
+}
+//====================================================================================================
+._video {
+	position: relative;
+	overflow: hidden;
+	height: 0;
+	padding-bottom: 56.25%;
+	video,
+	iframe,
+	object,
+	embed {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+	}
+}
+.videobg {
+	video,
+	iframe,
+	object,
+	embed {
+		position: fixed;
+		top: 50%;
+		left: 50%;
+		min-width: 100%;
+		min-height: 100%;
+		width: auto;
+		height: auto;
+		z-index: -100;
+		transform: translateX(-50%) translateY(-50%);
+		background-size: cover;
+	}
+}
+//====================================================================================================
+// ._more-block
+._more-block {
+}
+// ._more-content
+._more-content {
+	transition: all 0.3s ease 0s;
+	overflow: hidden;
+}
+// ._more-item
+._more-item {
+}
+// ._more-link
+._more-link {
+	cursor: pointer;
+	span {
+		font-style: normal;
+		&:first-child {
+			display: block;
+		}
+		&:last-child {
+			display: none;
+		}
+	}
+	&._active {
+		span {
+			font-style: normal;
+			&:first-child {
+				display: none;
+			}
+			&:last-child {
+				display: block;
+			}
+		}
+	}
+}
+//====================================================================================================
+%graystyle {
+	transition: all 0.3s ease 0s;
+	filter: grayscale(1);
+	-webkit-filter: grayscale(1);
+	-moz-filter: grayscale(1);
+	-o-filter: grayscale(1);
+}
+%graystyleoff {
+	filter: grayscale(0);
+	-webkit-filter: grayscale(0);
+	-moz-filter: grayscale(0);
+	-o-filter: grayscale(0);
+}
+//====================================================================================================
+#map {
+	background: url("../img/icons/loading.gif") center / 50px no-repeat;
+}
+//====================================================================================================
+._swiper {
+	overflow: hidden;
+	//.swiper-wrapper
+	.swiper-wrapper {
+		width: 100%;
+		height: 100%;
+		box-sizing: content-box;
+		display: flex;
+		position: relative;
+	}
+	&.swiper-container-vertical {
+		.swiper-wrapper {
+			flex-direction: column;
+		}
+	}
+	&.swiper-container-autoheight {
+		.swiper-wrapper {
+			align-items: flex-start;
+		}
+	}
+}
+.swiper-container-initialized {
+	.swiper-slide {
+		flex-shrink: 0;
+		// transition-property: transform;
+	}
+}
+.swiper-container-android {
+	.swiper-slide,
+	.swiper-wrapper {
+		transform: translate3d(0px, 0, 0);
+	}
+}
+.swiper-button-lock {
+	display: none !important;
+}
+//====================================================================================================
+._tabs {
+}
+._tabs-item {
+}
+._tabs-block {
+	display: none;
+	&._active {
+		display: block;
+	}
+}
+//=====================================================================================================================
+.mirror {
+	transform: scale(-1, 1);
+}
+//=====================================================================================================================
+.nicescroll-rails {
+	z-index: 1000 !important;
+}
+//========================================================================================================================================================
+
+//========================================================================================================================================================
+._custom-scroll {
+	position: fixed;
+	right: 0;
+	top: 0;
+	width: 3px;
+	height: 100%;
+	z-index: 1000;
+	//background-color: rgba(0, 0, 0, 0.1);
+	&__line {
+		background-color: rgba(0, 0, 0, 0.5);
+		border-radius: 3px 0 0 3px;
+		position: relative;
+		left: 0;
+		top: 0;
+		width: 100%;
+	}
+}
+
+._button, ._button-invert {
+	color: #212121;
+	text-transform: uppercase;
+	font-family: $fontMedium;
+	line-height: 125%;
+	@include setProp(font-size, 16, 16, 0);
+
+	@include setProp(padding-left, 21, 21, 0);
+	@include setProp(padding-right, 21, 21, 0);
+	@include setProp(padding-top, 0, 0, 0);
+	@include setProp(padding-bottom, 0, 0, 0);
+	cursor: pointer;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	@include setProp(width, 272, 272, 0);
+	@include setProp(min-height, 56, 56, 0);
+	height: fit-content;
+	@include setProp(border-radius, 58, 58, 0);
+	border: 1px solid #212121;
+	transition: .3s;
+
+	@media (max-width: $md4+px) {
+		width: 100%;
+	}
+
+	position: relative;
+	overflow: hidden;
+
+	& * {
+		z-index: 2;
+	}
+
+	&::before {
+		content: "";
+		display: block;
+		position: absolute;
+		left: calc(50% - 25px);
+		@include setProp(bottom, -50, -50, 0);
+		border-radius: 50%;
+		background-color: #212121;
+		@include setProp(width, 50, 50, 0);
+		@include setProp(height, 50, 50, 0);
+		transition: .5s;
+		z-index: 1;
+	}
+	@media (min-width: $md2+px) {
+		&:hover {
+			&::before {
+				transform: scale(10);
+			}
+			color: #fff;
+			& svg {
+				& path {
+					stroke: #fff;
+				}
+				& rect {
+					fill: #fff;
+				}
+			}
+		}
+	}
+
+	& svg {
+		@include setProp(width, 25, 25, 0);
+		@include setProp(height, 18, 18, 0);
+		& path {
+			stroke: #212121;
+			stroke-width: 4.31px;
+			transition: .3s;
+		}
+		& rect {
+			fill: #212121;
+			width: 4.31px;
+			height: 21px;
+			transition: .3s;
+		}
+	}
+}
+._button-invert {
+	color: #fff;
+	border: 1px solid #fff;
+	&::before {
+		background-color: #fff;
+	}
+	@media (min-width: $md2+px) {
+		&:hover {
+			color: #212121;
+			& svg {
+				& path {
+					stroke: #212121;
+				}
+				& rect {
+					fill: #212121;
+				}
+			}
+		}
+	}
+
+	& svg {
+		& path {
+			stroke: #fff;
+		}
+		& rect {
+			fill: #fff;
+		}
+	}
+}
+
+._social {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border: 1px solid #212121;
+	border-radius: 50%;
+	position: relative;
+
+	@include setProp(width, 56, 40, 0);
+	@include setProp(height, 56, 40, 0);
+
+	& svg {
+		@include setProp(width, 20, 16, 0);
+		@include setProp(height, 20, 16, 0);
+		fill: #212121;
+		position: relative;
+		z-index: 2;
+		transition: .3s;
+	}
+
+	&::before {
+		content: "";
+		display: block;
+		position: absolute;
+		width: 100%;
+		height: 100%;
+		border-radius: 50%;
+		background-color: #212121;
+		z-index: 1;
+		transition: .3s;
+		transform: scale(0);
+	}
+
+	@media (min-width: $md2+px) {
+		&:hover {
+			&::before {
+				transform: scale(1);
+			}
+			& svg {
+				fill: #fff;
+			}
+		}
+	}
+}
+
+._slider-next,
+._slider-prev {
+  @include setProp(width, 46, 46, 0);
+  @include setProp(height, 46, 46, 0);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  border: 1px solid #212121;
+  cursor: pointer;
+
+  @media (max-width: $md2+px) {
+	border: none;
+	border-radius: 0px;
+  }
+
+  transition: 0.3s;
+
+  &.swiper-button-disabled {
+	opacity: 0.2;
+  }
+
+  & svg {
+	position: relative;
+	z-index: 2;
+	@include setProp(width, 15, 32, 0);
+	@include setProp(height, 10, 22, 0);
+
+	& path {
+	  stroke: #212121;
+	  stroke-width: 4.31px;
+	  transition: 0.3s;
+	}
+
+	& rect {
+	  fill: #212121;
+	  width: 4.31px;
+	  height: 21px;
+	  transition: 0.3s;
+	}
+  }
+
+  &::before {
+	content: "";
+	display: block;
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	border-radius: 50%;
+	background-color: #212121;
+	z-index: 1;
+	transition: 0.3s;
+	transform: scale(0);
+  }
+
+  @media (min-width: $md2+px) {
+	&:not(.swiper-button-disabled):hover {
+	  &::before {
+		transform: scale(1);
+	  }
+
+	  & svg {
+		& path {
+		  stroke: #fff;
+		}
+
+		& rect {
+		  fill: #fff;
+		}
+	  }
+	}
+  }
+}
+._slider-prev {
+	transform: scale(-1, 1);
+}
+
+._input {
+	display: block;
+	background: none;
+	border: none;
+    @include setProp(padding-top, 20, 20, 0);
+    @include setProp(padding-bottom, 20, 20, 0);
+
+	border-bottom: 1px solid #212121;
+}
+//</ГОТОВЫЕ КЛАССЫ>====================================================================================================

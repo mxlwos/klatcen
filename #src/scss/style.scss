@@ -1,0 +1,3404 @@
+@use "sass:math";
+//<МИКСИНЫ>===============================================================================================
+@import "mixins";
+//</МИКСИНЫ>===============================================================================================
+
+//<ШРИФТЫ>===============================================================================================
+
+//<Подключаем шрифты>=======================================================================================
+//&display=swap&subset=cyrillic-ext
+@import "fonts";
+//</Подключаем шрифты>=======================================================================================
+
+//<Иконочные шрифты>==========================================================================================
+//@import "icons";
+//</Иконочные шрифты>==========================================================================================
+
+//<Шрифт по умолчанию>==========================================================================================
+$fontFamily: "HelveticaNeueCyr-Roman";
+$fontMedium: "HelveticaNeueCyr-Medium";
+$fontBold: "HelveticaNeueCyr-Bold";
+$fontLight: "HelveticaNeueCyr-Light";
+$fontItalic: "HelveticaNeueCyr-Italic";
+$fontSize: 18;
+//</Шрифт по умолчанию>==========================================================================================
+
+//</ШРИФТЫ>=======================================================================================================
+
+//<ПЕРЕМЕННЫЕ>==========================================================================================================
+$minWidth: 375;
+$maxWidth: 1920;
+$maxWidthContainer: 1760;
+
+$adaptBreakpoint: 991.98;
+
+$md1: $maxWidthContainer + 12;
+$md2: 991.98;
+$md3: 767.98;
+$md4: 479.98;
+
+$mainColor: #212121;
+
+//</ПЕРЕМЕННЫЕ>===========================================================================================================
+
+//<ОБНУЛЕНИЕ, ОБЩИЕ ПАРАМЕТРЫ>===============================================================================================
+@import "null";
+
+body {
+  color: $mainColor;
+
+  &._lock {
+    overflow: hidden;
+  }
+}
+
+//</ОБНУЛЕНИЕ, ОБЩИЕ ПАРАМЕТРЫ>===============================================================================================
+
+//<ОБОЛОЧКА>===========================================================================================================
+.wrapper {
+  width: 100%;
+  min-height: 100%;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+
+  &._loaded {}
+}
+
+//</ОБОЛОЧКА>===========================================================================================================
+
+//<ОСНОВНАЯ СЕТКА>===========================================================================================================
+._container {
+  @include setProp(max-width, $maxWidthContainer, 320, 0);
+  margin: 0 auto;
+
+  @media (max-width: $md2+px) {
+    max-width: 750px;
+  }
+
+  @media (max-width: $md3+px) {
+    max-width: none;
+
+    &:not(._no-padding) {
+      @include setProp(padding-left, 24, 24, 0);
+      @include setProp(padding-right, 24, 24, 0);
+    }
+  }
+}
+
+//</ОСНОВНАЯ СЕТКА>===========================================================================================================
+
+//<ПОДКЛЮЧЕНИЕ ФАЙЛОВ UI СТИЛЕЙ, ФОРМ И ГОТОВЫХ КЛАССОВ>====================================================================================================
+@import "forms";
+@import "ui";
+//</ПОДКЛЮЧЕНИЕ ФАЙЛОВ UI СТИЛЕЙ, ФОРМ И ГОТОВЫХ КЛАССОВ>====================================================================================================
+
+//<ПОДКЛЮЧЕНИЕ ФАЙЛОВ СТИЛЕЙ СТРАНИЦ И ЭЛЕМЕНТОВ>====================================================================================================
+//@import "datepicker";
+@import "lightgallery";
+//@import "pagging";
+@import "swiper";
+@import "popup";
+@import "header";
+@import "footer";
+@import "home";
+//</ПОДКЛЮЧЕНИЕ ФАЙЛОВ СТИЛЕЙ СТРАНИЦ И ЭЛЕМЕНТОВ>====================================================================================================
+
+//<ШАБЛОНЫ СТИЛЕЙ>====================================================================================================
+
+._title {}
+
+._button {}
+
+._input {}
+
+//</ШАБЛОНЫ СТИЛЕЙ>====================================================================================================
+
+//<ОСНОВНОЙ БЛОК>====================================================================================================
+.page {
+  flex: 1 1 auto;
+}
+
+//===================================================================================================================================
+
+//</ОСНОВНОЙ БЛОК>====================================================================================================
+
+.home {
+  display: flex;
+  flex-direction: column;
+  @include setProp(gap, 150, 72, 0);
+  @include setProp(margin-bottom, 150, 72, 0);
+}
+
+.hero-home {
+  @include setProp(padding-top, 292, 116, 0);
+  @include setProp(padding-bottom, 126, 300, 0);
+  position: relative;
+
+  &__background {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    object-fit: cover;
+    z-index: 1;
+  }
+
+  &__container-wrapper {
+    position: relative;
+    z-index: 2;
+
+    &::before {
+      content: "";
+      display: block;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 40.5%;
+      height: 100%;
+      background-color: #F5FF82;
+
+      @media (max-width: $md2+px) {
+        width: 60%;
+        @include setProp(min-width, 240, 260, 0);
+      }
+    }
+  }
+
+  &__container {
+    position: relative;
+    display: grid;
+    z-index: 3;
+    grid-template-columns: 2fr 3fr;
+
+    @include setProp(padding-top, 28, 24, 0);
+    @include setProp(padding-right, 24, 24, 0);
+    @include setProp(padding-bottom, 32, 24, 0);
+  }
+
+  &__content {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    @include setProp(gap, 78, 24, 0);
+
+    @media (max-width: $md2+px) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  &__info {}
+
+  &__rating {
+    & .rating-about__list {
+      display: flex;
+      @include setProp(gap, 16, 4, 0);
+    }
+  }
+
+  &__showreel {
+    display: flex;
+    align-items: center;
+    height: fit-content;
+    font-family: $fontMedium;
+    line-height: 120%;
+    @include setProp(font-size, 20, 16, 0);
+    @include setProp(gap, 16, 8, 0);
+    color: #212121;
+
+    &::before {
+      content: "";
+      display: block;
+      background: url("../img/icons/play.svg") center no-repeat;
+      background-size: contain;
+      @include setProp(width, 24, 16, 0);
+      @include setProp(height, 28, 20, 0);
+    }
+  }
+
+  &__subtitle {
+    font-family: $fontMedium;
+    line-height: 125%;
+    @include setProp(font-size, 24, 16, 0);
+    @include setProp(margin-bottom, 20, 16, 0);
+
+    @media (max-width: $md2+px) {
+      font-family: $fontFamily;
+    }
+  }
+
+  &__title {
+    @include setProp(font-size, 100, 40, 0);
+    @include setProp(max-width, 1105, 1105, 0);
+    text-transform: uppercase;
+    font-family: $fontMedium;
+    line-height: 115%;
+  }
+
+  &__title-container {
+    position: relative;
+    z-index: 3;
+    @include setProp(padding-bottom, 220, 16, 0);
+  }
+
+  &__wrapper {
+    // @include setProp(min-height, 740, 600, 0);
+  }
+}
+
+.home {
+  &__hero {}
+}
+
+.rating-about {
+  &__list {}
+
+  &__position {}
+}
+
+//<ПОРТФОЛИО>====================================================================================================
+.portfolio-home {
+  &__container {}
+
+  &__content {
+    @include setProp(padding-right, 12, 4, 0);
+  }
+
+  &__list {
+    display: flex;
+    flex-direction: column;
+    @include setProp(gap, 96, 40, 0);
+  }
+
+  &__row {
+    display: grid;
+    @include setProp(gap, 440, 40, 0);
+    grid-template-columns: 2fr 1fr;
+    justify-content: space-between;
+
+    &._big {
+      & .item-portfolio {
+        @include setProp(gap, 110, 110, 0);
+
+        @media (max-width: $md2+px) {
+          gap: 0px;
+        }
+
+        @media (min-width: $md2+px) {
+          grid-column: 1 / 4;
+          flex-direction: row-reverse;
+          justify-content: space-between;
+        }
+      }
+
+      & .item-portfolio__photo {
+        @include setProp(height, 600, 220, 0);
+      }
+    }
+
+    &._reverse {
+      grid-template-columns: 1fr 2fr;
+    }
+
+    @media (max-width: $md2+px) {
+      grid-template-columns: 1fr !important;
+    }
+  }
+
+
+}
+
+.item-portfolio {
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+
+  @media (min-width: $md2+px) {
+    &:hover .item-portfolio__photo {
+      transform: scale(1.2);
+    }
+
+    &:hover .item-portfolio__link {
+      &::before {
+        transform: scale(1);
+      }
+
+      & svg {
+        & path {
+          stroke: #fff;
+        }
+
+        & rect {
+          fill: #fff;
+        }
+      }
+    }
+  }
+
+  &__photo {
+    @include setProp(height, 440, 220, 0);
+    width: 100%;
+    object-fit: cover;
+    transition: 0.5s;
+  }
+
+  &__photo-container {
+    @include setProp(margin-bottom, 16, 16, 0);
+    width: 100%;
+    overflow: hidden;
+  }
+
+  &__tag {
+    @include setProp(font-size, 16, 16, 0);
+    @include setProp(padding-top, 8, 8, 0);
+    @include setProp(padding-bottom, 8, 8, 0);
+    @include setProp(padding-left, 8, 8, 0);
+    @include setProp(padding-right, 8, 8, 0);
+    @include setProp(border-radius, 52, 52, 0);
+    border: 1px solid #212121;
+    color: #212121;
+    width: fit-content;
+    display: block;
+  }
+
+  &__tags {
+    display: flex;
+    @include setProp(gap, 4, 4, 0);
+    flex-wrap: wrap;
+  }
+
+  &__title {
+    font-family: $fontMedium;
+    @include setProp(margin-bottom, 12, 4, 0);
+    @include setProp(font-size, 20, 18, 0);
+    line-height: 120%;
+
+    @media (max-width: $md2+px) {
+      font-family: $fontFamily;
+    }
+  }
+
+  &__description {
+    color: #5e5e5e;
+    @include setProp(margin-bottom, 12, 12, 0);
+  }
+
+  &__link {
+    @include setProp(border-radius, 52, 52, 0);
+    border: 1px solid #212121;
+    @include setProp(width, 36, 36, 0);
+    @include setProp(height, 36, 36, 0);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+
+    &::before {
+      content: "";
+      display: block;
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      background-color: #212121;
+      z-index: 1;
+      transition: 0.3s;
+      transform: scale(0);
+    }
+
+    & svg {
+      @include setProp(width, 16, 16, 0);
+      @include setProp(height, 10, 10, 0);
+      position: relative;
+      z-index: 2;
+
+      & path {
+        stroke: #212121;
+        stroke-width: 4.31px;
+        transition: 0.3s;
+      }
+
+      & rect {
+        fill: #212121;
+        width: 4.31px;
+        height: 21px;
+        transition: 0.3s;
+      }
+    }
+  }
+}
+
+//</ПОРТФОЛИО>====================================================================================================
+
+//<О НАС>====================================================================================================
+
+.about-block {
+  background-color: #212121;
+
+  &__container {
+    @include setProp(padding-top, 116, 40, 1);
+    @include setProp(padding-bottom, 100, 80, 1);
+    color: #fff;
+  }
+
+  &__left {}
+
+  &__link {
+    @include setProp(margin-top, 64, 40, 1);
+  }
+
+  &__nums {}
+
+  &__placeholder {
+    text-transform: uppercase;
+    @include setProp(font-size, 24, 16, 0);
+    opacity: 0.5;
+
+    @media (max-width: $md2+px) {
+      margin-bottom: 40px;
+    }
+  }
+
+  &__rating {}
+
+  &__right {}
+
+  &__title {
+    @include setProp(font-size, 52, 32, 0);
+    @include setProp(max-width, 1328, 1328, 0);
+    @include setProp(margin-bottom, 66, 32, 0);
+    line-height: 110%;
+  }
+
+  &__wrapper {
+    display: grid;
+    grid-template-columns: 1.3fr 4fr;
+    justify-content: space-between;
+
+    @media (max-width: $md2+px) {
+      grid-template-columns: 1fr;
+    }
+  }
+}
+
+.nums-about {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  justify-content: space-between;
+  @include setProp(gap, 32, 32, 0);
+  @include setProp(margin-bottom, 56, 32, 1);
+
+  &._flex {
+    display: flex;
+    justify-content: flex-start;
+  }
+
+  &__anim {}
+
+  &__description {
+    @include setProp(font-size, 24, 14, 0);
+    opacity: 0.8;
+    line-height: 120%;
+    @include setProp(max-width, 400, 400, 0);
+  }
+
+  &__item {}
+
+  &__num {
+    display: flex;
+    align-items: center;
+    font-family: $fontLight;
+    @include setProp(font-size, 120, 56, 0);
+
+    & span {
+      @include setProp(font-size, 90, 36, 0);
+    }
+  }
+}
+
+.rating-about {
+  &__item {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+
+    align-items: center;
+
+    @include setProp(padding-top, 24, 16, 1);
+    @include setProp(padding-bottom, 24, 16, 1);
+    @include setProp(gap, 32, 8, 0);
+
+    border-bottom: 1px solid #5e5e5e;
+
+    &:first-child {
+      border-top: 1px solid #5e5e5e;
+    }
+
+    @media (max-width: $md2+px) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  &__left {
+    display: flex;
+    align-items: center;
+    @include setProp(gap, 24, 14, 0);
+
+    @media (max-width: $md2+px) {
+      align-items: start;
+    }
+  }
+
+  &__list {}
+
+  &._black {
+    & .rating-about__position {
+      @include setProp(width, 44, 30, 0);
+      @include setProp(font-size, 20, 16, 0);
+
+      &::before {
+        background: url("../img/icons/lavrs-black.svg") center no-repeat;
+        background-size: contain;
+        @include setProp(width, 15, 9, 0);
+        @include setProp(height, 32, 21, 0);
+      }
+
+      &::after {
+        background: url("../img/icons/lavrs-black.svg") center no-repeat;
+        background-size: contain;
+        @include setProp(width, 15, 9, 0);
+        @include setProp(height, 32, 21, 0);
+      }
+    }
+
+  }
+
+  &__position {
+    @include setProp(width, 76, 32, 0);
+    text-align: center;
+    @include setProp(font-size, 32, 16, 0);
+    font-family: $fontMedium;
+
+    @media (max-width: $md2+px) {
+      font-family: $fontFamily;
+    }
+
+    position: relative;
+
+    &::before {
+      content: "";
+      display: block;
+      position: absolute;
+      @include setProp(top, -4, -2, 0);
+      left: 0;
+      @include setProp(width, 22, 10, 0);
+      @include setProp(height, 46, 21, 0);
+
+      background: url("../img/icons/lavrs.svg") center no-repeat;
+      background-size: contain;
+    }
+
+    &::after {
+      content: "";
+      display: block;
+      position: absolute;
+      @include setProp(top, -4, -2, 0);
+      right: 0;
+      @include setProp(width, 22, 10, 0);
+      @include setProp(height, 46, 21, 0);
+
+      transform: scale(-1, 1);
+      background: url("../img/icons/lavrs.svg") center no-repeat;
+      background-size: contain;
+    }
+  }
+
+  &__right {
+    @media (max-width: $md2+px) {
+      @include setProp(margin-left, 100, 46, 0);
+    }
+  }
+
+  &__text {
+    @include setProp(font-size, 32, 20, 0);
+    font-family: $fontBold;
+
+    @media (max-width: $md2+px) {
+      font-family: $fontFamily;
+    }
+  }
+
+  &__link {
+    font-family: $fontItalic;
+    @include setProp(font-size, 18, 14, 0);
+    color: #a1a1a1;
+  }
+}
+
+//</О НАС>====================================================================================================
+
+//<УСЛУГИ>====================================================================================================
+
+.item-services {
+  position: relative;
+  display: block;
+  @include setProp(padding, 40, 30, 0);
+  background-color: #f5ff82;
+  aspect-ratio: 1/0.9;
+  transition: 0.2s;
+  z-index: 1;
+  box-shadow: 1px 1px 12px 0px rgba(0, 0, 0, 0);
+
+  @media (min-width: $md2+px) {
+    &:hover {
+      transform: scale(1.05);
+      box-shadow: 1px 1px 12px 0px rgba(0, 0, 0, 0.1);
+      z-index: 2;
+
+      & svg {
+        transform: rotate(-45deg);
+      }
+    }
+  }
+
+  &__photo {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+
+  &__title {
+    @include setProp(font-size, 32, 24, 0);
+    font-family: $fontBold;
+    line-height: 120%;
+    color: #212121;
+    position: relative;
+    z-index: 2;
+
+    &._invert {
+      color: #fff;
+    }
+
+    @media (max-width: $md2+px) {
+      font-family: $fontMedium;
+    }
+  }
+
+  & svg {
+    position: absolute;
+    transition: 0.3s;
+    @include setProp(width, 40, 30, 0);
+    @include setProp(height, 30, 20, 0);
+
+    @include setProp(bottom, 40, 30, 0);
+    @include setProp(right, 40, 30, 0);
+
+    &._invert {
+      & path {
+        stroke: #fff;
+      }
+
+      & rect {
+        fill: #fff;
+      }
+    }
+
+    & path {
+      stroke: #212121;
+      stroke-width: 4.31px;
+      transition: 0.3s;
+    }
+
+    & rect {
+      fill: #212121;
+      width: 4.31px;
+      height: 21px;
+      transition: 0.3s;
+    }
+  }
+}
+
+.services-home {
+  &__container {}
+
+  &__left {}
+
+  &__link {
+    @include setProp(margin-top, 48, 52, 0);
+  }
+
+  &__list {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+
+    @media (max-width: $md2+px) {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    @media (max-width: 600px) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  &__placeholder {
+    text-transform: uppercase;
+    @include setProp(font-size, 24, 16, 0);
+    opacity: 0.5;
+
+    @media (max-width: $md2+px) {
+      margin-bottom: 30px;
+    }
+  }
+
+  &__right {}
+
+  &__title {
+    @include setProp(font-size, 52, 32, 0);
+    font-family: $fontMedium;
+    line-height: 110%;
+    @include setProp(max-width, 1020, 1020, 0);
+  }
+
+  &__top {
+    display: grid;
+    grid-template-columns: 1.3fr 4fr;
+    @include setProp(margin-bottom, 40, 40, 0);
+
+    @media (max-width: $md2+px) {
+      grid-template-columns: 1fr;
+    }
+  }
+}
+
+//</УСЛУГИ>====================================================================================================
+
+//<СФЕРЫ>====================================================================================================
+
+.clients-home {
+  &__container {}
+
+  &__item {
+    @include setProp(border-radius, 52, 52, 0);
+    @include setProp(padding, 8, 8, 0);
+    color: #212121;
+    border: 1px solid #212121;
+    display: block;
+    @include setProp(font-size, 16, 14, 0);
+    width: fit-content;
+
+    & ._number {
+      margin-left: 6px;
+    }
+  }
+
+  &__left {}
+
+  &__list {
+    display: flex;
+    flex-wrap: wrap;
+    @include setProp(gap, 8, 8, 0);
+  }
+
+  &__placeholder {
+    text-transform: uppercase;
+    opacity: 0.5;
+    @include setProp(margin-bottom, 56, 32, 0);
+    @include setProp(font-size, 24, 16, 0);
+  }
+
+  &__right {
+    @include setProp(max-width, 670, 670, 0);
+  }
+
+  &__subtitle {
+    @include setProp(margin-bottom, 16, 12, 0);
+    @include setProp(font-size, 32, 24, 0);
+    font-family: $fontBold;
+  }
+
+  &__text {
+    @include setProp(margin-top, 24, 24, 0);
+    @include setProp(font-size, 20, 18, 0);
+    font-family: $fontMedium;
+    line-height: 120%;
+  }
+
+  &__title {
+    @include setProp(font-size, 52, 32, 0);
+    line-height: 110%;
+    font-family: $fontMedium;
+  }
+
+  &__types {}
+
+  &__wrapper {
+    @include setProp(margin-bottom, 70, 40, 0);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    @include setProp(gap, 32, 32, 0);
+
+    @media (max-width: $md2+px) {
+      grid-template-columns: 1fr;
+    }
+  }
+}
+
+.clients-logos {
+  &__image {
+    object-fit: contain;
+    @include setProp(width, 120, 80, 0);
+    @include setProp(height, 120, 80, 0);
+    filter: grayscale(1);
+    transition: 0.3s;
+
+    @media (min-width: $md2+px) {
+      &:hover {
+        filter: grayscale(0);
+      }
+    }
+  }
+
+  &__slide {}
+
+  &__swiper {}
+
+  &__wrapper {}
+}
+
+//</СФЕРЫ>====================================================================================================
+
+//<ОТЗЫВЫ>====================================================================================================
+
+.reviews {
+  &__bottom {
+    @include setProp(margin-top, 24, 24, 0);
+    display: flex;
+    justify-content: space-between;
+    width: 75%;
+
+    @media (max-width: $md2+px) {
+      width: 100%;
+    }
+  }
+
+  &__container {}
+
+  &__item {}
+
+  &__navigation {
+    display: flex;
+    align-items: center;
+    @include setProp(gap, 16, 16, 0);
+
+    @media (max-width: $md2+px) {
+      width: 100%;
+      justify-content: space-between;
+    }
+  }
+
+  // &__next,
+  // &__prev {
+  //   @include setProp(width, 46, 46, 0);
+  //   @include setProp(height, 46, 46, 0);
+  //   border-radius: 50%;
+  //   display: flex;
+  //   align-items: center;
+  //   justify-content: center;
+  //   position: relative;
+  //   border: 1px solid #212121;
+  //   cursor: pointer;
+
+  //   @media (max-width: $md2+px) {
+  //     border: none;
+  //     border-radius: 0px;
+  //   }
+
+  //   transition: 0.3s;
+
+  //   &.swiper-button-disabled {
+  //     opacity: 0.2;
+  //   }
+
+  //   & svg {
+  //     position: relative;
+  //     z-index: 2;
+  //     @include setProp(width, 15, 32, 0);
+  //     @include setProp(height, 10, 22, 0);
+
+  //     & path {
+  //       stroke: #212121;
+  //       stroke-width: 4.31px;
+  //       transition: 0.3s;
+  //     }
+
+  //     & rect {
+  //       fill: #212121;
+  //       width: 4.31px;
+  //       height: 21px;
+  //       transition: 0.3s;
+  //     }
+  //   }
+
+  //   &::before {
+  //     content: "";
+  //     display: block;
+  //     position: absolute;
+  //     width: 100%;
+  //     height: 100%;
+  //     border-radius: 50%;
+  //     background-color: #212121;
+  //     z-index: 1;
+  //     transition: 0.3s;
+  //     transform: scale(0);
+  //   }
+
+  //   @media (min-width: $md2+px) {
+  //     &:not(.swiper-button-disabled):hover {
+  //       &::before {
+  //         transform: scale(1);
+  //       }
+
+  //       & svg {
+  //         & path {
+  //           stroke: #fff;
+  //         }
+
+  //         & rect {
+  //           fill: #fff;
+  //         }
+  //       }
+  //     }
+  //   }
+  // }
+
+  // &__prev {
+  //   transform: scale(-1, 1);
+  // }
+
+  &__pagination {
+    width: fit-content;
+    display: flex;
+    align-items: flex-end;
+    @include setProp(font-size, 40, 32, 0);
+
+    & .swiper-pagination-current {
+      @include setProp(margin-right, 4, 4, 0);
+    }
+
+    & .swiper-pagination-total {
+      @include setProp(font-size, 18, 16, 0);
+      @include setProp(margin-left, 4, 4, 0);
+    }
+  }
+
+
+  &__slide {}
+
+  &__swiper {}
+
+  &__wrapper {}
+}
+
+.content-review {
+  &__job-title {
+    @include setProp(margin-top, 8, 8, 0);
+    @include setProp(font-size, 16, 12, 0);
+    color: #a1a1a1;
+  }
+
+  &__left {}
+
+  &__link {
+    color: #212121;
+    text-decoration: underline;
+  }
+
+  &__name {
+    @include setProp(font-size, 20, 14, 0);
+    font-family: $fontMedium;
+  }
+
+  &__namespace {
+    @include setProp(padding-left, 72, 72, 0);
+    @include setProp(margin-top, 40, 40, 0);
+
+    @media (max-width: $md2+px) {
+      padding-left: 0;
+    }
+  }
+
+  &__right {}
+
+  &__sphere {
+    color: #a1a1a1;
+  }
+
+  &__text {
+    line-height: 135%;
+    @include setProp(font-size, 16, 14, 0);
+
+    @include setProp(padding-left, 72, 72, 0);
+
+    @media (max-width: $md2+px) {
+      padding-left: 0;
+      @include setProp(padding-top, 48, 48, 0);
+    }
+
+    position: relative;
+
+    &::before {
+      content: "";
+      display: block;
+      background: url("../img/icons/quotes.svg") center no-repeat;
+      background-size: contain;
+      @include setProp(width, 48, 32, 0);
+      @include setProp(height, 48, 32, 0);
+
+      position: absolute;
+      left: 0;
+      top: 0;
+    }
+  }
+
+  &__title {
+    @include setProp(font-size, 32, 24, 0);
+    @include setProp(margin-bottom, 8, 8, 0);
+    font-family: $fontBold;
+  }
+
+  &__top {
+    @include setProp(margin-bottom, 28, 28, 0);
+    display: flex;
+    @include setProp(gap, 32, 32, 0);
+    justify-content: space-between;
+
+    @media (max-width: $md2+px) {
+      flex-direction: column;
+    }
+  }
+}
+
+.item-reviews {
+  background-color: #f5f5f5;
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+
+  @media (max-width: $md2+px) {
+    grid-template-columns: 1fr;
+  }
+
+  &__content {}
+
+  &__left {
+    @include setProp(padding-top, 64, 32, 0);
+    @include setProp(padding-right, 48, 32, 0);
+    @include setProp(padding-bottom, 48, 24, 0);
+    @include setProp(padding-left, 64, 32, 0);
+  }
+
+  &__photo {
+    width: 100%;
+    @include setProp(min-height, 477, 385, 0);
+    object-fit: cover;
+  }
+
+  &__right {
+    position: relative;
+  }
+
+  &__tags {}
+}
+
+.tags-review {
+  @include setProp(padding, 32, 24, 0);
+  position: absolute;
+  width: 75%;
+  bottom: 0;
+  left: 0;
+  background-color: #f5ff82;
+
+  @media (max-width: $md2+px) {
+    width: 100%;
+  }
+
+  &__item {
+    @include setProp(border-radius, 52, 52, 0);
+    @include setProp(padding, 8, 8, 0);
+    color: #212121;
+    border: 1px solid #212121;
+    display: block;
+    @include setProp(font-size, 16, 14, 0);
+    width: fit-content;
+  }
+
+  &__list {
+    display: flex;
+    @include setProp(gap, 8, 8, 0);
+    flex-wrap: wrap;
+  }
+
+  &__title {
+    @include setProp(font-size, 24, 24, 0);
+    @include setProp(margin-bottom, 12, 12, 0);
+    font-family: $fontMedium;
+  }
+}
+
+//</ОТЗЫВЫ>====================================================================================================
+
+//<КАЛЬКУЛЯТОР>====================================================================================================
+
+.calculator {
+  &__background {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+  }
+
+  &__container {}
+
+  &__info {}
+
+  &__left {
+    background: #f5ff82;
+    @include setProp(padding-top, 80, 40, 0);
+    @include setProp(padding-right, 80, 24, 0);
+    @include setProp(padding-bottom, 40, 62, 0);
+    @include setProp(padding-left, 80, 24, 0);
+  }
+
+  &__right {
+    position: relative;
+    @include setProp(min-height, 460, 270, 0);
+  }
+
+  &__steps {}
+
+  &__wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+
+    @media (max-width: $md2+px) {
+      grid-template-columns: 1fr;
+    }
+  }
+}
+
+.info-calculator {
+  position: relative;
+  z-index: 2;
+  @include setProp(margin-top, 38, 24, 0);
+  @include setProp(margin-left, 72, 18, 0);
+  @include setProp(margin-right, 72, 18, 0);
+  @include setProp(margin-bottom, 72, 18, 0);
+
+  display: flex;
+  flex-direction: column;
+  @include setProp(gap, 18, 12, 0);
+
+  @media (max-width: $md2+px) {
+    flex-direction: row;
+  }
+
+  &__avatar {
+    @include setProp(width, 162, 64, 0);
+    @include setProp(height, 162, 64, 0);
+    object-fit: contain;
+  }
+
+  &__popup {
+    position: relative;
+    @include setProp(border-radius, 18, 8, 0);
+    background-color: #212121;
+    width: fit-content;
+    @include setProp(padding, 40, 20, 0);
+    @include setProp(padding-right, 64, 42, 0);
+    @include setProp(max-width, 430, 430, 0);
+    color: #fff;
+
+    &::before {
+      content: "";
+      display: block;
+      width: 0;
+      height: 0;
+
+      @include setProp(border-left-width, 25, 25, 0);
+      border-left-color: transparent;
+      border-left-style: solid;
+
+      @include setProp(border-right-width, 25, 25, 0);
+      border-right-color: transparent;
+      border-right-style: solid;
+
+      @include setProp(border-top-width, 40, 40, 0);
+      border-top-color: #212121;
+      border-top-style: solid;
+      position: absolute;
+
+      @include setProp(right, -16, -14, 0);
+      @include setProp(bottom, -16, -10, 0);
+      transform: rotate(-40deg);
+    }
+  }
+
+  &__text {
+    @include setProp(font-size, 20, 12, 0);
+    line-height: 125%;
+  }
+
+  &__title {
+    @include setProp(font-size, 24, 16, 0);
+    @include setProp(margin-bottom, 12, 12, 0);
+    font-family: $fontBold;
+  }
+}
+
+.steps-calculator {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  @include setProp(gap, 56, 32, 0);
+
+  &__back {
+    transform: scale(-1, 1);
+    @include setProp(min-width, 56, 56, 0);
+    @include setProp(width, 56, 56, 0);
+    @include setProp(height, 56, 56, 0);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    border: 1px solid #212121;
+    cursor: pointer;
+
+    transition: 0.3s;
+
+    &.swiper-button-disabled {
+      opacity: 0.2;
+    }
+
+    & svg {
+      position: relative;
+      z-index: 2;
+      @include setProp(width, 15, 25, 0);
+      @include setProp(height, 10, 18, 0);
+
+      & path {
+        stroke: #212121;
+        stroke-width: 4.31px;
+        transition: 0.3s;
+      }
+
+      & rect {
+        fill: #212121;
+        width: 4.31px;
+        height: 21px;
+        transition: 0.3s;
+      }
+    }
+
+    &::before {
+      content: "";
+      display: block;
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      background-color: #212121;
+      z-index: 1;
+      transition: 0.3s;
+      transform: scale(0);
+    }
+
+    @media (min-width: $md2+px) {
+      &:not(.swiper-button-disabled):hover {
+        &::before {
+          transform: scale(1);
+        }
+
+        & svg {
+          & path {
+            stroke: #fff;
+          }
+
+          & rect {
+            fill: #fff;
+          }
+        }
+      }
+    }
+  }
+
+  &__buttons {
+    display: flex;
+    width: 100%;
+    @include setProp(gap, 12, 12, 0);
+  }
+
+  &__controller {}
+
+  &__current {
+    @include setProp(margin-right, 4, 4, 0);
+  }
+
+  &__item {
+    display: none;
+
+    &._active {
+      display: block;
+    }
+  }
+
+  &__navigation {
+    display: none;
+    // display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    @include setProp(gap, 24, 24, 0);
+
+    @media (max-width: $md2+px) {
+      flex-direction: column;
+    }
+  }
+
+  &__next {}
+
+  &__options {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    @include setProp(gap, 24, 24, 0);
+  }
+
+  &__pagination {
+    @include setProp(font-size, 40, 32, 0);
+    display: flex;
+    align-items: flex-end;
+  }
+
+  &__radio {}
+
+  &__start {}
+
+  &__subtitle {
+    font-family: $fontBold;
+    @include setProp(font-size, 32, 24, 0);
+    @include setProp(margin-bottom, 24, 24, 0);
+    line-height: 125%;
+  }
+
+  &__title {
+    @include setProp(font-size, 52, 32, 0);
+    line-height: 110%;
+    @include setProp(margin-bottom, 56, 32, 0);
+    font-family: $fontMedium;
+  }
+
+  &__total {
+    @include setProp(font-size, 18, 16, 0);
+    @include setProp(margin-left, 4, 4, 0);
+  }
+}
+
+//</КАЛЬКУЛЯТОР>====================================================================================================
+
+.articles-home {
+  &__item {}
+
+  &__placeholder {
+    text-transform: uppercase;
+    opacity: 0.5;
+    @include setProp(font-size, 24, 16, 0);
+
+    @media (max-width: $md2+px) {
+      @include setProp(margin-bottom, 32, 32, 0);
+    }
+  }
+
+  &__slide {}
+
+  &__swiper {}
+
+  &__title {
+    @include setProp(font-size, 52, 32, 0);
+    font-family: $fontMedium;
+    height: 110%;
+  }
+
+  &__top {
+    width: 100%;
+    @include setProp(margin-bottom, 58, 32, 0);
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+
+    @media (max-width: $md2+px) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  &__wrapper {}
+}
+
+.item-article {
+  transition: .5s;
+  display: block;
+
+  @media (min-width: $md2+px) {
+    &:hover {
+      opacity: .3;
+    }
+  }
+
+  &__content {
+    @include setProp(margin-top, 24, 16, 0);
+    @include setProp(padding-top, 16, 8, 0);
+    @include setProp(padding-right, 24, 24, 0);
+    border-top: 2px solid #212121;
+  }
+
+  &__date {
+    @include setProp(margin-top, 16, 8, 0);
+    @include setProp(font-size, 20, 16, 0);
+    font-family: $fontMedium;
+    display: block;
+    color: #A1A1A1;
+  }
+
+  &__image {
+    width: 100%;
+    @include setProp(max-height, 416, 218, 0);
+    aspect-ratio: 1/1;
+    object-fit: cover;
+  }
+
+  &__title {
+    @include setProp(font-size, 24, 18, 0);
+    line-height: 125%;
+    font-family: $fontMedium;
+    color: #212121;
+  }
+}
+
+
+// archive-service.html
+.archive-service {
+  display: flex;
+  flex-direction: column;
+  @include setProp(gap, 150, 70, 0);
+  @include setProp(margin-bottom, 110, 70, 0);
+
+  &__sale {}
+}
+
+.content-sbi {
+  display: grid;
+  grid-template-columns: 1.8fr 1fr;
+  @include setProp(max-width, 870, 870, 0);
+
+  @media (max-width: $md2+px) {
+    grid-template-columns: 1fr;
+  }
+
+  &__button {
+    @include setProp(margin-top, 64, 32, 0);
+  }
+
+  &__image {
+    width: 100%;
+
+    @media (max-width: $md2+px) {
+      @include setProp(max-width, 220, 190, 0);
+    }
+  }
+
+  &__left {
+    @include setProp(padding-top, 42, 16, 0);
+    @include setProp(padding-left, 80, 24, 0);
+  }
+
+  &__li {
+    @include setProp(font-size, 20, 18, 0);
+    font-family: $fontFamily;
+    display: flex;
+    @include setProp(gap, 8, 8, 0);
+
+    &::before {
+      content: "";
+      display: block;
+      background: #212121 url("../img/icons/accept-white.svg") center no-repeat;
+      @include setProp(background-size, 10, 10, 0);
+      @include setProp(width, 24, 24, 0);
+      @include setProp(min-width, 24, 24, 0);
+      @include setProp(height, 24, 24, 0);
+      border-radius: 50%;
+    }
+  }
+
+  &__right {
+    @include setProp(margin-top, -28, 36, 0);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &__ul {
+    display: flex;
+    flex-direction: column;
+    @include setProp(gap, 16, 16, 0);
+  }
+}
+
+.sale-block-installment {
+  &__container {}
+
+  &__content {}
+
+  &__head {
+    background-color: #F5FF82;
+    @include setProp(max-width, 777, 777, 0);
+
+    @include setProp(padding-top, 40, 16, 0);
+    @include setProp(padding-right, 80, 16, 0);
+    @include setProp(padding-bottom, 48, 24, 0);
+    @include setProp(padding-left, 80, 24, 0);
+  }
+
+  &__left {}
+
+  &__number {}
+
+  &__number-text {
+    @include setProp(font-size, 18, 16, 0);
+    @include setProp(margin-top, 16, 16, 0);
+  }
+
+  &__number-title {
+    @include setProp(font-size, 120, 56, 0);
+    line-height: 80%;
+    font-family: $fontLight;
+  }
+
+  &__numbers {
+    display: flex;
+    flex-direction: column;
+    @include setProp(gap, 64, 32, 0);
+  }
+
+  &__placeholder {
+    @include setProp(font-size, 16, 16, 0);
+    @include setProp(margin-bottom, 16, 16, 0);
+
+    @media (max-width: $md2+px) {
+      display: none;
+    }
+  }
+
+  &__right {
+    @include setProp(padding-top, 24, 0, 0);
+
+    @media (max-width: $md2+px) {
+      @include setProp(padding-left, 24, 24, 0);
+    }
+  }
+
+  &__term {
+    @include setProp(font-size, 18, 16, 0);
+    font-family: $fontMedium;
+    display: flex;
+    align-items: center;
+    @include setProp(gap, 8, 8, 0);
+
+    &::before {
+      content: "";
+      display: block;
+      background: url("../img/icons/rogalic.svg") center no-repeat;
+      background-size: contain;
+      @include setProp(width, 10, 10, 0);
+      @include setProp(height, 22, 22, 0);
+    }
+  }
+
+  &__terms {
+    display: flex;
+    flex-wrap: wrap;
+    @include setProp(gap, 32, 12, 0);
+  }
+
+  &__title {
+    line-height: 110%;
+    @include setProp(font-size, 52, 30, 0);
+    @include setProp(margin-bottom, 24, 16, 0);
+    font-family: $fontMedium;
+  }
+
+  &__wrapper {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    @include setProp(gap, 258, 32, 0);
+    @include setProp(padding-top, 32, 32, 0);
+    @include setProp(padding-bottom, 56, 40, 0);
+    background-color: #F5F5F5;
+
+    @media (max-width: $md2+px) {
+      grid-template-columns: 1fr;
+    }
+
+    @media (max-width: $md2+px) {
+      @include setProp(padding-right, 24, 24, 0);
+    }
+  }
+}
+
+.archive-review {
+  @include setProp(margin-bottom, 150, 70, 0);
+
+  &__list {
+    display: grid;
+    @include setProp(gap, 56, 32, 0);
+
+    @media (min-width: $md2+px) {
+      grid-template-columns: 1fr 1fr 1.5fr 1fr;
+
+      & .item-reviews {
+        &:nth-child(odd) {
+          grid-column: 1 / 4;
+        }
+
+        &:nth-child(even) {
+          grid-column: 2 / 6;
+        }
+      }
+    }
+  }
+
+  &__title {
+    @include setProp(font-size, 52, 32, 0);
+    line-height: 110%;
+    font-family: $fontMedium;
+    @include setProp(margin-bottom, 40, 24, 0);
+  }
+}
+
+.archive-article {
+  @include setProp(margin-bottom, 150, 70, 0);
+
+  &__cat {
+    @include setProp(font-size, 20, 20, 0);
+    opacity: .5;
+    color: #212121;
+
+    &._active {
+      opacity: 1;
+      text-decoration: underline;
+    }
+  }
+
+  &__cats {
+    overflow: auto;
+    display: flex;
+    @include setProp(margin-bottom, 40, 40, 0);
+    @include setProp(gap, 90, 24, 0);
+  }
+
+  &__container {}
+
+  &__list {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    @include setProp(column-gap, 32, 32, 0);
+    @include setProp(row-gap, 64, 48, 0);
+
+    @media (max-width: $md2+px) {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    @media (max-width: $md3+px) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  &__title {
+    @include setProp(font-size, 52, 32, 0);
+    line-height: 110%;
+    font-family: $fontMedium;
+    @include setProp(margin-bottom, 56, 32, 0);
+  }
+}
+
+.archive-case {
+  @include setProp(margin-bottom, 150, 70, 0);
+
+  &__cat {
+    @include setProp(font-size, 20, 20, 0);
+    opacity: .5;
+    color: #212121;
+
+    &._active {
+      opacity: 1;
+      text-decoration: underline;
+    }
+  }
+
+  &__cats {
+    overflow: auto;
+    display: flex;
+    @include setProp(margin-bottom, 40, 40, 0);
+    @include setProp(gap, 90, 24, 0);
+  }
+
+  &__container {}
+
+  &__filters {}
+
+  &__head {}
+
+  &__list {
+    display: flex;
+    flex-direction: column;
+    @include setProp(gap, 80, 40, 0);
+
+    & .item-portfolio {
+      display: flex;
+      flex-direction: row;
+      @include setProp(gap, 40, 12, 0);
+
+      &__photo {
+        @include setProp(height, 600, 200, 0);
+      }
+
+      &:nth-child(even) {
+        flex-direction: row-reverse;
+        @include setProp(gap, 100, 12, 0);
+      }
+    }
+  }
+
+  &__title {
+    @include setProp(font-size, 52, 32, 0);
+    @include setProp(margin-bottom, 40, 24, 0);
+    font-family: $fontMedium;
+    line-height: 110%;
+  }
+}
+
+
+
+.single-service {
+  display: flex;
+  flex-direction: column;
+  @include setProp(gap, 150, 72, 0);
+}
+
+.hero-service {
+  background-color: #212121;
+
+  &__container {
+    display: flex;
+    position: relative;
+    @include setProp(min-height, 520, 520, 0);
+
+    @media (max-width: $md2+px) {
+      flex-direction: column;
+      min-height: unset;
+    }
+  }
+
+  &__content {
+    @include setProp(margin-top, 88, 100, 0);
+    width: 55%;
+    color: #fff;
+
+    @media (max-width: $md2+px) {
+      width: 100%;
+    }
+  }
+
+  &__left {
+    width: 100%;
+  }
+
+  &__photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  &__right {
+    position: absolute;
+    width: 45%;
+    right: 0;
+    height: 100%;
+    bottom: 0;
+
+    @media (max-width: $md2+px) {
+      width: 100%;
+      position: unset;
+      margin-top: 20px;
+    }
+  }
+
+  &__title {
+    @include setProp(font-size, 100, 40, 0);
+    text-transform: uppercase;
+
+    & span {
+      color: #F5FF82;
+      text-decoration: underline;
+      font-family: $fontMedium;
+      line-height: 120%;
+    }
+  }
+}
+
+
+.schedule-service {
+  @include setProp(margin-top, -50, 0, 0);
+
+  &__chart {}
+
+  &__circle {}
+
+  &__container {}
+
+  &__left {}
+
+  &__navigation {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    @include setProp(gap, 24, 24, 0);
+    @include setProp(margin-top, 56, 32, 0);
+
+    @media (max-width: $md2+px) {
+      margin-bottom: 36px;
+    }
+  }
+
+  &__next,
+  &__prev {
+    @include setProp(width, 68, 42, 0);
+    @include setProp(height, 68, 42, 0);
+
+    & svg {
+      @include setProp(width, 24, 32, 0);
+      @include setProp(height, 17, 22, 0);
+    }
+  }
+
+  &__pagination {
+
+    width: fit-content;
+    display: flex;
+    align-items: flex-end;
+    @include setProp(font-size, 40, 32, 0);
+
+    & .swiper-pagination-current {
+      @include setProp(margin-right, 4, 4, 0);
+    }
+
+    & .swiper-pagination-total {
+      @include setProp(font-size, 18, 16, 0);
+      @include setProp(margin-left, 4, 4, 0);
+    }
+
+    @media (min-width: $md2+px) {
+      display: none;
+    }
+  }
+
+  &__right {
+    display: flex;
+    @include setProp(gap, 124, 40, 0);
+
+    @media (max-width: $md2+px) {
+      flex-direction: column;
+    }
+  }
+
+  &__swiper-wrapper {
+    counter-reset: num;
+  }
+
+  &__slide {
+    display: flex;
+    @include setProp(gap, 16, 16, 0);
+  }
+
+  &__subtitle {
+    @include setProp(margin-bottom, 40, 16, 0);
+    @include setProp(font-size, 32, 24, 0);
+    line-height: 125%;
+    font-family: $fontBold;
+  }
+
+  &__text {
+    @include setProp(font-size, 18, 14, 0);
+    line-height: 140%;
+  }
+
+  &__num {
+    @include setProp(font-size, 20, 20, 0);
+    font-family: $fontBold;
+  }
+
+  &__title {
+    @include setProp(font-size, 52, 32, 0);
+    @include setProp(margin-bottom, 56, 32, 0);
+    font-family: $fontMedium;
+  }
+
+  &__swiper {
+    overflow: hidden;
+    @include setProp(max-width, 638, 638, 0);
+    width: 100%;
+  }
+
+  &__workers {}
+
+  &__wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+
+    @media (max-width: $md2+px) {
+      display: block;
+    }
+  }
+}
+
+.workers-service {
+  @include setProp(padding-top, 40, 24, 0);
+  @include setProp(padding-bottom, 56, 32, 0);
+  @include setProp(padding-left, 40, 24, 0);
+  @include setProp(padding-right, 40, 24, 0);
+  background-color: #F5F5F5;
+  height: fit-content;
+
+  &__count {
+    @include setProp(height, 64, 56, 0);
+    @include setProp(width, 64, 56, 0);
+    @include setProp(margin-left, -18, -18, 0);
+    background-color: #F5FF82;
+    border-radius: 50%;
+    @include setProp(font-size, 16, 14, 0);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &__list {
+    display: flex;
+  }
+
+  &__photo {
+    @include setProp(height, 64, 56, 0);
+    @include setProp(width, 64, 56, 0);
+    border-radius: 50%;
+    border: 1px solid #fff;
+
+    &:not(:first-child) {
+      @include setProp(margin-left, -18, -18, 0);
+
+    }
+  }
+
+  &__text {
+    @include setProp(margin-bottom, 24, 24, 0);
+    line-height: 120%;
+  }
+
+  &__title {
+    @include setProp(font-size, 24, 24, 0);
+    font-family: $fontMedium;
+    @include setProp(margin-bottom, 12, 12, 0);
+  }
+}
+
+
+.chart-service {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &__circle {
+    border-radius: 50%;
+    @include setProp(height, 420, 250, 0);
+    @include setProp(width, 420, 250, 0);
+    position: relative;
+  }
+
+  &__content {
+    position: absolute;
+    @include setProp(height, 240, 140, 0);
+    @include setProp(width, 240, 140, 0);
+    border-radius: 50%;
+    background-color: #fff;
+    @include setProp(font-size, 42, 24, 0);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: inherit;
+
+    &::after {
+      content: "%";
+      display: inline;
+    }
+  }
+
+  &__percent {}
+}
+
+.directions-service {
+  &__container {}
+
+  &__item {}
+
+  &__list {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+
+    @media (max-width: $md2+px) {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    @media (max-width: $md3+px) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  &__title {
+    @include setProp(font-size, 52, 32, 0);
+    @include setProp(margin-bottom, 40, 24, 0);
+    font-family: $fontMedium;
+    @include setProp(max-width, 1260, 1260, 0);
+    line-height: 110%;
+  }
+}
+
+.faq {
+  &__container {
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+
+    @media (max-width: $md2+px) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  &__content {
+    @include setProp(padding-bottom, 36, 24, 0);
+  }
+
+  &__head {
+    @include setProp(padding-top, 24, 16, 0);
+    @include setProp(padding-bottom, 24, 16, 0);
+    cursor: pointer;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    @include setProp(gap, 24, 24, 0);
+
+    &._active {
+      & .faq__plus {
+        &::after {
+          transform: rotate(-90deg);
+        }
+      }
+    }
+  }
+
+  &__item {
+    border-top: 1px solid #212121;
+
+    &:last-child {
+      border-bottom: 1px solid #212121;
+    }
+  }
+
+  &__link {
+    @include setProp(margin-top, 24, 24, 0);
+  }
+
+  &__list {
+    display: block;
+  }
+
+  &__wrapper {}
+
+  &__plus {
+    @include setProp(width, 32, 32, 0);
+    @include setProp(height, 32, 32, 0);
+
+    border-radius: 50%;
+    background-color: #F5FF82;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+
+    &::before {
+      content: "";
+      display: block;
+      position: absolute;
+      @include setProp(width, 16, 12, 0);
+      height: 1px;
+      background-color: #212121;
+    }
+
+    &::after {
+      content: "";
+      display: block;
+      position: absolute;
+      @include setProp(height, 16, 12, 0);
+      width: 1px;
+      background-color: #212121;
+      transition: .3s;
+    }
+  }
+
+  &__subtitle {
+    @include setProp(font-size, 24, 18, 0);
+    font-family: $fontMedium;
+  }
+
+  &__text {
+    @include setProp(font-size, 16, 14, 0);
+    @include setProp(max-width, 850, 850, 0);
+    line-height: 125%;
+  }
+
+  &__title {
+    @include setProp(font-size, 52, 32, 0);
+    @include setProp(margin-bottom, 40, 24, 0);
+    font-family: $fontMedium;
+    line-height: 110%;
+  }
+}
+
+._container {}
+
+.advs-service {
+  &___subtitle {
+    line-height: 120%;
+    @include setProp(font-size, 32, 24, 0);
+    font-family: $fontMedium;
+    @include setProp(margin-bottom, 16, 8, 0);
+  }
+
+  &___text {
+    @include setProp(font-size, 18, 14, 0);
+    line-height: 140%;
+  }
+
+  &__container {}
+
+  &__content {
+    position: relative;
+    z-index: 2;
+  }
+
+  &__item {
+    position: relative;
+    @include setProp(padding-top, 102, 32, 0);
+    @include setProp(padding-bottom, 48, 32, 0);
+    @include setProp(padding-left, 32, 32, 0);
+    @include setProp(padding-right, 32, 32, 0);
+    @include setProp(min-height, 400, 400, 0);
+  }
+
+  &__list {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    @include setProp(gap, 16, 16, 0);
+
+    @media (max-width: $md2+px) {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    @media (max-width: $md3+px) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  &__pattern {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+
+    z-index: 1;
+    top: 0;
+    left: 0;
+  }
+
+  &__title {
+    @include setProp(font-size, 52, 32, 0);
+    @include setProp(margin-bottom, 40, 24, 0);
+    font-family: $fontMedium;
+    line-height: 110%;
+  }
+}
+
+.seo-text {
+  &__container {}
+
+  &__content {
+    @include setProp(max-width, 1136, 1136, 0);
+
+    & p {
+      @include setProp(margin-bottom, 12, 12, 0);
+      @include setProp(font-size, 20, 16, 0);
+      line-height: 140%;
+    }
+  }
+
+  &__title {
+    @include setProp(font-size, 52, 32, 0);
+    @include setProp(margin-bottom, 40, 24, 0);
+    font-family: $fontMedium;
+    line-height: 110%;
+  }
+}
+
+
+.rates-service {
+  background-color: #212121;
+  @include setProp(padding-top, 80, 56, 0);
+  @include setProp(padding-bottom, 132, 56, 0);
+
+  &__container {}
+
+  &__item {}
+
+  &__swiper {}
+
+  &__title {
+    @include setProp(font-size, 52, 32, 0);
+    @include setProp(margin-bottom, 40, 24, 0);
+    font-family: $fontMedium;
+    line-height: 110%;
+    color: #fff;
+  }
+
+  &__wrapper {}
+}
+
+.item-rates {
+  color: #fff;
+  @include setProp(min-height, 580, 450, 0);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border: 1px solid #5E5E5E;
+  @include setProp(padding-top, 48, 40, 0);
+  @include setProp(padding-bottom, 48, 24, 0);
+
+  &._recomended {
+    box-shadow: 0px 2px 22px -2px rgba(245, 255, 130, 0.8);
+  }
+
+  &._other {
+    justify-content: center;
+    align-items: center;
+    @include setProp(padding-left, 32, 24, 0);
+    @include setProp(padding-right, 32, 24, 0);
+  }
+
+  & * {
+    color: inherit;
+  }
+
+  &__bottom {
+    @include setProp(padding-top, 38, 16, 0);
+    border-top: 1px solid #5E5E5E;
+    @include setProp(padding-left, 32, 24, 0);
+    @include setProp(padding-right, 32, 24, 0);
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  &__includes {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    @include setProp(gap, 24, 16, 0);
+  }
+
+  &__link {}
+
+  &__period {
+    &::before {
+      content: "/";
+      display: inline;
+    }
+  }
+
+  &__price {
+    @include setProp(font-size, 40, 32, 0);
+
+    &::after {
+      content: "₽";
+      display: inline;
+      @include setProp(margin-left, 12, 12, 0);
+    }
+  }
+
+  &__price-container {
+    display: flex;
+    align-items: flex-end;
+    @include setProp(gap, 12, 12, 0);
+    @include setProp(margin-bottom, 32, 16, 0);
+    font-family: $fontLight;
+  }
+
+  &__text {
+    display: flex;
+    @include setProp(gap, 6, 6, 0);
+    @include setProp(font-size, 20, 16, 0);
+    text-align: center;
+    line-height: 120%;
+
+    &::before {
+      content: "";
+      display: block;
+      background: url("../img/icons/li-yellow.svg") center no-repeat;
+      background-size: contain;
+      @include setProp(width, 10, 10, 0);
+      @include setProp(height, 22, 22, 0);
+    }
+  }
+
+  &__title {
+    @include setProp(font-size, 32, 24, 0);
+    @include setProp(margin-bottom, 32, 16, 0);
+    line-height: 125%;
+    font-family: $fontBold;
+    text-align: center;
+  }
+
+  &__top {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    @include setProp(padding-left, 32, 24, 0);
+    @include setProp(padding-right, 32, 24, 0);
+  }
+}
+
+.cases-service {
+  &__bottom {
+    display: flex;
+    @include setProp(margin-top, 40, 40, 0);
+    @include setProp(max-width, 1320, 1320, 0);
+    justify-content: space-between;
+
+    @media (max-width: $md2+px) {
+      display: none;
+    }
+  }
+
+  &__placeholder {
+    text-transform: uppercase;
+    @include setProp(font-size, 24, 16, 0);
+    opacity: 0.5;
+    @include setProp(margin-bottom, 86, 30, 0);
+  }
+
+  &__top {
+    display: grid;
+    grid-template-columns: 1.3fr 4fr;
+    @include setProp(margin-bottom, 40, 40, 0);
+
+    @media (max-width: $md2+px) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  &__left {}
+
+  &__right {}
+
+  &__nums {
+    @include setProp(gap, 176, 44, 0);
+    margin-bottom: 0 !important;
+  }
+
+  &__link {
+    @media (max-width: $md2+px) {
+      display: none;
+    }
+  }
+
+  &__container {}
+
+  &__navigation {
+    display: flex;
+    @include setProp(gap, 16, 16, 0);
+  }
+
+  &__next {}
+
+  &__pagination {
+
+    width: fit-content;
+    display: flex;
+    align-items: flex-end;
+    @include setProp(font-size, 40, 32, 0);
+
+    & .swiper-pagination-current {
+      @include setProp(margin-right, 4, 4, 0);
+    }
+
+    & .swiper-pagination-total {
+      @include setProp(font-size, 18, 16, 0);
+      @include setProp(margin-left, 4, 4, 0);
+    }
+  }
+
+  &__prev {}
+
+  &__slide {
+    & .item-portfolio__content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      @media (max-width: $md2+px) {
+        display: block;
+      }
+
+    }
+
+    & .item-portfolio__info {}
+
+    & .item-portfolio__photo {
+      @include setProp(height, 600, 160, 0);
+    }
+  }
+
+  &__swiper {}
+
+  &__title {
+    @include setProp(font-size, 52, 32, 0);
+    @include setProp(margin-bottom, 40, 24, 0);
+    font-family: $fontMedium;
+    line-height: 110%;
+  }
+
+  &__wrapper {}
+}
+
+.form-simple {
+  background-color: #F5FF82;
+
+  &__content {}
+
+  &__container {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  &__left {
+    height: 100%;
+
+    @media (min-width: $md2+px) {
+      width: 26.50%;
+      position: absolute;
+      left: 0;
+      top: 0;
+    }
+  }
+
+  &__logo {
+    @include setProp(width, 320, 320, 0);
+    width: 100%;
+
+    @media (max-width: $md2+px) {
+      display: none;
+    }
+  }
+
+  &__photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  &__photo-container {
+    width: 100%;
+    height: 100%;
+  }
+
+  &__right {
+    width: 75%;
+    display: flex;
+    justify-content: space-between;
+
+    @include setProp(padding-top, 122, 48, 0);
+    @include setProp(padding-left, 64, 8, 0);
+    @include setProp(padding-right, 64, 8, 0);
+    @include setProp(padding-bottom, 122, 24, 0);
+
+    @media (max-width: $md2+px) {
+      width: 100%;
+    }
+
+  }
+
+  &__wrapper {
+    position: relative;
+
+    @media (max-width: $md2+px) {
+      display: flex;
+      flex-direction: column-reverse;
+    }
+  }
+}
+
+.trigger-form {
+  &__input {}
+
+  &__inputs {
+    display: grid;
+    align-items: center;
+    grid-template-columns: 1fr 1fr;
+    @include setProp(row-gap, 24, 16, 0);
+    @include setProp(column-gap, 16, 16, 0);
+
+    @media (max-width: $md3+px) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  &__policy {
+    @include setProp(font-size, 12, 12, 0);
+    text-transform: uppercase;
+
+    & a {
+      text-decoration: underline;
+      transition: .3s;
+      color: #212121;
+
+      @media (min-width: $md2+px) {
+        &:hover {
+          text-decoration: none;
+        }
+      }
+    }
+  }
+
+  &__policy-container {
+    @media (min-width: $md2+px) {
+      grid-column: 2 / 3;
+    }
+  }
+
+  &__select-container {
+    & .select_trigger-form__select-flat {
+      & .select__title {
+        background-color: transparent;
+        border: none;
+        border-bottom: 1px solid #212121;
+      }
+
+      & .select__value {
+        padding: 0;
+      }
+    }
+  }
+
+  &__select-flat {}
+
+  &__submit {
+    @media (max-width: $md2+px) {
+      @include setProp(margin-top, 24, 24, 0);
+      @include setProp(margin-bottom, 8, 8, 0);
+    }
+  }
+
+  &__title {
+    @include setProp(font-size, 52, 32, 0);
+    @include setProp(margin-bottom, 64, 32, 0);
+    font-family: $fontMedium;
+    line-height: 110%;
+    @include setProp(max-width, 815, 815, 0);
+  }
+}
+
+.hero-subservice {
+  &__container {}
+
+  &__content {
+    @include setProp(max-width, 770, 770, 0);
+
+    & h4,
+    & h5,
+    & h6 {
+      @include setProp(font-size, 24, 18, 0);
+      font-family: $fontMedium;
+      line-height: 120%;
+    }
+
+    & p {
+      @include setProp(margin-top, 16, 12, 0);
+      @include setProp(margin-bottom, 16, 12, 0);
+    }
+
+    & ul {
+      @include setProp(margin-top, 24, 24, 0);
+      @include setProp(margin-bottom, 24, 24, 0);
+      display: flex;
+      flex-direction: column;
+      @include setProp(gap, 10, 10, 0);
+
+      & li {
+        position: relative;
+        @include setProp(padding-left, 18, 18, 0);
+
+        &::before {
+          content: "";
+          display: block;
+          background: url("../img/icons/li-icon-arc.svg") center no-repeat;
+          @include setProp(width, 10, 10, 0);
+          @include setProp(height, 22, 22, 0);
+          left: 0;
+          top: 0;
+          position: absolute;
+        }
+      }
+    }
+  }
+
+  &__left {}
+
+  &__right {}
+
+  &__title {
+    @include setProp(font-size, 52, 32, 0);
+    @include setProp(margin-bottom, 40, 24, 0);
+    font-family: $fontMedium;
+    line-height: 110%;
+  }
+
+  &__workers {}
+
+  &__wrapper {
+    display: grid;
+    @include setProp(gap, 32, 32, 0);
+    grid-template-columns: 2fr 1fr;
+
+    @media (max-width: $md2+px) {
+      grid-template-columns: 1fr;
+    }
+  }
+}
+
+.about {
+  display: flex;
+  flex-direction: column;
+  @include setProp(gap, 150, 72, 0);
+}
+
+.team-about {
+  &__container {}
+
+  &__content {}
+
+  &__item {
+    display: flex;
+    flex-direction: column;
+    @include setProp(gap, 24, 16, 0);
+  }
+
+  &__left {}
+
+  &__list {}
+
+  &__name {
+    @include setProp(margin-bottom, 8, 8, 0);
+    @include setProp(font-size, 18, 16, 0);
+  }
+
+  &__namespace {
+    @include setProp(margin-bottom, 20, 20, 0);
+  }
+
+  &__photo {
+    width: 100%;
+    @include setProp(height, 540, 260, 0);
+    object-fit: cover;
+  }
+
+  &__photo-container {}
+
+  &__quote {
+    &::before {
+      content: "";
+      display: block;
+      background: url("../img/icons/quotes.svg") center no-repeat;
+      background-size: contain;
+      @include setProp(height, 48, 32, 0);
+      @include setProp(width, 48, 32, 0);
+      @include setProp(margin-bottom, 16, 16, 0);
+    }
+  }
+
+  &__quote-text {
+    @include setProp(font-size, 24, 18, 0);
+    font-family: $fontMedium;
+    line-height: 140%;
+  }
+
+  &__right {}
+
+  &__swiper {}
+
+  &__jobtitle {
+    @include setProp(font-size, 14, 14, 0);
+    opacity: .5;
+  }
+
+  &__title {
+    @include setProp(font-size, 52, 32, 0);
+    font-family: $fontMedium;
+    line-height: 110%;
+  }
+
+  &__placeholder {
+    text-transform: uppercase;
+    @include setProp(font-size, 24, 16, 0);
+    opacity: 0.5;
+
+    @media (max-width: $md2+px) {
+      margin-bottom: 30px;
+    }
+  }
+
+  &__top {
+    display: grid;
+    grid-template-columns: 1.3fr 4fr;
+    @include setProp(margin-bottom, 40, 40, 0);
+
+    @media (max-width: $md2+px) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  &__wrapper {}
+}
+
+.hero-about {
+  &__container {}
+
+  &__content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    @include setProp(gap, 104, 16, 0);
+    @include setProp(font-size, 20, 16, 0);
+    line-height: 140%;
+
+    @media (max-width: $md2+px) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  &__left {}
+
+  &__photo {
+    cursor: pointer;
+    transition: .3s;
+
+    @media (min-width: $md2+px) {
+      &:hover {
+        transform: scale(1.05);
+      }
+    }
+
+    &._format-top-square {
+      object-fit: contain;
+      @include setProp(width, 424, 122, 0);
+      @include setProp(height, 458, 130, 0);
+
+      @include setProp(margin-top, 0, 22, 0);
+    }
+
+    &._format-top-rect {
+      @include setProp(width, 204, 60, 0);
+      @include setProp(height, 260, 74, 0);
+    }
+
+    &._format-bottom-rect {
+      @include setProp(width, 204, 60, 0);
+      @include setProp(height, 260, 74, 0);
+
+      @include setProp(margin-top, 156, 0, 0);
+    }
+
+    &._format-bottom-square {
+      @include setProp(width, 424, 122, 0);
+      @include setProp(height, 458, 130, 0);
+
+      @include setProp(margin-top, 156, 22, 0);
+    }
+
+    &._format-semitop-rect {
+      @include setProp(width, 204, 60, 0);
+      @include setProp(height, 260, 74, 0);
+
+      @include setProp(margin-top, 30, 0, 0);
+    }
+  }
+
+  &__photo-container {}
+
+  &__right {}
+
+  &__slide {
+    width: fit-content !important;
+  }
+
+  &__swiper {
+    @include setProp(height, 614, 152, 0);
+  }
+
+  &__swiper-container {
+    @include setProp(margin-top, -110, -48, 0);
+  }
+
+  &__title {
+    @include setProp(font-size, 52, 32, 0);
+    font-family: $fontMedium;
+    line-height: 110%;
+    @include setProp(margin-bottom, 32, 24, 0);
+  }
+
+  &__wrapper {
+    background-color: #F5FF82;
+    @include setProp(padding-bottom, 150, 72, 0);
+  }
+}
+
+.history-about {
+  &__container {}
+
+  &__content {
+    @include setProp(font-size, 20, 16, 0);
+    line-height: 140%;
+    @include setProp(max-width, 860, 860, 0);
+  }
+
+  &__left {}
+
+  &__nav {}
+
+  &__placeholder {}
+
+  &__right {}
+
+  &__slide {}
+
+  &__swiper {
+    overflow: hidden;
+  }
+
+  &__swiper-wrapper {}
+
+  &__title {
+    @include setProp(font-size, 52, 32, 0);
+    font-family: $fontMedium;
+    line-height: 110%;
+  }
+
+  &__top {}
+
+  &__wrapper {}
+
+  &__placeholder {
+    text-transform: uppercase;
+    @include setProp(font-size, 24, 16, 0);
+    opacity: 0.5;
+    @include setProp(margin-bottom, 56, 32, 0);
+  }
+
+  &__top {
+    @include setProp(margin-bottom, 64, 40, 0);
+
+    @media (max-width: $md2+px) {
+      grid-template-columns: 1fr;
+    }
+  }
+}
+
+.nav-history {
+  @include setProp(margin-bottom, 52, 24, 0);
+
+  &__dates {
+    @include setProp(font-size, 48, 24, 0);
+    font-family: $fontMedium;
+  }
+
+  &__line {
+    position: relative;
+    display: flex;
+    align-items: center;
+
+    &::before {
+      content: "";
+      display: block;
+      background: url("../img/icons/li-icon-arc.svg") center no-repeat;
+      background-size: contain;
+      @include setProp(height, 48, 32, 0);
+      @include setProp(width, 22, 14, 0);
+    }
+
+    &::after {
+      content: "";
+      display: block;
+      height: 1px;
+      width: 100%;
+      background-color: #212121;
+      opacity: .1;
+    }
+  }
+
+  &__slide {
+    display: flex;
+    flex-direction: column;
+    @include setProp(gap, 24, 16, 0);
+
+    cursor: pointer;
+    opacity: .3;
+    transition: .3s;
+
+    &.swiper-slide-active {
+      opacity: 1;
+    }
+  }
+
+  &__swiper {}
+
+  &__wrapper {}
+}
+
+
+.hero-case {
+  position: relative;
+  @include setProp(min-height, 724, 620, 0);
+  @include setProp(margin-bottom, 100, 40, 0);
+
+  &__background {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    object-fit: cover;
+    top: 0;
+    left: 0;
+  }
+
+  &__container {
+    @media (max-width: $md2+px) {
+      @include setProp(padding-top, 16, 16, 0);
+    }
+  }
+
+  &__content {
+    position: relative;
+    background-color: #F5FF82;
+    @include setProp(padding-top, 32, 32, 0);
+    @include setProp(padding-left, 32, 32, 0);
+    @include setProp(padding-right, 32, 32, 0);
+    @include setProp(padding-bottom, 32, 46, 0);
+
+    @media (min-width: $md2+px) {
+      grid-column: 3 / 4;
+    }
+
+    // &::before {
+    //   content: "";
+    //   display: block;
+    //   background: url("../img/icons/clatcen-mouse-back.svg") center no-repeat;
+    //   background-size: cover;
+    //   width: 100%;
+    //   height: 100%;
+    //   position: absolute;
+    // }
+  }
+
+  &__item {
+    @include setProp(border-radius, 52, 52, 0);
+    @include setProp(padding, 8, 8, 0);
+    color: #212121;
+    border: 1px solid #212121;
+    display: block;
+    @include setProp(font-size, 16, 14, 0);
+    width: fit-content;
+  }
+
+  &__link {
+    display: flex;
+    @include setProp(gap, 12, 12, 0);
+    align-items: center;
+    @include setProp(margin-top, 116, 90, 0);
+    color: #212121;
+
+    @media (min-width: $md2+px) {
+      &:hover {
+        & .hero-case__arrow {
+          transform: rotate(0deg);
+        }
+      }
+    }
+  }
+
+  &__arrow {
+    background: url("../img/icons/arrow-link.svg") center no-repeat;
+    @include setProp(background-size, 14, 14, 0);
+    @include setProp(width, 32, 32, 0);
+    @include setProp(height, 32, 32, 0);
+    border-radius: 50%;
+    border: 1px solid #212121;
+    transform: rotate(-45deg);
+    transition: .3s;
+  }
+
+  &__name {}
+
+  &__services {
+    display: flex;
+    flex-wrap: wrap;
+    @include setProp(margin-top, 40, 22, 0);
+    @include setProp(gap, 6, 4, 0);
+  }
+
+  &__title {
+    @include setProp(font-size, 52, 32, 0);
+    line-height: 110%;
+    font-family: $fontMedium;
+    @include setProp(margin-bottom, 26, 16, 0);
+  }
+
+  &__top {}
+
+  &__wrapper {
+    position: relative;
+    z-index: 3;
+    display: grid;
+
+    @media (min-width: $md2+px) {
+      grid-template-columns: 1fr 1fr 1fr 1fr;
+    }
+  }
+}
+
+.content-case {
+  &__content {
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+
+    & figure,
+    img {
+      width: 100%;
+      grid-column: 1 / 5;
+      object-fit: cover;
+      @include setProp(height, 700, 190, 0);
+    }
+
+    & p,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    div {
+      grid-column: 2 / 3;
+    }
+  }
+
+  &__intro {}
+
+  &__photo {}
+}
+
+.head-case {
+  &__precontent {}
+}
+
+.intro-case {
+  @include setProp(padding-top, 80, 32, 0);
+  @include setProp(padding-bottom, 56, 32, 0);
+
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  @include setProp(gap, 56, 56, 0);
+
+  @media (max-width: $md2+px) {
+    grid-template-columns: 1fr;
+  }
+
+  &__block {}
+
+  &__left {}
+
+  &__link {
+    @include setProp(font-size, 22, 22, 0);
+    text-decoration: underline;
+    color: #212121;
+  }
+
+  &__nav {
+    display: flex;
+    flex-direction: column;
+    @include setProp(gap, 16, 16, 0);
+  }
+
+  &__right {
+    @include setProp(max-width, 850, 850, 0);
+    display: flex;
+    flex-direction: column;
+    @include setProp(gap, 40, 24, 0);
+  }
+
+  &__subtitle {
+    @include setProp(font-size, 32, 24, 0);
+    font-family: $fontBold;
+    @include setProp(margin-bottom, 16, 8, 0);
+  }
+
+  &__text {
+    line-height: 140%;
+  }
+
+  &__title {
+    @include setProp(font-size, 48, 32, 0);
+    font-family: $fontBold;
+  }
+}
+
+.precontent-case {
+
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  @include setProp(gap, 56, 16, 0);
+
+  @include setProp(padding-top, 40, 24, 0);
+  @include setProp(padding-bottom, 40, 24, 0);
+  border-top: 1px solid #BFBFBF;
+  border-bottom: 1px solid #BFBFBF;
+
+  @media (max-width: $md2+px) {
+    grid-template-columns: 1fr;
+  }
+
+  &__text {
+    @include setProp(max-width, 850, 850, 0);
+    line-height: 140%;
+    @include setProp(font-size, 20, 16, 0);
+  }
+
+  &__title {
+    @include setProp(font-size, 24, 20, 0);
+    font-family: $fontBold;
+  }
+}
+
+
+.single-article {
+  @include setProp(margin-top, 48, 48, 0);
+
+  &__author {}
+
+  &__container {}
+
+  &__content {}
+
+  &__head {}
+
+  &__intro {}
+
+  &__title {
+    @include setProp(font-size, 52, 32, 0);
+    line-height: 120%;
+    font-family: $fontMedium;
+
+    @media (max-width: $md2+px) {
+      @include setProp(padding-bottom, 32, 32, 0);
+      border-bottom: 1px solid #A1A1A1;
+    }
+  }
+
+  &__top {
+    display: grid;
+    @include setProp(margin-bottom, 24, 24, 0);
+    grid-template-columns: 1fr 2.5fr 0.6fr;
+    @include setProp(gap, 0, 16, 0);
+    @media (max-width: $md2+px) {
+      display: flex;
+      flex-direction: column-reverse;
+    }
+  }
+
+  &__wrapper {}
+}
+
+.aurhor-article {
+  display: flex;
+  align-items: center;
+  height: fit-content;
+  @include setProp(gap, 16, 16, 0);
+
+  &__info {}
+
+  &__name {
+    @include setProp(font-size, 18, 18, 0);
+    @include setProp(margin-bottom, 6, 6, 0);
+    font-family: $fontMedium;
+  }
+
+  &__photo {
+    @include setProp(width, 80, 80, 0);
+    @include setProp(height, 80, 80, 0);
+
+    border-radius: 50%;
+    background-color: #F4F4F4;
+  }
+
+  &__title {
+    @include setProp(font-size, 14, 14, 0);
+  }
+}
+
+.content-article {
+  &__placeholder {}
+
+  &__quote-block {}
+
+  &__share {}
+
+  &__slider {}
+}
+
+.contents-article {
+  &__link {
+    text-decoration: underline;
+    @include setProp(font-size, 18, 16, 0);
+    color: #212121;
+  }
+
+  &__list {
+    display: flex;
+    flex-direction: column;
+    @include setProp(gap, 12, 12, 0);
+  }
+
+  &__title {
+    @include setProp(font-size, 24, 20, 0);
+    font-family: $fontBold;
+    @include setProp(margin-bottom, 18, 16, 0);
+  }
+}
+
+.intro-article {
+
+  display: grid;
+  grid-template-columns: 1fr 2.5fr 0.6fr;
+
+  @media (max-width: $md2+px) {
+    grid-template-columns: 1fr;
+  }
+
+  &__container {
+    grid-column: 2 / 3;
+    border-bottom: 1px solid #E1E1E1;
+    @include setProp(padding-bottom, 32, 32, 0);
+  }
+
+  &__content {
+    & p {
+      @include setProp(margin-top, 8, 8, 0);
+      @include setProp(margin-bottom, 16, 16, 0);
+      line-height: 140%;
+      @include setProp(font-size, 18, 16, 0);
+    }
+  }
+
+
+  &__contents {}
+
+  &__category,
+  &__date,
+  &__views {
+    @include setProp(font-size, 18, 14, 0);
+    opacity: .5;
+  }
+
+  &__info {
+    display: flex;
+    align-items: center;
+    @include setProp(gap, 40, 24, 0);
+    @include setProp(margin-bottom, 32, 24, 0);
+  }
+
+  &__photo {
+    width: 100%;
+    @include setProp(height, 384, 328, 0);
+    object-fit: cover;
+  }
+
+  &__photo-container {}
+
+
+  &__wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1.4fr;
+    @include setProp(gap, 64, 24, 0);
+    border-bottom: 1px solid #E1E1E1;
+    @include setProp(padding-bottom, 32, 16, 0);
+    @include setProp(margin-bottom, 24, 24, 0);
+
+    @media (max-width: $md2+px) {
+      grid-template-columns: 1fr;
+    }
+  }
+}
+
+.quote-article {
+  &__block {}
+
+  &__left {}
+
+  &__photo {}
+
+  &__right {}
+}
+
+.share-article {
+  &__link {}
+
+  &__list {}
+
+  &__title {}
+}
+
+.slider-article {
+  &__next {}
+
+  &__photo {}
+
+  &__placeholder {}
+
+  &__prev {}
+
+  &__slide {}
+
+  &__wrapper {}
+}
