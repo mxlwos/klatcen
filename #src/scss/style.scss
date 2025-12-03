@@ -15,11 +15,11 @@
 //</Иконочные шрифты>==========================================================================================
 
 //<Шрифт по умолчанию>==========================================================================================
-$fontFamily: "HelveticaNeueCyr-Roman";
-$fontMedium: "HelveticaNeueCyr-Medium";
-$fontBold: "HelveticaNeueCyr-Bold";
-$fontLight: "HelveticaNeueCyr-Light";
-$fontItalic: "HelveticaNeueCyr-Italic";
+$fontFamily: "HelveticaNeueCyr-Roman", sans-serif;
+$fontMedium: "HelveticaNeueCyr-Medium", sans-serif;
+$fontBold: "HelveticaNeueCyr-Bold", sans-serif;
+$fontLight: "HelveticaNeueCyr-Light", sans-serif;
+$fontItalic: "HelveticaNeueCyr-Italic", sans-serif;
 $fontSize: 18;
 //</Шрифт по умолчанию>==========================================================================================
 
@@ -326,6 +326,353 @@ body {
   &__hero {}
 }
 
+
+//<СТОИМОСТЬ И СРОКИ РЕАЛИЗАЦИИ>=====================================================================================
+.pricing {
+  @include setProp(padding-top, 180, 80, 20);
+  @include setProp(padding-bottom, 200, 80, 20);
+  background-color: #090908;
+
+  ._container {
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    gap: 60px;
+  }
+
+  &__title {
+    @include setProp(font-size, 52, 32, 0);
+    line-height: 1.1;
+    color: #FFFFFF;
+    margin: 0;
+    font-family: $fontMedium;
+  }
+
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    @include setProp(gap, 15, 10, 0);
+  }
+}
+
+.pricing-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  height: 100%;
+  border: 1px solid #5E5E5E;
+  background-color: #212121;
+  min-height: 580px;
+  padding: 48px 0;
+  position: relative;
+
+  &__icon {
+    position: absolute;
+    top: 24px;
+    right: 24px;
+    width: 24px;
+    height: 24px;
+  }
+
+  &__content {
+    flex-grow: 1;
+  }
+
+  &__name {
+    @include setProp(font-size, 32, 24, 0);
+    line-height: 1.25;
+    color: #FFFFFF;
+    margin: 0 0 30px 0;
+    font-family: $fontBold;
+  }
+
+  &__features {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 38rem;
+
+    li {
+      @include setProp(font-size, 20, 16, 0);
+      line-height: 1.2;
+      color: #FFFFFF;
+      margin-bottom: 24px;
+      position: relative;
+      @include setProp(padding-left, 32, 24, 0);
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+
+      &::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        @include setProp(width, 10, 8, 0);
+        @include setProp(height, 22, 18, 0);
+        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 10 22' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0.190177 17.9854L4.6083 22C14.3774 12.5455 8.67286 3.39395 4.59942 0L0 4.17933C6.49635 9.62117 2.8336 15.6508 0.190177 17.9854Z' fill='white'/%3E%3C/svg%3E");
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: contain;
+        flex-shrink: 0;
+      }
+    }
+  }
+
+  &__footer {
+    @include setProp(padding-top, 40, 24, 0);
+    border-top: 1px solid #5E5E5E;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  &__price {
+    @include setProp(font-size, 40, 32, 0);
+    line-height: 1.2;
+    color: #FFFFFF;
+    font-family: $fontLight;
+  }
+
+  &__period {
+    @include setProp(font-size, 18, 16, 0);
+    color: #FFFFFF;
+    margin-left: 8px;
+    font-weight: 400;
+    line-height: 1.2;
+  }
+
+  &__link {
+    margin-top: 30px;
+  }
+}
+
+.pricing-card__active {
+  box-shadow: 2px 2px 24px #F5FF82;
+}
+
+//<СТОИМОСТЬ И СРОКИ РЕАЛИЗАЦИИ>=====================================================================================
+
+//<СТОИМОСТЬ ВЕДЕНИЯ>=====================================================================================
+.pricing-detailed {
+  background-color: #090908;
+  @include setProp(padding-top, 80, 60, 0);
+  @include setProp(padding-bottom, 96, 60, 0);
+  position: relative;
+  overflow: hidden;
+
+  ._container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: end;
+    position: relative;
+    z-index: 2;
+
+    @media (max-width: $md2+px) {
+      grid-template-columns: 1fr;
+      gap: 40px;
+    }
+  }
+
+  &__content {
+    grid-column: 1 / 2;
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__header {
+    @include setProp(margin-bottom, 48, 32, 0);
+  }
+
+  &__title {
+    @include setProp(font-size, 52, 32, 0);
+    line-height: 1.1;
+    color: #FFFFFF;
+    @include setProp(margin-bottom, 24, 16, 0);
+    font-family: $fontMedium;
+  }
+
+  &__subtitle {
+    @include setProp(font-size, 26, 18, 0);
+    color: #FFFFFF;
+    font-family: $fontBold;
+    opacity: 0.8;
+  }
+
+  &__services {
+    @include setProp(margin-bottom, 40, 32, 0);
+  }
+
+  &__service-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    @include setProp(padding-top, 16, 12, 0);
+    @include setProp(padding-bottom, 16, 12, 0);
+    border-bottom: 1px solid rgba(217, 217, 217, 0.1);
+
+    &:first-child {
+      padding-top: 0;
+    }
+
+    &:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+  }
+
+  &__service-name {
+    @include setProp(font-size, 20, 16, 0);
+    line-height: 1.4;
+    color: #FFFFFF;
+    opacity: 0.6;
+    flex: 1;
+    margin-right: 24px;
+    font-family: $fontFamily;
+  }
+
+  &__service-price {
+    @include setProp(font-size, 20, 18, 0);
+    font-family: $fontMedium;
+    color: #FFFFFF;
+    line-height: 1.1;
+    white-space: nowrap;
+  }
+
+  &__footer {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+  }
+
+  &__total {
+    color: #ffffff;
+  }
+
+  &__total-line {
+    height: 1px;
+    background-color: rgba(255, 255, 255, 0.2);
+    margin-bottom: 24px;
+  }
+
+  &__total-item {
+    @include setProp(font-size, 28, 22, 0);
+    font-family: $fontMedium;
+  }
+
+  &__additional {
+    max-width: 80%;
+
+    @media (max-width: $md2+px) {
+      max-width: 100%;
+    }
+  }
+
+  &__additional-title {
+    @include setProp(font-size, 20, 18, 0);
+    font-family: $fontMedium;
+    color: #FFFFFF;
+    margin: 0 0 16px 0;
+  }
+
+  &__additional-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  &__additional-item {
+    @include setProp(font-size, 16, 14, 0);
+    color: #FFFFFF;
+    opacity: 0.6;
+    line-height: 1.5;
+    @include setProp(margin-bottom, 12, 8, 0);
+    position: relative;
+    @include setProp(padding-left, 20, 16, 0);
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+
+    &::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 8px;
+      @include setProp(width, 8, 6, 0);
+      @include setProp(height, 8, 6, 0);
+      background-color: #FFFFFF;
+      border-radius: 50%;
+      opacity: 0.6;
+    }
+  }
+
+  &__image-container {
+    grid-column: 2 / 3;
+    grid-row: 1 / 2;
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+    height: 100%;
+    margin-top: auto;
+    overflow: visible;
+
+    @media (max-width: $md2+px) {
+      grid-column: 1 / 2;
+      grid-row: auto;
+      justify-content: center;
+      margin-top: 40px;
+    }
+  }
+
+  &__photo {
+    transform: rotate(-40deg);
+    display: block;
+    max-width: 100%;
+    width: 80%;
+    height: auto;
+    object-fit: cover;
+    position: relative;
+    right: -20%;
+    bottom: -10%;
+
+    @media (max-width: $md2+px) {
+      width: 60%;
+      right: 0;
+      bottom: 0;
+      transform: rotate(30deg);
+    }
+
+    @media (max-width: $md3+px) {
+      width: 70%;
+      transform: rotate(25deg);
+    }
+  }
+
+  @media (max-width: $md3+px) {
+    &__service-item {
+      flex-direction: column;
+    }
+
+    &__service-name {
+      margin-right: 0;
+      margin-bottom: 8px;
+    }
+
+    &__service-price {
+      align-self: flex-end;
+    }
+  }
+}
+
+//<СТОИМОСТЬ ВЕДЕНИЯ>=====================================================================================
 
 //<ПОРТФОЛИО>====================================================================================================
 .portfolio-home {
