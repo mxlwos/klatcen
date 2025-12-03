@@ -131,39 +131,32 @@ body {
 }
 
 .hero-home {
+  position: relative;
+  background-color: #212121;
   @include setProp(padding-top, 292, 116, 0);
   @include setProp(padding-bottom, 126, 300, 0);
-  position: relative;
 
-  &__background {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    object-fit: cover;
-    z-index: 1;
-  }
+
 
   &__container-wrapper {
-    position: relative;
-    z-index: 2;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    // &::before {
+    //   content: "";
+    //   display: block;
+    //   position: absolute;
+    //   top: 0;
+    //   left: 0;
+    //   width: 40.5%;
+    //   height: 100%;
+    //   background-color: #F5FF82;
 
-    &::before {
-      content: "";
-      display: block;
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 40.5%;
-      height: 100%;
-      background-color: #F5FF82;
-
-      @media (max-width: $md2+px) {
-        width: 60%;
-        @include setProp(min-width, 240, 260, 0);
-      }
-    }
+    //   @media (max-width: $md2+px) {
+    //     width: 60%;
+    //     @include setProp(min-width, 240, 260, 0);
+    //   }
+    // }
   }
 
   &__container {
@@ -217,10 +210,25 @@ body {
   }
 
   &__subtitle {
-    font-family: $fontMedium;
+    font-family: $fontLight;
     line-height: 125%;
-    @include setProp(font-size, 24, 16, 0);
-    @include setProp(margin-bottom, 20, 16, 0);
+    @include setProp(font-size, 40, 20, 0);
+    @include setProp(margin-top, 60, 30, 0);
+    color: #A1A1A1;
+    font-weight: 100;
+
+    @media (max-width: $md2+px) {
+      font-family: $fontFamily;
+    }
+  }
+
+  &__subtitle-banner {
+    font-family: $fontLight;
+    line-height: 125%;
+    @include setProp(font-size, 25, 18, 0);
+    // @include setProp(margin-top, 60, 30, 0);
+    color: #A1A1A1;
+    font-weight: 100;
 
     @media (max-width: $md2+px) {
       font-family: $fontFamily;
@@ -228,21 +236,89 @@ body {
   }
 
   &__title {
-    @include setProp(font-size, 100, 40, 0);
+    @include setProp(font-size, 72, 24, 0);
     @include setProp(max-width, 1105, 1105, 0);
-    text-transform: uppercase;
+    text-transform: none;
     font-family: $fontMedium;
     line-height: 115%;
+    color: #fff;
+  }
+
+  &__img-banner {
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 2; // Должен быть выше фона шапки (1), но ниже контента шапки (3)
+  }
+
+  &__img-banner-edit {
+    max-width: 100%;
+    height: auto;
+    @include setProp(max-width, 700, 300, 0);
+  }
+
+  &__wrapper {
+    position: relative;
+    z-index: 4; // Контент hero над баннером
   }
 
   &__title-container {
     position: relative;
-    z-index: 3;
+    z-index: 5;
     @include setProp(padding-bottom, 220, 16, 0);
   }
 
-  &__wrapper {
-    // @include setProp(min-height, 740, 600, 0);
+  &__banner-socials {
+    display: flex;
+    align-items: center;
+    position: relative;
+    z-index: 11;
+    @include setProp(gap, 50, 24, 0);
+
+    @media (max-width: $md2+px) {
+      justify-content: space-between;
+      width: 100%;
+    }
+  }
+
+  &__socials-subtitle {
+    display: flex;
+    align-items: center;
+    @include setProp(gap, 16, 12, 0);
+  }
+
+  &__social-subtitle {
+    color: #fff;
+    font-family: $fontFamily;
+    @include setProp(font-size, 18, 16, 0);
+  }
+
+  ._line {
+    text-decoration: underline;
+  }
+
+  ._social {
+    border: 1px solid #fff;
+
+
+    & svg {
+      fill: #fff;
+    }
+
+    &::before {
+      content: "";
+      background-color: #fff;
+    }
+
+    @media (min-width: $md2+px) {
+      &:hover {
+        & svg {
+          fill: #212121;
+        }
+      }
+    }
+
+
   }
 }
 
@@ -250,11 +326,6 @@ body {
   &__hero {}
 }
 
-.rating-about {
-  &__list {}
-
-  &__position {}
-}
 
 //<СТОИМОСТЬ И СРОКИ РЕАЛИЗАЦИИ>=====================================================================================
 .pricing {
