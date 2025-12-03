@@ -1,11 +1,15 @@
 .buttons-header {
   display: flex;
-  @include setProp(gap, 44, 24, 0);
+  align-items: center;
+  z-index: 15;
+  position: relative;
+  @include setProp(gap, 100, 24, 0);
 
   @media (max-width: $md2+px) {
     justify-content: space-between;
     width: 100%;
   }
+
   &__social {}
 
   &__socials {
@@ -58,34 +62,34 @@
 }
 
 .header {
-  // position: fixed;
-  // width: 100%;
-  // top: 0;
-  // left: 0;
-  // z-index: 4;
-  // background-color: #fff;
-
   position: relative;
 
-  &__buttons {
-  }
-
-  &__contacts {
-    @include setProp(font-size, 18, 18, 0);
-    display: grid;
-    @include setProp(gap, 10, 10, 0);
+  &_background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #212121;
+    z-index: 1; // Самый нижний слой
   }
 
   &__container {
+    position: relative;
+    z-index: 3; // Контент шапки выше фона и баннера
     display: flex;
-    @include setProp(gap, 137, 24, 0);
     justify-content: space-between;
     align-items: center;
+    padding-top: 16px;
+    padding-bottom: 16px;
+
+  }
+
+  &__content {
     position: relative;
 
-    @include setProp(padding-top, 16, 16, 1);
-    @include setProp(padding-bottom, 16, 16, 1);
   }
+
 
   &__items {
     display: flex;
@@ -110,7 +114,7 @@
       flex-direction: column;
       align-items: flex-start;
       @include setProp(gap, 24, 86, 0);
-  }
+    }
   }
 
   &__logo {
@@ -186,22 +190,49 @@
   }
 
   &__phone {
-    color: #212121;
+    color: #fff;
     display: flex;
     align-items: center;
     @include setProp(gap, 6, 6, 0);
+    @include setProp(font-size, 24, 18, 0);
 
     &::before {
       content: "";
       display: block;
-      background: url("../img/icons/phone.svg") center no-repeat;
+      // background: url("../img/icons/phone.svg") center no-repeat;
       background-size: contain;
 
       @include setProp(width, 16, 16, 0);
       @include setProp(height, 16, 16, 0);
     }
   }
+
+  ._social {
+    border: 1px solid #fff;
+
+    & svg {
+
+      fill: #fff;
+
+    }
+
+    &::before {
+      content: "";
+
+      background-color: #fff;
+
+    }
+
+    @media (min-width: $md2+px) {
+      &:hover {
+        & svg {
+          fill: #212121;
+        }
+      }
+    }
+  }
 }
+
 
 .menu {
   display: flex;
