@@ -20,6 +20,7 @@ $fontMedium: "HelveticaNeueCyr-Medium", sans-serif;
 $fontBold: "HelveticaNeueCyr-Bold", sans-serif;
 $fontLight: "HelveticaNeueCyr-Light", sans-serif;
 $fontItalic: "HelveticaNeueCyr-Italic", sans-serif;
+$fontRoman: "HelveticaNeueCyr-Roman", sans-serif;
 $fontSize: 18;
 //</Шрифт по умолчанию>==========================================================================================
 
@@ -122,41 +123,41 @@ body {
 //===================================================================================================================================
 
 //</ОСНОВНОЙ БЛОК>====================================================================================================
-
 .home {
   display: flex;
   flex-direction: column;
-  @include setProp(gap, 150, 72, 0);
+  // @include setProp(gap, 150, 72, 0);
   @include setProp(margin-bottom, 150, 72, 0);
+
+  // УБИРАЕМ gap и добавляем margin-top для всех секций, кроме первых двух
+  &>section {
+    @include setProp(margin-top, 80, 72, 0);
+  }
+
+  // Первая секция (баннер) без отступа
+  &>section:first-of-type {
+    margin-top: 0;
+  }
+
+  // Вторая секция ("О нас") без отступа
+  .home__hero+.home__about {
+    margin-top: 0;
+  }
+
 }
 
 .hero-home {
   position: relative;
   background-color: #212121;
   @include setProp(padding-top, 292, 116, 0);
-  @include setProp(padding-bottom, 126, 300, 0);
-
-
+  // @include setProp(padding-bottom, 126, 300, 0);
+  @include setProp(padding-bottom, 120, 300, 0);
 
   &__container-wrapper {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    // &::before {
-    //   content: "";
-    //   display: block;
-    //   position: absolute;
-    //   top: 0;
-    //   left: 0;
-    //   width: 40.5%;
-    //   height: 100%;
-    //   background-color: #F5FF82;
-
-    //   @media (max-width: $md2+px) {
-    //     width: 60%;
-    //     @include setProp(min-width, 240, 260, 0);
-    //   }
-    // }
+    @include setProp(padding-top, 160, 116, 0);
   }
 
   &__container {
@@ -210,7 +211,7 @@ body {
   }
 
   &__subtitle {
-    font-family: $fontLight;
+    font-family: $fontRoman;
     line-height: 125%;
     @include setProp(font-size, 40, 20, 0);
     @include setProp(margin-top, 60, 30, 0);
@@ -223,7 +224,7 @@ body {
   }
 
   &__subtitle-banner {
-    font-family: $fontLight;
+    font-family: $fontRoman;
     line-height: 125%;
     @include setProp(font-size, 25, 18, 0);
     // @include setProp(margin-top, 60, 30, 0);
@@ -248,7 +249,7 @@ body {
     position: absolute;
     top: 0;
     right: 0;
-    z-index: 2; // Должен быть выше фона шапки (1), но ниже контента шапки (3)
+    z-index: 1; // Должен быть выше фона шапки (1), но ниже контента шапки (3)
   }
 
   &__img-banner-edit {
@@ -272,7 +273,7 @@ body {
     display: flex;
     align-items: center;
     position: relative;
-    z-index: 11;
+    z-index: 4;
     @include setProp(gap, 50, 24, 0);
 
     @media (max-width: $md2+px) {
@@ -325,6 +326,524 @@ body {
 .home {
   &__hero {}
 }
+
+//<О НАС> ============================================================================================================
+.about-block {
+  background-color: #212121;
+  position: relative;
+  overflow: hidden;
+
+  &__home {
+    @include setProp(gap, 0, 0, 0);
+    position: relative;
+    z-index: 3;
+  }
+
+  &__container {
+    position: relative;
+    z-index: 2;
+    @include setProp(padding-top, 100, 40, 0);
+    @include setProp(padding-bottom, 45, 25, 0);
+    @include setProp(padding-left, 30, 20, 0);
+    @include setProp(padding-right, 0, 20, 0);
+    color: #fff;
+
+    @media (max-width: $md2+px) {
+      padding-left: 20px;
+      padding-right: 20px;
+    }
+
+    @media (max-width: $md3+px) {
+      @include setProp(padding-top, 60, 30, 0);
+      @include setProp(padding-bottom, 40, 30, 0);
+    }
+  }
+
+  &__content {
+    display: block;
+  }
+
+  &__left {
+    max-width: 900px;
+    position: relative;
+    z-index: 2;
+
+    @media (max-width: $md2+px) {
+      max-width: 100%;
+    }
+  }
+
+  /* ОБЕРТКА ДЛЯ КАРТИНОК, КОТОРАЯ ВЫШЛА ИЗ КОНТЕЙНЕРА */
+  &__images-wrapper {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 30%;
+    height: 100%;
+    z-index: 5;
+
+    /* Выравниваем начало картинок по правому краю контейнера */
+    right: calc(30% - #{math.div($maxWidthContainer, 2)}px);
+
+    @media (max-width: $md1+px) {
+      right: 0;
+      width: calc(50vw - 20px);
+    }
+
+    @media (max-width: $md2+px) {
+      position: relative;
+      width: 100%;
+      height: auto;
+      right: auto;
+      top: auto;
+      @include setProp(margin-top, 60, 40, 0);
+      padding: 0 20px;
+    }
+
+    @media (max-width: $md3+px) {
+      @include setProp(margin-top, 40, 30, 0);
+    }
+
+    @media (max-width: $md4+px) {
+      padding: 0 15px;
+    }
+  }
+
+  &__cards-about {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    @include setProp(grid-auto-rows, 270, 150, 0);
+    gap: 0;
+    width: 100%;
+    height: 100%;
+    max-width: 540px;
+    margin-left: auto;
+
+    @media (max-width: $md2+px) {
+      max-width: 100%;
+      @include setProp(grid-auto-rows, 200, 180, 0);
+      margin-left: 0;
+    }
+
+    @media (max-width: $md3+px) {
+      @include setProp(grid-auto-rows, 180, 160, 0);
+    }
+
+    @media (max-width: $md4+px) {
+      grid-template-columns: 1fr;
+      @include setProp(grid-auto-rows, 160, 140, 0);
+    }
+  }
+
+  &__card {
+    &.item-services {
+      width: 100%;
+      height: 100%;
+      @include setProp(padding, 20, 15, 0);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      aspect-ratio: unset;
+      margin: 0;
+      border: none;
+      position: relative;
+      overflow: hidden;
+
+      &:not(:has(img)) {
+        background-color: #0E110F;
+
+        .item-services__title {
+          color: #fff;
+        }
+      }
+
+      .item-services__title {
+        @include setProp(font-size, 28, 16, 0);
+        font-family: $fontBold;
+        line-height: 1.2;
+        color: #212121;
+        position: relative;
+        z-index: 2;
+        margin: 0;
+
+        &._invert {
+          color: #fff;
+        }
+
+        @media (max-width: $md2+px) {
+          font-family: $fontMedium;
+        }
+
+        @media (max-width: $md3+px) {
+          @include setProp(font-size, 18, 16, 0);
+        }
+
+        @media (max-width: $md4+px) {
+          @include setProp(font-size, 16, 14, 0);
+        }
+      }
+
+      .item-services__photo {
+        object-fit: cover;
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 1;
+      }
+
+      @media (min-width: $md2+px) {
+        &:hover {
+          transform: scale(1.05);
+          box-shadow: 1px 1px 12px 0px rgba(0, 0, 0, 0.1);
+          z-index: 2;
+        }
+      }
+
+      @media (max-width: $md2+px) {
+        @include setProp(padding, 15, 12, 0);
+      }
+    }
+  }
+
+  &__rating {
+    @include setProp(padding-top, 47, 30, 0);
+    @include setProp(padding-bottom, 100, 60, 0);
+    @include setProp(gap, 47, 20, 0);
+    display: flex;
+    align-items: center;
+
+    @media (max-width: $md2+px) {
+      @include setProp(padding-bottom, 60, 40, 0);
+      @include setProp(gap, 30, 15, 0);
+    }
+
+    @media (max-width: $md3+px) {
+      @include setProp(padding-top, 30, 20, 0);
+      @include setProp(padding-bottom, 40, 30, 0);
+      @include setProp(gap, 20, 10, 0);
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
+
+  &__rating-text {
+    display: flex;
+    flex-direction: column;
+    @include setProp(gap, 12, 8, 0);
+
+    @media (max-width: $md3+px) {
+      @include setProp(gap, 8, 6, 0);
+    }
+  }
+
+  &__rating-title {
+    font-family: $fontMedium;
+    @include setProp(font-size, 32, 24, 0);
+    line-height: 125%;
+    @include setProp(max-width, 400, 400, 0);
+
+    @media (max-width: $md3+px) {
+      @include setProp(font-size, 24, 20, 0);
+    }
+  }
+
+  &__rating-subtitle {
+    font-family: $fontItalic;
+    color: #A1A1A1;
+    @include setProp(font-size, 18, 14, 0);
+
+    @media (max-width: $md3+px) {
+      @include setProp(font-size, 14, 12, 0);
+    }
+  }
+
+  &__rating-img {
+    @include setProp(max-width, 121, 80, 0);
+    height: auto;
+
+    @media (max-width: $md3+px) {
+      @include setProp(max-width, 80, 60, 0);
+    }
+
+    @media (max-width: $md4+px) {
+      @include setProp(max-width, 60, 50, 0);
+    }
+  }
+
+  &__title {
+    @include setProp(font-size, 80, 40, 0);
+    @include setProp(max-width, 1328, 1328, 0);
+    @include setProp(margin-bottom, 66, 30, 0);
+    line-height: 110%;
+    font-family: $fontMedium;
+
+    @media (max-width: $md3+px) {
+      @include setProp(font-size, 40, 32, 0);
+      @include setProp(margin-bottom, 30, 25, 0);
+    }
+  }
+
+  &__icon-subtitle {
+    display: flex;
+    flex-direction: column;
+    @include setProp(gap, 25, 15, 0);
+
+    @media (max-width: $md3+px) {
+      @include setProp(gap, 15, 10, 0);
+    }
+  }
+
+  &__subtitle {
+    @include setProp(font-size, 54, 28, 0);
+    @include setProp(max-width, 1328, 890, 0);
+    line-height: 125%;
+    font-family: $fontRoman;
+
+    @media (max-width: $md3+px) {
+      @include setProp(font-size, 28, 24, 0);
+    }
+  }
+
+  .nums-about {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(250px, 1fr));
+    justify-content: space-between;
+    @include setProp(gap, 110, 40, 0);
+    @include setProp(margin-bottom, 56, 30, 0);
+
+    @media (max-width: $md2+px) {
+      grid-template-columns: repeat(3, 1fr);
+      @include setProp(gap, 40, 20, 0);
+    }
+
+    @media (max-width: $md3+px) {
+      grid-template-columns: 1fr;
+      @include setProp(gap, 30, 20, 0);
+      @include setProp(margin-bottom, 30, 25, 0);
+    }
+
+    &._flex {
+      display: flex;
+      justify-content: flex-start;
+    }
+
+    &__description {
+      @include setProp(font-size, 18, 14, 0);
+      color: #A1A1A1;
+      font-family: $fontRoman;
+      line-height: 120%;
+      @include setProp(max-width, 450, 400, 0);
+
+      @media (max-width: $md3+px) {
+        @include setProp(font-size, 14, 12, 0);
+      }
+    }
+
+    &__num {
+      display: flex;
+      align-items: flex-end;
+      /* Выравниваем по нижнему краю */
+      font-family: $fontLight;
+      @include setProp(font-size, 120, 56, 0);
+      line-height: 0.8;
+      /* Уменьшаем межстрочный интервал для цифры */
+
+      @media (max-width: $md3+px) {
+        @include setProp(font-size, 56, 48, 0);
+      }
+
+      @media (max-width: $md4+px) {
+        @include setProp(font-size, 48, 40, 0);
+      }
+    }
+
+    &__right {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      margin-left: 8px;
+      /* Отступ от цифры */
+      // height: 9.5rem;
+      @include setProp(height, 100, 65, 0);
+      justify-content: space-between;
+
+      @media (max-width: $md3+px) {
+        margin-left: 6px;
+      }
+
+      @media (max-width: $md4+px) {
+        margin-left: 4px;
+      }
+    }
+
+    &__plus {
+      @include setProp(font-size, 32, 24, 0);
+      // line-height: 0.7;
+      /* Делаем плюс компактнее */
+      font-family: $fontLight;
+      color: #fff;
+
+      @media (max-width: $md3+px) {
+        @include setProp(font-size, 36, 30, 0);
+      }
+
+      @media (max-width: $md4+px) {
+        @include setProp(font-size, 30, 24, 0);
+      }
+    }
+
+    &__label-plus {
+      @include setProp(font-size, 18, 16, 0);
+      font-family: $fontMedium;
+      color: #fff;
+      // line-height: 1;
+      margin-top: auto;
+      /* Прижимаем к низу */
+
+      @media (max-width: $md3+px) {
+        @include setProp(font-size, 16, 14, 0);
+      }
+
+      @media (max-width: $md4+px) {
+        @include setProp(font-size, 14, 12, 0);
+      }
+    }
+
+    &__anim {
+      margin: 0;
+      line-height: 0.8;
+      font-family: $fontRoman;
+      @include setProp(font-size, 130, 90, 0);
+      /* Совпадает с line-height родителя */
+    }
+
+    &__item {
+      display: flex;
+      flex-direction: column;
+      @include setProp(gap, 25, 20, 0);
+
+      @media (max-width: $md3+px) {
+        text-align: left;
+        /* Оставляем левое выравнивание */
+
+        .nums-about__num {
+          justify-content: flex-start;
+        }
+      }
+    }
+  }
+}
+
+/* ДОПОЛНИТЕЛЬНЫЕ АДАПТИВНЫЕ ПРАВКИ */
+
+/* Планшеты горизонтальные */
+// @media (max-width: 1200px) {
+//   .about-block {
+//     &__images-wrapper {
+//       right: calc(50% - #{math.div(1200px, 2)}px);
+//     }
+//   }
+// }
+
+/* Планшеты вертикальные */
+// @media (max-width: 992px) {
+//   .about-block {
+//     &__images-wrapper {
+//       right: 0;
+//       width: calc(50vw - 15px);
+//     }
+//   }
+// }
+
+/* Телефоны большие */
+// @media (max-width: 768px) {
+//   .about-block {
+//     &__container {
+//       padding-right: 20px !important;
+//     }
+
+//     &__images-wrapper {
+//       width: 100%;
+//       padding: 0 20px;
+//     }
+
+//     .nums-about {
+//       @include setProp(gap, 30, 20, 0);
+//     }
+//   }
+// }
+
+/* Телефоны маленькие */
+// @media (max-width: 480px) {
+//   .about-block {
+//     &__container {
+//       @include setProp(padding-left, 15, 15, 0);
+//       @include setProp(padding-right, 15, 15, 0) !important;
+//     }
+
+//     &__images-wrapper {
+//       padding: 0 15px;
+//     }
+
+//     &__cards-about {
+//       @include setProp(grid-auto-rows, 140, 120, 0);
+//     }
+
+//     &__rating {
+//       @include setProp(padding-top, 20, 15, 0);
+//       @include setProp(padding-bottom, 30, 25, 0);
+//     }
+
+//     &__title {
+//       @include setProp(font-size, 32, 28, 0);
+//       @include setProp(margin-bottom, 25, 20, 0);
+//     }
+
+//     &__subtitle {
+//       @include setProp(font-size, 24, 20, 0);
+//     }
+
+//     .nums-about {
+//       @include setProp(gap, 20, 15, 0);
+
+//       &__num {
+//         @include setProp(font-size, 40, 36, 0);
+
+//         & span {
+//           @include setProp(font-size, 24, 20, 0);
+//         }
+//       }
+
+//       &__description {
+//         @include setProp(font-size, 12, 11, 0);
+//       }
+//     }
+//   }
+// }
+
+/* Очень маленькие телефоны */
+// @media (max-width: 360px) {
+//   .about-block {
+//     &__card {
+//       &.item-services {
+//         @include setProp(padding, 12, 10, 0);
+
+//         .item-services__title {
+//           @include setProp(font-size, 14, 13, 0);
+//         }
+//       }
+//     }
+
+//     &__cards-about {
+//       @include setProp(grid-auto-rows, 120, 100, 0);
+//     }
+//   }
+// }
+//<О НАС>============================================================================================================
+
+//<>============================================================================================================
 
 
 //<СТОИМОСТЬ И СРОКИ РЕАЛИЗАЦИИ>=====================================================================================
@@ -797,349 +1316,6 @@ body {
 
 //</ПОРТФОЛИО>====================================================================================================
 
-//<О НАС>====================================================================================================
-
-.about-block {
-  background-color: #212121;
-
-  &__container {
-    @include setProp(padding-top, 116, 40, 1);
-    @include setProp(padding-bottom, 100, 80, 1);
-    color: #fff;
-  }
-
-  &__left {}
-
-  &__link {
-    @include setProp(margin-top, 64, 40, 1);
-  }
-
-  &__nums {}
-
-  &__placeholder {
-    text-transform: uppercase;
-    @include setProp(font-size, 24, 16, 0);
-    opacity: 0.5;
-
-    @media (max-width: $md2+px) {
-      margin-bottom: 40px;
-    }
-  }
-
-  &__rating {}
-
-  &__right {}
-
-  &__title {
-    @include setProp(font-size, 52, 32, 0);
-    @include setProp(max-width, 1328, 1328, 0);
-    @include setProp(margin-bottom, 66, 32, 0);
-    line-height: 110%;
-  }
-
-  &__wrapper {
-    display: grid;
-    grid-template-columns: 1.3fr 4fr;
-    justify-content: space-between;
-
-    @media (max-width: $md2+px) {
-      grid-template-columns: 1fr;
-    }
-  }
-}
-
-.nums-about {
-  display: grid;
-  grid-template-columns: 1.5fr 1fr;
-  justify-content: space-between;
-  @include setProp(gap, 32, 32, 0);
-  @include setProp(margin-bottom, 56, 32, 1);
-
-  &._flex {
-    display: flex;
-    justify-content: flex-start;
-  }
-
-  &__anim {}
-
-  &__description {
-    @include setProp(font-size, 24, 14, 0);
-    opacity: 0.8;
-    line-height: 120%;
-    @include setProp(max-width, 400, 400, 0);
-  }
-
-  &__item {}
-
-  &__num {
-    display: flex;
-    align-items: center;
-    font-family: $fontLight;
-    @include setProp(font-size, 120, 56, 0);
-
-    & span {
-      @include setProp(font-size, 90, 36, 0);
-    }
-  }
-}
-
-.rating-about {
-  &__item {
-    display: grid;
-    grid-template-columns: 1.5fr 1fr;
-
-    align-items: center;
-
-    @include setProp(padding-top, 24, 16, 1);
-    @include setProp(padding-bottom, 24, 16, 1);
-    @include setProp(gap, 32, 8, 0);
-
-    border-bottom: 1px solid #5e5e5e;
-
-    &:first-child {
-      border-top: 1px solid #5e5e5e;
-    }
-
-    @media (max-width: $md2+px) {
-      grid-template-columns: 1fr;
-    }
-  }
-
-  &__left {
-    display: flex;
-    align-items: center;
-    @include setProp(gap, 24, 14, 0);
-
-    @media (max-width: $md2+px) {
-      align-items: start;
-    }
-  }
-
-  &__list {}
-
-  &._black {
-    & .rating-about__position {
-      @include setProp(width, 44, 30, 0);
-      @include setProp(font-size, 20, 16, 0);
-
-      &::before {
-        background: url("../img/icons/lavrs-black.svg") center no-repeat;
-        background-size: contain;
-        @include setProp(width, 15, 9, 0);
-        @include setProp(height, 32, 21, 0);
-      }
-
-      &::after {
-        background: url("../img/icons/lavrs-black.svg") center no-repeat;
-        background-size: contain;
-        @include setProp(width, 15, 9, 0);
-        @include setProp(height, 32, 21, 0);
-      }
-    }
-
-  }
-
-  &__position {
-    @include setProp(width, 76, 32, 0);
-    text-align: center;
-    @include setProp(font-size, 32, 16, 0);
-    font-family: $fontMedium;
-
-    @media (max-width: $md2+px) {
-      font-family: $fontFamily;
-    }
-
-    position: relative;
-
-    &::before {
-      content: "";
-      display: block;
-      position: absolute;
-      @include setProp(top, -4, -2, 0);
-      left: 0;
-      @include setProp(width, 22, 10, 0);
-      @include setProp(height, 46, 21, 0);
-
-      background: url("../img/icons/lavrs.svg") center no-repeat;
-      background-size: contain;
-    }
-
-    &::after {
-      content: "";
-      display: block;
-      position: absolute;
-      @include setProp(top, -4, -2, 0);
-      right: 0;
-      @include setProp(width, 22, 10, 0);
-      @include setProp(height, 46, 21, 0);
-
-      transform: scale(-1, 1);
-      background: url("../img/icons/lavrs.svg") center no-repeat;
-      background-size: contain;
-    }
-  }
-
-  &__right {
-    @media (max-width: $md2+px) {
-      @include setProp(margin-left, 100, 46, 0);
-    }
-  }
-
-  &__text {
-    @include setProp(font-size, 32, 20, 0);
-    font-family: $fontBold;
-
-    @media (max-width: $md2+px) {
-      font-family: $fontFamily;
-    }
-  }
-
-  &__link {
-    font-family: $fontItalic;
-    @include setProp(font-size, 18, 14, 0);
-    color: #a1a1a1;
-  }
-}
-
-//</О НАС>====================================================================================================
-
-//<УСЛУГИ>====================================================================================================
-
-.item-services {
-  position: relative;
-  display: block;
-  @include setProp(padding, 40, 30, 0);
-  background-color: #f5ff82;
-  aspect-ratio: 1/0.9;
-  transition: 0.2s;
-  z-index: 1;
-  box-shadow: 1px 1px 12px 0px rgba(0, 0, 0, 0);
-
-  @media (min-width: $md2+px) {
-    &:hover {
-      transform: scale(1.05);
-      box-shadow: 1px 1px 12px 0px rgba(0, 0, 0, 0.1);
-      z-index: 2;
-
-      & svg {
-        transform: rotate(-45deg);
-      }
-    }
-  }
-
-  &__photo {
-    object-fit: cover;
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
-  }
-
-  &__title {
-    @include setProp(font-size, 32, 24, 0);
-    font-family: $fontBold;
-    line-height: 120%;
-    color: #212121;
-    position: relative;
-    z-index: 2;
-
-    &._invert {
-      color: #fff;
-    }
-
-    @media (max-width: $md2+px) {
-      font-family: $fontMedium;
-    }
-  }
-
-  & svg {
-    position: absolute;
-    transition: 0.3s;
-    @include setProp(width, 40, 30, 0);
-    @include setProp(height, 30, 20, 0);
-
-    @include setProp(bottom, 40, 30, 0);
-    @include setProp(right, 40, 30, 0);
-
-    &._invert {
-      & path {
-        stroke: #fff;
-      }
-
-      & rect {
-        fill: #fff;
-      }
-    }
-
-    & path {
-      stroke: #212121;
-      stroke-width: 4.31px;
-      transition: 0.3s;
-    }
-
-    & rect {
-      fill: #212121;
-      width: 4.31px;
-      height: 21px;
-      transition: 0.3s;
-    }
-  }
-}
-
-.services-home {
-  &__container {}
-
-  &__left {}
-
-  &__link {
-    @include setProp(margin-top, 48, 52, 0);
-  }
-
-  &__list {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-
-    @media (max-width: $md2+px) {
-      grid-template-columns: 1fr 1fr;
-    }
-
-    @media (max-width: 600px) {
-      grid-template-columns: 1fr;
-    }
-  }
-
-  &__placeholder {
-    text-transform: uppercase;
-    @include setProp(font-size, 24, 16, 0);
-    opacity: 0.5;
-
-    @media (max-width: $md2+px) {
-      margin-bottom: 30px;
-    }
-  }
-
-  &__right {}
-
-  &__title {
-    @include setProp(font-size, 52, 32, 0);
-    font-family: $fontMedium;
-    line-height: 110%;
-    @include setProp(max-width, 1020, 1020, 0);
-  }
-
-  &__top {
-    display: grid;
-    grid-template-columns: 1.3fr 4fr;
-    @include setProp(margin-bottom, 40, 40, 0);
-
-    @media (max-width: $md2+px) {
-      grid-template-columns: 1fr;
-    }
-  }
-}
-
-//</УСЛУГИ>====================================================================================================
 
 //<СФЕРЫ>====================================================================================================
 
@@ -1181,8 +1357,10 @@ body {
 
   &__subtitle {
     @include setProp(margin-bottom, 16, 12, 0);
-    @include setProp(font-size, 32, 24, 0);
-    font-family: $fontBold;
+    @include setProp(font-size, 24, 20, 0);
+    font-family: $fontRoman;
+    text-decoration: underline;
+    color: $mainColor;
   }
 
   &__text {
@@ -1198,18 +1376,30 @@ body {
     font-family: $fontMedium;
   }
 
-  &__types {}
+  &__types {
+    display: flex;
+    flex-direction: column;
+    @include setProp(gap, 6, 5, 0);
+  }
 
   &__wrapper {
     @include setProp(margin-bottom, 70, 40, 0);
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 2.5fr;
     @include setProp(gap, 32, 32, 0);
 
     @media (max-width: $md2+px) {
       grid-template-columns: 1fr;
     }
   }
+}
+
+.separator {
+  height: 1px;
+  background-color: $mainColor;
+  opacity: 0.3;
+  /* Можете изменить на нужный оттенок серого */
+  // width: 90%;
 }
 
 .clients-logos {
