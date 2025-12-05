@@ -362,7 +362,7 @@ body {
   height: 100%;
   border: 1px solid #5E5E5E;
   background-color: #212121;
-  min-height: 580px;
+  min-height: 60rem;
   padding: 48px 0;
   position: relative;
 
@@ -395,12 +395,13 @@ body {
     flex-direction: column;
     align-items: center;
     max-width: 38rem;
+    @include setProp(margin-bottom, 90, 70, 50);
 
     li {
       @include setProp(font-size, 20, 16, 0);
       line-height: 1.2;
       color: #FFFFFF;
-      margin-bottom: 24px;
+      @include setProp(margin-bottom, 24, 18, 12);
       position: relative;
       @include setProp(padding-left, 32, 24, 0);
 
@@ -459,42 +460,49 @@ body {
 //<СТОИМОСТЬ И СРОКИ РЕАЛИЗАЦИИ>=====================================================================================
 
 //<СТОИМОСТЬ ВЕДЕНИЯ>=====================================================================================
-.pricing-detailed {
+.pricing-lead {
   background-color: #090908;
   @include setProp(padding-top, 80, 60, 0);
   @include setProp(padding-bottom, 96, 60, 0);
   position: relative;
   overflow: hidden;
 
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 58%;
+    height: 100%;
+    background: linear-gradient(87deg,
+        rgba(9, 9, 8, 1) 0%,
+        rgba(9, 9, 8, 1) 82%,
+        rgba(9, 9, 8, 0) 100%);
+    z-index: 2;
+  }
+
   ._container {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 60px;
-    align-items: end;
     position: relative;
-    z-index: 2;
-
-    @media (max-width: $md2+px) {
-      grid-template-columns: 1fr;
-      gap: 40px;
-    }
   }
 
   &__content {
-    grid-column: 1 / 2;
     display: flex;
     flex-direction: column;
+    z-index: 3;
   }
 
   &__header {
-    @include setProp(margin-bottom, 48, 32, 0);
+    @include setProp(margin-bottom, 32, 20, 0);
   }
 
   &__title {
     @include setProp(font-size, 52, 32, 0);
     line-height: 1.1;
     color: #FFFFFF;
-    @include setProp(margin-bottom, 24, 16, 0);
+    @include setProp(margin-bottom, 48, 32, 0);
     font-family: $fontMedium;
   }
 
@@ -502,103 +510,69 @@ body {
     @include setProp(font-size, 26, 18, 0);
     color: #FFFFFF;
     font-family: $fontBold;
-    opacity: 0.8;
-  }
-
-  &__services {
-    @include setProp(margin-bottom, 40, 32, 0);
   }
 
   &__service-item {
     display: flex;
     justify-content: space-between;
-    align-items: flex-start;
+    gap: 60px;
     @include setProp(padding-top, 16, 12, 0);
     @include setProp(padding-bottom, 16, 12, 0);
-    border-bottom: 1px solid rgba(217, 217, 217, 0.1);
+    border-bottom: 1px solid #D9D9D91A;
+    max-width: 81rem;
 
     &:first-child {
-      padding-top: 0;
+      border-top: 1px solid #D9D9D91A;
     }
 
     &:last-child {
-      border-bottom: none;
-      padding-bottom: 0;
+      margin-bottom: 24px;
     }
   }
 
   &__service-name {
     @include setProp(font-size, 20, 16, 0);
-    line-height: 1.4;
+    line-height: 1.12;
     color: #FFFFFF;
-    opacity: 0.6;
-    flex: 1;
-    margin-right: 24px;
+    opacity: 0.4;
     font-family: $fontFamily;
   }
 
   &__service-price {
-    @include setProp(font-size, 20, 18, 0);
+    @include setProp(font-size, 20, 16, 0);
     font-family: $fontMedium;
     color: #FFFFFF;
-    line-height: 1.1;
+    line-height: 1.12;
     white-space: nowrap;
   }
 
-  &__footer {
-    display: flex;
-    flex-direction: column;
-    gap: 40px;
-  }
-
-  &__total {
+  &__service-total {
     color: #ffffff;
-  }
-
-  &__total-line {
-    height: 1px;
-    background-color: rgba(255, 255, 255, 0.2);
-    margin-bottom: 24px;
-  }
-
-  &__total-item {
+    margin: 32px 0 56px 0;
     @include setProp(font-size, 28, 22, 0);
     font-family: $fontMedium;
   }
 
-  &__additional {
-    max-width: 80%;
-
-    @media (max-width: $md2+px) {
-      max-width: 100%;
-    }
-  }
-
-  &__additional-title {
-    @include setProp(font-size, 20, 18, 0);
+  &__add-title {
+    @include setProp(font-size, 26, 18, 0);
     font-family: $fontMedium;
     color: #FFFFFF;
-    margin: 0 0 16px 0;
+    margin-bottom: 15px;
   }
 
-  &__additional-list {
+  &__add-list {
     margin: 0;
     padding: 0;
     list-style: none;
   }
 
-  &__additional-item {
-    @include setProp(font-size, 16, 14, 0);
+  &__add-item {
+    @include setProp(font-size, 20, 16, 0);
     color: #FFFFFF;
-    opacity: 0.6;
-    line-height: 1.5;
-    @include setProp(margin-bottom, 12, 8, 0);
+    opacity: 0.4;
+    line-height: 1.15;
     position: relative;
     @include setProp(padding-left, 20, 16, 0);
-
-    &:last-child {
-      margin-bottom: 0;
-    }
 
     &::before {
       content: "";
@@ -609,66 +583,16 @@ body {
       @include setProp(height, 8, 6, 0);
       background-color: #FFFFFF;
       border-radius: 50%;
-      opacity: 0.6;
-    }
-  }
-
-  &__image-container {
-    grid-column: 2 / 3;
-    grid-row: 1 / 2;
-    position: relative;
-    display: flex;
-    align-items: flex-end;
-    justify-content: flex-end;
-    height: 100%;
-    margin-top: auto;
-    overflow: visible;
-
-    @media (max-width: $md2+px) {
-      grid-column: 1 / 2;
-      grid-row: auto;
-      justify-content: center;
-      margin-top: 40px;
+      opacity: 0.4;
     }
   }
 
   &__photo {
-    transform: rotate(-40deg);
-    display: block;
-    max-width: 100%;
-    width: 80%;
-    height: auto;
-    object-fit: cover;
-    position: relative;
-    right: -20%;
-    bottom: -10%;
-
-    @media (max-width: $md2+px) {
-      width: 60%;
-      right: 0;
-      bottom: 0;
-      transform: rotate(30deg);
-    }
-
-    @media (max-width: $md3+px) {
-      width: 70%;
-      transform: rotate(25deg);
-    }
-  }
-
-  @media (max-width: $md3+px) {
-    &__service-item {
-      flex-direction: column;
-    }
-
-    &__service-name {
-      margin-right: 0;
-      margin-bottom: 8px;
-    }
-
-    &__service-price {
-      align-self: flex-end;
-    }
+    position: absolute;
+    @include setProp(right, -100, -140, -200);
+    @include setProp(bottom, -100, -140, -200);
+    z-index: 1;
+    width: 50%;
   }
 }
 
