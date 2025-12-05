@@ -7,9 +7,7 @@
 <body>
 	<div class="wrapper">
 		@@include('_header.html',{})
-		<div class="hero-home__img-banner">
-			<img src="img/banner.png" alt="banner" class="hero-home__img-banner-edit">
-		</div>
+
 		<main class="page home">
 			<section class="home__hero hero-home">
 
@@ -76,7 +74,9 @@
 						</div>
 					</div>
 				</div>
-
+				<div class="hero-home__img-banner">
+					<img src="img/banner.png" alt="banner" class="hero-home__img-banner-edit">
+				</div>
 				<!-- <picture>
 					<source media="(max-width: 768px)" srcset="img/home-hero-background-mobile.jpg">
 					<img src="img/home-hero-background.jpg" alt="" class="hero-home__background">
@@ -84,6 +84,145 @@
 
 			</section>
 
+			<section class="home__about about-block">
+				<div class="about-block__container _container">
+					<div class="about-block__content">
+						<!-- Левая колонка с контентом -->
+						<div class="about-block__left">
+							<h2 class="about-block__title">О нас</h2>
+							<div class="about-block__icon-subtitle">
+								<svg width="108" height="108" viewBox="0 0 108 108" fill="none"
+									xmlns="http://www.w3.org/2000/svg">
+									<g opacity="0.1">
+										<path
+											d="M48.5586 88.292L26.6889 108C-21.6683 61.5869 6.56937 16.6612 26.7329 0L49.5 20.5167C17.3431 47.2312 35.4737 76.8313 48.5586 88.292Z"
+											fill="white" />
+										<path
+											d="M107.059 88.292L85.1889 108C36.8316 61.5869 65.0694 16.6612 85.2329 0L108 20.5167C75.8431 47.2312 93.9737 76.8313 107.059 88.292Z"
+											fill="white" />
+									</g>
+								</svg>
+								<h3 class="about-block__subtitle">Klatcen Digital специализируется <br> на комплексном
+									интернет-маркетинге</h3>
+							</div>
+
+							<div class="about-block__rating">
+								<img src="img/silver_trophy.png" alt="" class="about-block__rating-img">
+								<div class="about-block__rating-text">
+									<h3 class="about-block__rating-title">
+										В рейтинге SMM- <br>агентств Казани
+									</h3>
+									<p class="about-block__rating-subtitle">
+										Рейтинг Рунета
+									</p>
+								</div>
+							</div>
+
+							<div class="about-block__nums nums-about">
+								<div class="nums-about__item">
+									<div class="nums-about__num">
+										<p class="nums-about__anim _scr-item _number-anim">10</p>
+										<div class="nums-about__right">
+											<span class="nums-about__plus">+</span>
+											<span class="nums-about__label-plus">лет</span>
+										</div>
+									</div>
+									<p class="nums-about__description">Мы уже давно на рынке и точно знаем, как всё
+										работает</p>
+								</div>
+								<div class="nums-about__item">
+									<div class="nums-about__num">
+										<p class="nums-about__anim _scr-item _number-anim">641</p>
+										<div class="nums-about__right">
+											<span class="nums-about__plus">+</span>
+											<span class="nums-about__label-plus">дней</span>
+										</div>
+									</div>
+									<p class="nums-about__description">Наш приоритет — многолетнее плодотворное
+										сотрудничество!</p>
+								</div>
+								<div class="nums-about__item">
+									<div class="nums-about__num">
+										<p class="nums-about__anim _scr-item _number-anim">117</p>
+										<div class="nums-about__right">
+											<span class="nums-about__plus">+</span>
+											<span class="nums-about__label-plus">компаний</span>
+										</div>
+									</div>
+									<p class="nums-about__description">Остались довольны, сотрудничая с нами</p>
+								</div>
+							</div>
+						</div>
+						<!-- ТЕКСТОВАЯ ЧАСТЬ ЗАКАНЧИВАЕТСЯ ЗДЕСЬ -->
+					</div>
+				</div>
+
+				<!-- КАРТИНКИ ВЫНЕСЕНЫ ВНЕ КОНТЕЙНЕРА -->
+				<div class="about-block__images-wrapper">
+					<div class="about-block__cards-about">
+						<!-- Сетка 2x4 -->
+						<a href="#" class="about-block__card item-services">
+							<p class="item-services__title _invert">Разработка <br> сайта</p>
+							<img src="img/service_site.jpg" alt="" class="item-services__photo">
+						</a>
+						<a href="#" class="about-block__card item-services">
+							<p class="item-services__title _invert">SMM</p>
+							<img src="img/service_smm.jpg" alt="" class="item-services__photo">
+						</a>
+						<a href="#" class="about-block__card item-services">
+							<p class="item-services__title">Контекстная реклама</p>
+						</a>
+						<a href="#" class="about-block__card item-services">
+							<p class="item-services__title">Авито</p>
+							<img src="img/service_avito.jpg" alt="" class="item-services__photo">
+						</a>
+						<a href="#" class="about-block__card item-services">
+							<p class="item-services__title">SEO</p>
+							<img src="img/service_seo.jpg" alt="" class="item-services__photo">
+						</a>
+						<a href="#" class="about-block__card item-services">
+							<p class="item-services__title">Таргетированная реклама</p>
+						</a>
+						<a href="#" class="about-block__card item-services">
+							<p class="item-services__title _invert">Брендинг</p>
+							<img src="img/service_brand.jpg" alt="" class="item-services__photo">
+						</a>
+						<a href="#" class="about-block__card item-services">
+							<p class="item-services__title _invert">Техническая поддержка</p>
+							<img src="img/service_tech.jpg" alt="" class="item-services__photo">
+						</a>
+					</div>
+				</div>
+			</section>
+
+			<section class="home__clients clients-home">
+				<div class="clients-home__container _container">
+					<div class="clients-home__wrapper">
+						<div class="clients-home__left">
+
+						</div>
+						<div class="clients-home__right">
+							<div class="clients-home__types">
+								<a href="#">
+									<p class="clients-home__subtitle">Аналитика: выявленные проблемы</p>
+								</a>
+								<a href="#">
+									<p class="clients-home__subtitle">Что мы предлагаем</p>
+								</a>
+								<a href="#">
+									<p class="clients-home__subtitle">Стоимость и сроки реализации</p>
+								</a>
+								<a href="#">
+									<p class="clients-home__subtitle">Наши проекты</p>
+								</a>
+							</div>
+						</div>
+					</div>
+
+				</div>
+				<div class="separator _container">
+				</div>
+			</section>
 
 			<section class="pricing">
 				<div class="pricing__container _container">
@@ -279,7 +418,7 @@
 					</div>
 				</div>
 			</section>
-			
+
 			<!-- <section class="home__portfolio portfolio-home">
 				<div class="portfolio-home__container _container">
 					<div class="portfolio-home__list">
@@ -388,101 +527,8 @@
 				</div>
 			</section> -->
 
-			<!-- <section class="home__about about-block">
-				<div class="about-block__container _container">
-					<div class="about-block__wrapper">
-						<div class="about-block__left">
-							<p class="about-block__placeholder">О нас</p>
-						</div>
-						<div class="about-block__right">
-							<h3 class="about-block__title">Мы уже давно на рынке и точно знаем, как всё работает. Наш
-								приоритет — многолетнее плодотворное сотрудничество</h3>
-							<div class="about-block__nums nums-about">
-								<div class="nums-about__item">
-									<div class="nums-about__num">
-										<p class="nums-about__anim _scr-item _number-anim">600</p>
-										<span>+</span>
-									</div>
-									<p class="nums-about__description">Средни срок сотрудничества, календарных дней</p>
-								</div>
-								<div class="nums-about__item">
-									<div class="nums-about__num">
-										<p class="nums-about__anim _scr-item _number-anim">9</p>
-										<span>+</span>
-									</div>
-									<p class="nums-about__description">Возраст нашей компании составляет, лет</p>
-								</div>
-							</div>
-							<div class="about-block__rating rating-about">
-								<div class="rating-about__list">
-									<div class="rating-about__item">
-										<div class="rating-about__left">
-											<div class="rating-about__position">2</div>
-											<p class="rating-about__text">В рейтинге SMM-агентств Казани</p>
-										</div>
-										<div class="rating-about__right">
-											<a href="#" class="rating-about__link">Рейтинг Рунета</a>
-										</div>
-									</div>
-									<div class="rating-about__item">
-										<div class="rating-about__left">
-											<div class="rating-about__position">5</div>
-											<p class="rating-about__text">В рейтинге SMM-агентств Казани</p>
-										</div>
-										<div class="rating-about__right">
-											<a href="#" class="rating-about__link">Рейтинг Рунета</a>
-										</div>
-									</div>
-									<div class="rating-about__item">
-										<div class="rating-about__left">
-											<div class="rating-about__position">5</div>
-											<p class="rating-about__text">В рейтинге SMM-агентств Казани</p>
-										</div>
-										<div class="rating-about__right">
-											<a href="#" class="rating-about__link">Рейтинг Рунета</a>
-										</div>
-									</div>
-									<div class="rating-about__item">
-										<div class="rating-about__left">
-											<div class="rating-about__position">8</div>
-											<p class="rating-about__text">В рейтинге SMM-агентств Казани</p>
-										</div>
-										<div class="rating-about__right">
-											<a href="#" class="rating-about__link">Рейтинг Рунета</a>
-										</div>
-									</div>
-									<div class="rating-about__item">
-										<div class="rating-about__left">
-											<div class="rating-about__position">10</div>
-											<p class="rating-about__text">В рейтинге SMM-агентств Казани</p>
-										</div>
-										<div class="rating-about__right">
-											<a href="#" class="rating-about__link">Рейтинг Рунета</a>
-										</div>
-									</div>
-									<div class="rating-about__item">
-										<div class="rating-about__left">
-											<div class="rating-about__position">1</div>
-											<p class="rating-about__text">В рейтинге SMM-агентств Казани</p>
-										</div>
-										<div class="rating-about__right">
-											<a href="#" class="rating-about__link">Рейтинг Рунета</a>
-										</div>
-									</div>
-								</div>
-							</div>
-							<a href="" class="about-block__link _button-invert">
-								<span>Подробнее</span>
-								<svg viewBox="0 0 25 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-									<path d="M24.9795 10.4199C21.6003 10.4293 17.4749 12.1303 17.491 17.9499" />
-									<path d="M24.9727 7.50977C21.5935 7.5191 17.4587 5.84094 17.4427 0.0212691" />
-									<rect x="21.2139" y="6.67383" transform="rotate(89.8417 21.2139 6.67383)" />
-								</svg>
-							</a>
-						</div>
-					</div>
-				</div>
-			</section> -->
+
+
 			<!-- <section class="home__services services-home">
 				<div class="services-home__container _container">
 					<div class="services-home__top">
@@ -576,71 +622,9 @@
 					</a>
 				</div>
 			</section> -->
-			<!-- <section class="home__clients clients-home">
-				<div class="clients-home__container _container">
-					<p class="clients-home__placeholder">Клиенты</p>
-					<div class="clients-home__wrapper">
-						<div class="clients-home__left">
-							<h3 class="clients-home__title">Мы работаем <br> с компаниями <br> из разных сфер</h3>
-						</div>
-						<div class="clients-home__right">
-							<div class="clients-home__types">
-								<p class="clients-home__subtitle">Сферы:</p>
-								<div class="clients-home__list">
-									<a href="#" class="clients-home__item">Медицина<span class="_number">(7)</span></a>
-									<a href="#" class="clients-home__item">Строительство<span
-											class="_number">(4)</span></a>
-									<a href="#" class="clients-home__item">Рестораны, кафе<span
-											class="_number">(2)</span></a>
-									<a href="#" class="clients-home__item">Банки, финансы<span
-											class="_number">(2)</span></a>
-									<a href="#" class="clients-home__item">Туризм<span class="_number">(2)</span></a>
-									<a href="#" class="clients-home__item">Юридическая сфера<span
-											class="_number">(2)</span></a>
-									<a href="#" class="clients-home__item">Магазин одежды<span
-											class="_number">(2)</span></a>
-									<a href="#" class="clients-home__item">Авто<span class="_number">(7)</span></a>
-								</div>
-								<p class="clients-home__text">Мы уже работали более чем с 30 сферами, но также мы любим
-									осваивать новые направления</p>
-							</div>
-						</div>
-					</div>
-					<div class="clients-home__logos clients-logos">
-						<div class="clients-logos__swiper">
-							<div class="clients-logos__wrapper swiper-wrapper">
-								<div class="clients-logos__slide swiper-slide">
-									<img src="img/icons/star-clinic.png" alt="" class="clients-logos__image">
-								</div>
-								<div class="clients-logos__slide swiper-slide">
-									<img src="img/icons/tuz.png" alt="" class="clients-logos__image">
-								</div>
-								<div class="clients-logos__slide swiper-slide">
-									<img src="img/icons/event-team.svg" alt="" class="clients-logos__image">
-								</div>
-								<div class="clients-logos__slide swiper-slide">
-									<img src="img/icons/imagine-garage.png" alt="" class="clients-logos__image">
-								</div>
-								<div class="clients-logos__slide swiper-slide">
-									<img src="img/icons/white-money.svg" alt="" class="clients-logos__image">
-								</div>
-								<div class="clients-logos__slide swiper-slide">
-									<img src="img/icons/suvari.png" alt="" class="clients-logos__image">
-								</div>
-								<div class="clients-logos__slide swiper-slide">
-									<img src="img/icons/english-home.svg" alt="" class="clients-logos__image">
-								</div>
-								<div class="clients-logos__slide swiper-slide">
-									<img src="img/icons/cr-msk.svg" alt="" class="clients-logos__image">
-								</div>
-								<div class="clients-logos__slide swiper-slide">
-									<img src="img/icons/veruschka.png" alt="" class="clients-logos__image">
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</section> -->
+
+
+
 			<!-- <section class="home__reviews reviews">
 				<div class="reviews__container _container">
 					<div class="reviews__swiper">
@@ -762,6 +746,7 @@
 					</div>
 				</div>
 			</section> -->
+
 			<!-- <section class="home__calculator calculator">
 				@@include('templates/_calc.html',{})
 			</section> -->
