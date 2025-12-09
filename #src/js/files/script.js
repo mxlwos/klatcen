@@ -1,20 +1,20 @@
 // Отправка формы
-if(document.querySelector(".form")) {
-	document.querySelector(".form").addEventListener('submit', async function(e){
+if (document.querySelector(".form")) {
+	document.querySelector(".form").addEventListener('submit', async function (e) {
 		e.preventDefault();
-		
+
 		let mailFormData = new FormData(e.target);
-		
-		mailFormData.append("action","sendMail");
-		let response = await fetch('/wp-admin/admin-ajax.php',{
+
+		mailFormData.append("action", "sendMail");
+		let response = await fetch('/wp-admin/admin-ajax.php', {
 			method: 'POST',
 			body: mailFormData
 		});
-		if(response.ok) {
+		if (response.ok) {
 			document.querySelector(".form").remove();
 			document.querySelector(".form__message").classList.add("_active");
 		} else {
-			  alert("Произошла ошибка");
+			alert("Произошла ошибка");
 		}
 	});
 }
@@ -22,10 +22,10 @@ if(document.querySelector(".form")) {
 
 // Инициализировать слайдер
 
-if(document.querySelector('.selector')) {
+if (document.querySelector('.selector')) {
 	var sliderPartners = new Swiper('.selector', {
 		spaceBetween: 16,
-        slidesPerView: '1',
+		slidesPerView: '1',
 		watchOverflow: true,
 		pagination: {
 			el: '.selector__pagination',
@@ -50,10 +50,10 @@ if(document.querySelector('.selector')) {
 	});
 }
 
-if(document.querySelector('.reviews__swiper')) {
+if (document.querySelector('.reviews__swiper')) {
 	var sliderPartners = new Swiper('.reviews__swiper', {
 		spaceBetween: 40,
-        slidesPerView: '1.3',
+		slidesPerView: '1.3',
 		watchOverflow: true,
 		pagination: {
 			el: '.reviews__pagination',
@@ -77,15 +77,15 @@ if(document.querySelector('.reviews__swiper')) {
 	});
 }
 
-if(document.querySelector('.clients-logos__swiper')) {
+if (document.querySelector('.clients-logos__swiper')) {
 	var sliderPartners = new Swiper('.clients-logos__swiper', {
 		spaceBetween: 16,
 		slidesPerView: 'auto',
 		autoplay: {
 			enabled: true,
 			delay: 0,
-		  },
-		  speed: 2000,
+		},
+		speed: 2000,
 		loop: true,
 		watchOverflow: true,
 		breakpoints: {
@@ -102,7 +102,7 @@ if(document.querySelector('.clients-logos__swiper')) {
 	});
 }
 
-if(document.querySelector('.articles-home__swiper')) {
+if (document.querySelector('.articles-home__swiper')) {
 	var sliderPartners = new Swiper('.articles-home__swiper', {
 		spaceBetween: 32,
 		slidesPerView: '4',
@@ -130,10 +130,10 @@ if(document.querySelector('.articles-home__swiper')) {
 
 // Добавить событие к массиву элементов
 function addArrayEvent($array, $event, $function, $mobileHide = false) {
-	$array.forEach(function($item) {
-		$item.addEventListener($event, function(event) {
-			if($mobileHide) {
-				if(window.innerWidth > 992) { $function($item); }
+	$array.forEach(function ($item) {
+		$item.addEventListener($event, function (event) {
+			if ($mobileHide) {
+				if (window.innerWidth > 992) { $function($item); }
 			} else {
 				$function($item);
 			}
@@ -146,13 +146,13 @@ let slideMenu = document.querySelector(".slide-menu");
 let menus = document.querySelectorAll(".menu__title");
 addArrayEvent(menus, "click", menuFunction, true);
 
-function menuFunction(menu){
-	
+function menuFunction(menu) {
+
 	let list = document.querySelector(".slide-menu__list[data-menu='" + menu.getAttribute("data-menu") + "']")
 	let prev = document.querySelector(".slide-menu__list._active");
-	if(prev) {
+	if (prev) {
 
-		if(menu.getAttribute("data-menu") == prev.getAttribute("data-menu")) {
+		if (menu.getAttribute("data-menu") == prev.getAttribute("data-menu")) {
 			slideMenu.classList.remove("_active");
 		} else {
 			list.classList.add("_active");
@@ -165,22 +165,22 @@ function menuFunction(menu){
 	body_lock_add(500);
 }
 
-if(document.querySelector(".slide-menu__list[data-menu='services']")) {
+if (document.querySelector(".slide-menu__list[data-menu='services']")) {
 	let slideItems = document.querySelector(".slide-menu__list[data-menu='services']").querySelectorAll(".slide-menu__item");
 	addArrayEvent(slideItems, "mouseenter", slideItemsFunction, true);
 }
 function slideItemsFunction(slideItem) {
 
-	slideItem.querySelectorAll(".slide-menu__sub").forEach(function(slideSubTemp) {
+	slideItem.querySelectorAll(".slide-menu__sub").forEach(function (slideSubTemp) {
 		slideSubTemp.classList.remove("_gray");
 	});
 
-	slideItems.forEach(function(slideItemTemp) {
+	slideItems.forEach(function (slideItemTemp) {
 		slideItemTemp.classList.add("_gray");
 	});
 
 	let prev = document.querySelector(".slide-menu__item._active");
-	if(prev) {
+	if (prev) {
 		prev.classList.remove("_active");
 	}
 
@@ -192,12 +192,12 @@ function slideItemsFunction(slideItem) {
 let slideSubs = document.querySelectorAll(".slide-menu__sub");
 addArrayEvent(slideSubs, "mouseenter", slideSubsFunction, true);
 function slideSubsFunction(slideSub) {
-	slideSub.closest(".slide-menu__subs").querySelectorAll(".slide-menu__sub").forEach(function(slideSubTemp) {
+	slideSub.closest(".slide-menu__subs").querySelectorAll(".slide-menu__sub").forEach(function (slideSubTemp) {
 		slideSubTemp.classList.add("_gray");
 	});
 
 	let prev = slideSub.closest(".slide-menu__subs").querySelector(".slide-menu__sub._active");
-	if(prev) {
+	if (prev) {
 		prev.classList.remove("_active");
 	}
 	slideSub.classList.add("_active");
@@ -205,9 +205,9 @@ function slideSubsFunction(slideSub) {
 
 
 let headerClose = document.querySelector(".header__close");
-if(headerClose) {
-	headerClose.addEventListener("click", function(event) {
-		if(window.innerWidth < 992) {
+if (headerClose) {
+	headerClose.addEventListener("click", function (event) {
+		if (window.innerWidth < 992) {
 			headerClose.classList.toggle("_active");
 			slideMenu.classList.toggle("_active");
 		} else {
@@ -215,16 +215,16 @@ if(headerClose) {
 		}
 		body_lock(500);
 		let activeList = document.querySelector(".slide-menu__list._active");
-		if(activeList) {
+		if (activeList) {
 			activeList.classList.remove("_active");
 		}
 	});
 }
 
-if(document.querySelector('.schedule-service__swiper')) {
+if (document.querySelector('.schedule-service__swiper')) {
 	var sliderSchedule = new Swiper('.schedule-service__swiper', {
 		spaceBetween: 40,
-        slidesPerView: '1',
+		slidesPerView: '1',
 		watchOverflow: true,
 		pagination: {
 			el: '.schedule-service__pagination',
@@ -242,7 +242,7 @@ if(document.querySelector('.schedule-service__swiper')) {
 	});
 }
 
-if(document.querySelector('.rates-service__swiper')) {
+if (document.querySelector('.rates-service__swiper')) {
 	var sliderPartners = new Swiper('.rates-service__swiper', {
 		spaceBetween: 16,
 		slidesPerView: '4',
@@ -268,7 +268,7 @@ if(document.querySelector('.rates-service__swiper')) {
 	});
 }
 
-if(document.querySelector('.team-about__swiper')) {
+if (document.querySelector('.team-about__swiper')) {
 	var sliderPartners = new Swiper('.team-about__swiper', {
 		spaceBetween: 8,
 		slidesPerView: '4',
@@ -294,10 +294,10 @@ if(document.querySelector('.team-about__swiper')) {
 	});
 }
 
-if(document.querySelector('.cases-service__swiper')) {
+if (document.querySelector('.cases-service__swiper')) {
 	var sliderPartners = new Swiper('.cases-service__swiper', {
 		spaceBetween: 24,
-        slidesPerView: '1.3',
+		slidesPerView: '1.3',
 		watchOverflow: true,
 		pagination: {
 			el: '.cases-service__pagination',
@@ -317,10 +317,11 @@ if(document.querySelector('.cases-service__swiper')) {
 		}
 	});
 }
-if(document.querySelector('.hero-about__swiper')) {
+
+if (document.querySelector('.hero-about__swiper')) {
 	var sliderAbout = new Swiper('.hero-about__swiper', {
 		spaceBetween: 12,
-        slidesPerView: 'auto',
+		slidesPerView: 'auto',
 		watchOverflow: true,
 	});
 }
@@ -335,13 +336,13 @@ if(document.querySelector('.hero-about__swiper')) {
 // 			headLink.classList.add("_active");
 // 		}
 // 	});
-	
+
 // 	// Переключение слайда по клику на год
 // 	let historyLinks = document.querySelectorAll(".history-about__link");
 // 	historyLinks.forEach(function(historyLink) {
 // 		historyLink.addEventListener("click", function() {
 // 			let dataSlide = historyLink.getAttribute("data-slide");
-	
+
 // 			let prev = document.querySelector(".history-about__link._active");
 // 			if(prev) {
 // 				prev.classList.remove("_active");
@@ -354,10 +355,10 @@ if(document.querySelector('.hero-about__swiper')) {
 // }
 
 // Слайдер для товара, на странице single-product.html
-if(document.querySelector('.history-about__swiper')) {
+if (document.querySelector('.history-about__swiper')) {
 	var subsliderHistory = new Swiper('.nav-history__swiper', {
 		spaceBetween: 0,
-        slidesPerView: '3',
+		slidesPerView: '3',
 		watchOverflow: true,
 		breakpoints: {
 			320: {
@@ -373,7 +374,7 @@ if(document.querySelector('.history-about__swiper')) {
 	});
 	var sliderHistory = new Swiper('.history-about__swiper', {
 		spaceBetween: 12,
-        slidesPerView: '1',
+		slidesPerView: '1',
 		watchOverflow: true,
 		thumbs: {
 			swiper: subsliderHistory,
@@ -381,9 +382,9 @@ if(document.querySelector('.history-about__swiper')) {
 	});
 	sliderHistory.on('slideChange', function (event) {
 		let headLink = document.querySelector(".nav-history__slide");
-		if(headLink) {
+		if (headLink) {
 			let prev = document.querySelector(".history-about__link._active");
-			if(prev) {
+			if (prev) {
 				prev.classList.remove("_active");
 			}
 			headLink.classList.add("_active");
