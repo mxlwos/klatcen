@@ -266,7 +266,8 @@ body {
   &__title-container {
     position: relative;
     z-index: 5;
-    @include setProp(padding-bottom, 220, 16, 0);
+    @include setProp(padding-bottom, 140, 16, 0);
+    @include setProp(padding-top, 80, 16, 0);
   }
 
   &__banner-socials {
@@ -736,111 +737,6 @@ body {
   }
 }
 
-/* ДОПОЛНИТЕЛЬНЫЕ АДАПТИВНЫЕ ПРАВКИ */
-
-/* Планшеты горизонтальные */
-// @media (max-width: 1200px) {
-//   .about-block {
-//     &__images-wrapper {
-//       right: calc(50% - #{math.div(1200px, 2)}px);
-//     }
-//   }
-// }
-
-/* Планшеты вертикальные */
-// @media (max-width: 992px) {
-//   .about-block {
-//     &__images-wrapper {
-//       right: 0;
-//       width: calc(50vw - 15px);
-//     }
-//   }
-// }
-
-/* Телефоны большие */
-// @media (max-width: 768px) {
-//   .about-block {
-//     &__container {
-//       padding-right: 20px !important;
-//     }
-
-//     &__images-wrapper {
-//       width: 100%;
-//       padding: 0 20px;
-//     }
-
-//     .nums-about {
-//       @include setProp(gap, 30, 20, 0);
-//     }
-//   }
-// }
-
-/* Телефоны маленькие */
-// @media (max-width: 480px) {
-//   .about-block {
-//     &__container {
-//       @include setProp(padding-left, 15, 15, 0);
-//       @include setProp(padding-right, 15, 15, 0) !important;
-//     }
-
-//     &__images-wrapper {
-//       padding: 0 15px;
-//     }
-
-//     &__cards-about {
-//       @include setProp(grid-auto-rows, 140, 120, 0);
-//     }
-
-//     &__rating {
-//       @include setProp(padding-top, 20, 15, 0);
-//       @include setProp(padding-bottom, 30, 25, 0);
-//     }
-
-//     &__title {
-//       @include setProp(font-size, 32, 28, 0);
-//       @include setProp(margin-bottom, 25, 20, 0);
-//     }
-
-//     &__subtitle {
-//       @include setProp(font-size, 24, 20, 0);
-//     }
-
-//     .nums-about {
-//       @include setProp(gap, 20, 15, 0);
-
-//       &__num {
-//         @include setProp(font-size, 40, 36, 0);
-
-//         & span {
-//           @include setProp(font-size, 24, 20, 0);
-//         }
-//       }
-
-//       &__description {
-//         @include setProp(font-size, 12, 11, 0);
-//       }
-//     }
-//   }
-// }
-
-/* Очень маленькие телефоны */
-// @media (max-width: 360px) {
-//   .about-block {
-//     &__card {
-//       &.item-services {
-//         @include setProp(padding, 12, 10, 0);
-
-//         .item-services__title {
-//           @include setProp(font-size, 14, 13, 0);
-//         }
-//       }
-//     }
-
-//     &__cards-about {
-//       @include setProp(grid-auto-rows, 120, 100, 0);
-//     }
-//   }
-// }
 //<О НАС>============================================================================================================
 
 //<НАВИГАЦИЯ>===================================================================================
@@ -905,7 +801,8 @@ body {
   &__content {
     display: flex;
     flex-direction: column;
-    @include setProp(gap, 60, 40, 0);
+    @include setProp(gap, 32, 28, 0);
+    // @include setProp(gap, 60, 40, 0);
   }
 
   &__description {
@@ -945,11 +842,14 @@ body {
 //<ЧТО МЫ ПРЕДЛАГАЕМ>=============================================================================
 .services-offer {
   color: #212121;
+  position: relative;
 
   &__wrapper {
     display: grid;
     grid-template-columns: 1fr 3fr;
     @include setProp(gap, 85, 40, 0);
+    position: relative;
+    z-index: 1;
   }
 
   &__title {
@@ -958,8 +858,16 @@ body {
     font-family: $fontMedium;
   }
 
+  &__subtitle {
+    @include setProp(font-size, 26, 20, 0);
+    @include setProp(margin-bottom, 10, 8, 0);
+    font-family: $fontBold;
+  }
+
   &__right {
     max-width: 80rem;
+    overflow: visible;
+    position: relative;
   }
 
   &__description {
@@ -987,7 +895,220 @@ body {
       @include setProp(height, 22, 18, 0);
     }
   }
+
+  &__highlight {
+    background-color: #F5F5F5;
+    @include setProp(padding, 32, 24, 0);
+    display: flex;
+    @include setProp(gap, 24, 18, 0);
+    align-items: flex-start;
+    border-left: 8px #212121 solid;
+  }
+
+  &__highlight-content {
+    flex: 1;
+  }
+
+  &__highlight-text {
+    @include setProp(font-size, 22, 18, 16);
+    line-height: 1.4;
+    font-family: $fontRoman;
+  }
+
+  /* ==================== СЛАЙДЕР - ФИКСИРОВАННЫЕ РАЗМЕРЫ ==================== */
+  .services-offer__slider-wrapper {
+    @include setProp(margin-top, 40, 30, 0);
+    @include setProp(margin-bottom, 40, 30, 0);
+    position: relative;
+    width: 100%;
+
+    /* На мобильных */
+    @media (max-width: $md3+px) {
+      margin-left: -20px;
+      margin-right: -20px;
+      width: calc(100% + 40px);
+
+      .services-offer__slider {
+        padding-left: 20px;
+      }
+    }
+  }
+
+  .services-offer__slider {
+    overflow: visible !important;
+
+    .swiper-wrapper {
+      display: flex;
+      align-items: stretch;
+    }
+
+    .swiper-slide {
+      flex-shrink: 0;
+
+      /* КЛЮЧЕВОЕ: ширина как у .services-offer__highlight */
+      width: 100%;
+      /* Занимает всю ширину правой колонки */
+      max-width: 80rem;
+      /* Максимальная ширина как у текстового блока */
+
+      .slide-content {
+        width: 100%;
+        @include setProp(height, 397, 200, 0);
+        background: #F5F5F5;
+        @include setProp(padding, 25, 15, 0);
+
+        overflow: hidden;
+
+        .slider-image {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          @include setProp(border-radius, 4, 3, 0);
+        }
+      }
+    }
+  }
+
+  /* На десктопе - расширяем слайдер за пределы */
+  @media (min-width: 768px) {
+    .services-offer__slider-wrapper {
+      /* Сдвигаем слайдер влево, чтобы он начинался от правой колонки */
+      margin-left: 0;
+      width: calc(100% + 300px);
+      /* Фиксированное значение, не vw */
+    }
+
+    .services-offer__slider .swiper-slide {
+      @include setProp(margin-right, 30, 15, 0);
+      width: 80rem;
+      /* Фиксированная ширина как у highlight блока */
+    }
+  }
+
+  /* Для маленьких экранов */
+  @media (max-width: 374px) {
+    .services-offer__slider .swiper-slide {
+      .slide-content {
+        @include setProp(height, 180, 160, 0);
+      }
+    }
+  }
+
+  // ==================== НУМЕРОВАННЫЙ СПИСОК ====================
+  .service-offer__numbered-list {
+    counter-reset: list-counter;
+    list-style: none;
+    padding-left: 0;
+    @include setProp(margin-top, 70, 54, 0);
+
+    li {
+      counter-increment: list-counter;
+      position: relative;
+      @include setProp(margin-bottom, 40, 32, 0);
+      @include setProp(padding-left, 68, 56, 0);
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+
+      &::before {
+        display: none;
+      }
+
+      &::after {
+        content: counter(list-counter);
+        position: absolute;
+        left: 0;
+        top: 0;
+        border: 1px solid #212121;
+        border-radius: 50%;
+        background: transparent;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: $fontBold;
+        @include setProp(font-size, 20, 18, 0);
+        @include setProp(width, 48, 40, 0);
+        @include setProp(height, 48, 40, 0);
+      }
+    }
+
+    .list-title {
+      @include setProp(font-size, 26, 20, 0);
+      @include setProp(margin-bottom, 8, 6, 0);
+      font-family: $fontBold;
+      line-height: 1.3;
+      display: flex;
+      align-items: center;
+      @include setProp(min-height, 48, 40, 0);
+    }
+
+    .list-text {
+      @include setProp(font-size, 20, 18, 0);
+      line-height: 1.5;
+      margin: 0;
+      font-family: $fontRoman;
+
+      p {
+        @include setProp(margin-bottom, 16, 14, 0);
+
+        &:last-child {
+          margin-bottom: 0;
+        }
+      }
+    }
+  }
+
+  // ==================== КОНЕЦ НУМЕРОВАННОГО СПИСКА ====================
 }
+
+// Альтернативный вариант для планшетов с более точным расчетом
+// @media (min-width: 768px) and (max-width: 1023px) {
+//   .services-offer {
+//     &__slider {
+//       .swiper-slide {
+//         // На планшетах уменьшаем ширину
+//         @include setProp(width, 500, 400, 0);
+//         @include setProp(padding, 20, 15, 0);
+
+//         .slider-image {
+//           @include setProp(height, 280, 220, 0);
+//         }
+//       }
+//     }
+//   }
+// }
+
+// Для очень узких мобильных
+// @media (max-width: 374px) {
+//   .services-offer {
+//     &__slider {
+//       .swiper-slide {
+//         width: calc(100vw - 40px - 10px);
+//       }
+
+//       .slider-image {
+//         @include setProp(height, 200, 150, 0);
+//       }
+//     }
+//   }
+// }
+
+// Медиа-запрос для контроля на очень больших экранах
+// @media (min-width: 1920px) {
+//   .services-offer {
+//     &__slider {
+//       .swiper-slide {
+//         width: 746px; // Фиксированная ширина на больших экранах
+//         padding: 25px;
+
+//         .slider-image {
+//           height: 397px; // Фиксированная высота на больших экранах
+//         }
+//       }
+//     }
+//   }
+// }
 
 //<ЧТО МЫ ПРЕДЛАГАЕМ>=============================================================================
 
