@@ -153,6 +153,7 @@ body {
   // @include setProp(padding-bottom, 126, 300, 0);
   @include setProp(padding-bottom, 120, 300, 0);
 
+
   &__container-wrapper {
     display: flex;
     justify-content: space-between;
@@ -247,15 +248,19 @@ body {
 
   &__img-banner {
     position: absolute;
+    height: calc(100% - 4rem);
     top: 0;
     right: 0;
+    bottom: 4rem;
+    // height: 100%;
     z-index: 1; // Должен быть выше фона шапки (1), но ниже контента шапки (3)
   }
 
   &__img-banner-edit {
     max-width: 100%;
-    height: auto;
-    @include setProp(max-width, 700, 300, 0);
+    height: 100%;
+    object-fit: cover;
+    // @include setProp(max-width, 700, 300, 0);
   }
 
   &__wrapper {
@@ -287,6 +292,7 @@ body {
     display: flex;
     align-items: center;
     @include setProp(gap, 16, 12, 0);
+    cursor: pointer;
   }
 
   &__social-subtitle {
@@ -333,12 +339,8 @@ body {
   background-color: #212121;
   position: relative;
   overflow: hidden;
+  // height: 100%;
 
-  &__home {
-    @include setProp(gap, 0, 0, 0);
-    position: relative;
-    z-index: 3;
-  }
 
   &__container {
     position: relative;
@@ -347,6 +349,7 @@ body {
     @include setProp(padding-bottom, 45, 25, 0);
     @include setProp(padding-left, 30, 20, 0);
     @include setProp(padding-right, 0, 20, 0);
+    @include setProp(gap, 150, 100, 0);
     color: #fff;
 
     @media (max-width: $md2+px) {
@@ -360,12 +363,19 @@ body {
     }
   }
 
+  &__home {
+    @include setProp(gap, 0, 0, 0);
+    position: relative;
+    z-index: 3;
+  }
+
   &__content {
     display: block;
+    width: 70%;
   }
 
   &__left {
-    max-width: 900px;
+    max-width: 102rem;
     position: relative;
     z-index: 2;
 
@@ -379,16 +389,17 @@ body {
     position: absolute;
     top: 0;
     right: 0;
+    // width: 54rem;
     width: 30%;
     height: 100%;
     z-index: 5;
 
     /* Выравниваем начало картинок по правому краю контейнера */
-    right: calc(30% - #{math.div($maxWidthContainer, 2)}px);
+    // right: calc(30% - #{math.div($maxWidthContainer, 2)}px);
 
     @media (max-width: $md1+px) {
       right: 0;
-      width: calc(50vw - 20px);
+      // width: calc(50vw - 2rem);
     }
 
     @media (max-width: $md2+px) {
@@ -398,7 +409,8 @@ body {
       right: auto;
       top: auto;
       @include setProp(margin-top, 60, 40, 0);
-      padding: 0 20px;
+
+      padding: 0 2rem;
     }
 
     @media (max-width: $md3+px) {
@@ -406,34 +418,34 @@ body {
     }
 
     @media (max-width: $md4+px) {
-      padding: 0 15px;
+      padding: 0 1.5rem;
     }
   }
 
   &__cards-about {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    @include setProp(grid-auto-rows, 270, 150, 0);
+    // @include setProp(grid-auto-rows, 270, 150, 0);
     gap: 0;
     width: 100%;
     height: 100%;
-    max-width: 540px;
+    // max-width: 54rem;
     margin-left: auto;
 
-    @media (max-width: $md2+px) {
-      max-width: 100%;
-      @include setProp(grid-auto-rows, 200, 180, 0);
-      margin-left: 0;
-    }
+    // @media (max-width: $md2+px) {
+    //   max-width: 100%;
+    //   @include setProp(grid-auto-rows, 200, 180, 0);
+    //   margin-left: 0;
+    // }
 
-    @media (max-width: $md3+px) {
-      @include setProp(grid-auto-rows, 180, 160, 0);
-    }
+    // @media (max-width: $md3+px) {
+    //   @include setProp(grid-auto-rows, 180, 160, 0);
+    // }
 
-    @media (max-width: $md4+px) {
-      grid-template-columns: 1fr;
-      @include setProp(grid-auto-rows, 160, 140, 0);
-    }
+    // @media (max-width: $md4+px) {
+    //   grid-template-columns: 1fr;
+    //   @include setProp(grid-auto-rows, 160, 140, 0);
+    // }
   }
 
   &__card {
@@ -449,6 +461,7 @@ body {
       border: none;
       position: relative;
       overflow: hidden;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
 
       &:not(:has(img)) {
         background-color: #0E110F;
@@ -609,7 +622,7 @@ body {
 
   .nums-about {
     display: grid;
-    grid-template-columns: repeat(3, minmax(250px, 1fr));
+    grid-template-columns: repeat(3, minmax(25rem, 1fr));
     justify-content: space-between;
     @include setProp(gap, 110, 40, 0);
     @include setProp(margin-bottom, 56, 30, 0);
@@ -671,11 +684,11 @@ body {
       justify-content: space-between;
 
       @media (max-width: $md3+px) {
-        margin-left: 6px;
+        margin-left: 0.6rem;
       }
 
       @media (max-width: $md4+px) {
-        margin-left: 4px;
+        margin-left: 0.4rem;
       }
     }
 
