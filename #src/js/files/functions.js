@@ -298,6 +298,15 @@ function gallery_init() {
 		});
 	}
 }
+
+const sliderWrapper = document.querySelector('.services-offer__slider-wrapper');
+if (sliderWrapper && typeof lightGallery !== 'undefined') {
+	lightGallery(sliderWrapper, {
+		counter: false,
+		selector: '.gallery-item',
+		download: false
+	});
+}
 //=================
 //SearchInList
 function search_in_list(input) {

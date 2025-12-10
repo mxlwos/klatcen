@@ -105,6 +105,7 @@ body {
 @import "home";
 //</ПОДКЛЮЧЕНИЕ ФАЙЛОВ СТИЛЕЙ СТРАНИЦ И ЭЛЕМЕНТОВ>====================================================================================================
 
+
 //<ШАБЛОНЫ СТИЛЕЙ>====================================================================================================
 
 ._title {}
@@ -131,7 +132,7 @@ body {
 
   // УБИРАЕМ gap и добавляем margin-top для всех секций, кроме первых двух
   &>section {
-    @include setProp(margin-top, 80, 72, 0);
+    @include setProp(margin-top, 80, 60, 0);
   }
 
   // Первая секция (баннер) без отступа
@@ -149,65 +150,72 @@ body {
 .hero-home {
   position: relative;
   background-color: #212121;
-  @include setProp(padding-top, 292, 116, 0);
-  // @include setProp(padding-bottom, 126, 300, 0);
-  @include setProp(padding-bottom, 120, 300, 0);
+  @include setProp(padding-top, 292, 130, 0);
+  @include setProp(padding-bottom, 120, 100, 0);
 
+  // Добавляем минимальную высоту для десктопа
+  min-height: 80rem;
+
+  @media (max-width: $md2+px) {
+    min-height: 70rem;
+  }
+
+  @media (max-width: $md3+px) {
+    min-height: 60rem;
+  }
+
+  @media (max-width: $md4+px) {
+    min-height: 50rem;
+  }
+
+  &__wrapper {
+    position: relative;
+    z-index: 4;
+    height: 100%;
+  }
+
+  &__title-container {
+    position: relative;
+    z-index: 5;
+    @include setProp(padding-bottom, 140, 100, 0);
+    @include setProp(padding-top, 80, 60, 0);
+
+    // Растягиваем на всю высоту
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
 
   &__container-wrapper {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    @include setProp(padding-top, 160, 116, 0);
-  }
-
-  &__container {
+    @include setProp(padding-top, 160, 80, 0);
     position: relative;
-    display: grid;
-    z-index: 3;
-    grid-template-columns: 2fr 3fr;
-
-    @include setProp(padding-top, 28, 24, 0);
-    @include setProp(padding-right, 24, 24, 0);
-    @include setProp(padding-bottom, 32, 24, 0);
-  }
-
-  &__content {
-    display: grid;
-    grid-template-columns: 2fr 1fr;
-    @include setProp(gap, 78, 24, 0);
+    z-index: 5; // Текст выше картинки
 
     @media (max-width: $md2+px) {
-      grid-template-columns: 1fr;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 30px;
+    }
+
+    @media (max-width: $md3+px) {
+      gap: 20px;
     }
   }
 
-  &__info {}
-
-  &__rating {
-    & .rating-about__list {
-      display: flex;
-      @include setProp(gap, 16, 4, 0);
-    }
-  }
-
-  &__showreel {
-    display: flex;
-    align-items: center;
-    height: fit-content;
+  &__title {
+    @include setProp(font-size, 72, 34, 0);
+    @include setProp(max-width, 1105, 900, 0);
+    text-transform: none;
     font-family: $fontMedium;
-    line-height: 120%;
-    @include setProp(font-size, 20, 16, 0);
-    @include setProp(gap, 16, 8, 0);
-    color: #212121;
+    line-height: 115%;
+    color: #fff;
 
-    &::before {
-      content: "";
-      display: block;
-      background: url("../img/icons/play.svg") center no-repeat;
-      background-size: contain;
-      @include setProp(width, 24, 16, 0);
-      @include setProp(height, 28, 20, 0);
+    @media (max-width: $md3+px) {
+      font-family: $fontFamily;
     }
   }
 
@@ -217,62 +225,53 @@ body {
     @include setProp(font-size, 40, 20, 0);
     @include setProp(margin-top, 60, 30, 0);
     color: #A1A1A1;
-    font-weight: 100;
-
-    @media (max-width: $md2+px) {
-      font-family: $fontFamily;
-    }
   }
 
   &__subtitle-banner {
     font-family: $fontRoman;
     line-height: 125%;
     @include setProp(font-size, 25, 18, 0);
-    // @include setProp(margin-top, 60, 30, 0);
     color: #A1A1A1;
     font-weight: 100;
 
     @media (max-width: $md2+px) {
       font-family: $fontFamily;
+      @include setProp(font-size, 20, 18, 0);
+      order: 3;
+      margin-top: 20px;
+      // Тень для текста на фоне картинки
+      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
     }
-  }
 
-  &__title {
-    @include setProp(font-size, 72, 24, 0);
-    @include setProp(max-width, 1105, 1105, 0);
-    text-transform: none;
-    font-family: $fontMedium;
-    line-height: 115%;
-    color: #fff;
+    @media (max-width: $md3+px) {
+      @include setProp(font-size, 18, 16, 0);
+    }
   }
 
   &__img-banner {
     position: absolute;
     height: calc(100% - 4rem);
+    bottom: 4rem; // Занимает всю высоту
     top: 0;
     right: 0;
-    bottom: 4rem;
-    // height: 100%;
-    z-index: 1; // Должен быть выше фона шапки (1), но ниже контента шапки (3)
+    bottom: 0;
+    z-index: 1;
+    // width: 50%; // Занимает правую половину на десктопе
+
+    @media (max-width: $md2+px) {
+      // На мобилке картинка становится фоновой на весь блок
+      width: 100%;
+      height: 100%;
+      opacity: 0.6; // Делаем полупрозрачной для читаемости текста
+    }
+
+
   }
 
   &__img-banner-edit {
-    max-width: 100%;
+    width: 100%;
     height: 100%;
     object-fit: cover;
-    // @include setProp(max-width, 700, 300, 0);
-  }
-
-  &__wrapper {
-    position: relative;
-    z-index: 4; // Контент hero над баннером
-  }
-
-  &__title-container {
-    position: relative;
-    z-index: 5;
-    @include setProp(padding-bottom, 140, 16, 0);
-    @include setProp(padding-top, 80, 16, 0);
   }
 
   &__banner-socials {
@@ -282,8 +281,16 @@ body {
     z-index: 4;
     @include setProp(gap, 50, 24, 0);
 
+
     @media (max-width: $md2+px) {
-      justify-content: space-between;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 20px;
+      order: 2;
+    }
+
+    @media (max-width: $md3+px) {
+      gap: 15px;
       width: 100%;
     }
   }
@@ -293,24 +300,44 @@ body {
     align-items: center;
     @include setProp(gap, 16, 12, 0);
     cursor: pointer;
+
+    @media (max-width: $md2+px) {
+      &:first-child {
+        margin-bottom: 10px;
+      }
+    }
   }
 
   &__social-subtitle {
     color: #fff;
     font-family: $fontFamily;
     @include setProp(font-size, 18, 16, 0);
+
+    // Тень для текста на фоне картинки
+    @media (max-width: $md2+px) {
+      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+      @include setProp(font-size, 16, 14, 0);
+    }
   }
 
   ._line {
     text-decoration: underline;
+
+    @media (max-width: $md3+px) {
+      text-decoration: none;
+    }
   }
 
   ._social {
     border: 1px solid #fff;
-
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
 
     & svg {
       fill: #fff;
+      transition: fill 0.3s ease;
     }
 
     &::before {
@@ -325,8 +352,6 @@ body {
         }
       }
     }
-
-
   }
 }
 
@@ -339,8 +364,6 @@ body {
   background-color: #212121;
   position: relative;
   overflow: hidden;
-  // height: 100%;
-
 
   &__container {
     position: relative;
@@ -349,7 +372,6 @@ body {
     @include setProp(padding-bottom, 45, 25, 0);
     @include setProp(padding-left, 30, 20, 0);
     @include setProp(padding-right, 0, 20, 0);
-    @include setProp(gap, 150, 100, 0);
     color: #fff;
 
     @media (max-width: $md2+px) {
@@ -360,6 +382,8 @@ body {
     @media (max-width: $md3+px) {
       @include setProp(padding-top, 60, 30, 0);
       @include setProp(padding-bottom, 40, 30, 0);
+      padding-left: 20px;
+      padding-right: 20px;
     }
   }
 
@@ -372,6 +396,10 @@ body {
   &__content {
     display: block;
     width: 70%;
+
+    @media (max-width: $md2+px) {
+      width: 100%;
+    }
   }
 
   &__left {
@@ -389,18 +417,9 @@ body {
     position: absolute;
     top: 0;
     right: 0;
-    // width: 54rem;
     width: 30%;
     height: 100%;
     z-index: 5;
-
-    /* Выравниваем начало картинок по правому краю контейнера */
-    // right: calc(30% - #{math.div($maxWidthContainer, 2)}px);
-
-    @media (max-width: $md1+px) {
-      right: 0;
-      // width: calc(50vw - 2rem);
-    }
 
     @media (max-width: $md2+px) {
       position: relative;
@@ -409,43 +428,30 @@ body {
       right: auto;
       top: auto;
       @include setProp(margin-top, 60, 40, 0);
-
-      padding: 0 2rem;
+      padding: 0;
+      max-width: 100%; // На всю ширину
     }
 
     @media (max-width: $md3+px) {
       @include setProp(margin-top, 40, 30, 0);
-    }
-
-    @media (max-width: $md4+px) {
-      padding: 0 1.5rem;
     }
   }
 
   &__cards-about {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    // @include setProp(grid-auto-rows, 270, 150, 0);
     gap: 0;
     width: 100%;
     height: 100%;
-    // max-width: 54rem;
     margin-left: auto;
 
-    // @media (max-width: $md2+px) {
-    //   max-width: 100%;
-    //   @include setProp(grid-auto-rows, 200, 180, 0);
-    //   margin-left: 0;
-    // }
-
-    // @media (max-width: $md3+px) {
-    //   @include setProp(grid-auto-rows, 180, 160, 0);
-    // }
-
-    // @media (max-width: $md4+px) {
-    //   grid-template-columns: 1fr;
-    //   @include setProp(grid-auto-rows, 160, 140, 0);
-    // }
+    @media (max-width: $md2+px) {
+      margin-left: 0;
+      grid-template-columns: 1fr; // Один столбик
+      grid-auto-rows: minmax(20rem, auto);
+      max-width: 100%; // На всю ширину экрана
+      margin: 0; // Убираем центрирование
+    }
   }
 
   &__card {
@@ -472,7 +478,7 @@ body {
       }
 
       .item-services__title {
-        @include setProp(font-size, 28, 16, 0);
+        @include setProp(font-size, 28, 18, 0);
         font-family: $fontBold;
         line-height: 1.2;
         color: #212121;
@@ -480,20 +486,9 @@ body {
         z-index: 2;
         margin: 0;
 
+
         &._invert {
           color: #fff;
-        }
-
-        @media (max-width: $md2+px) {
-          font-family: $fontMedium;
-        }
-
-        @media (max-width: $md3+px) {
-          @include setProp(font-size, 18, 16, 0);
-        }
-
-        @media (max-width: $md4+px) {
-          @include setProp(font-size, 16, 14, 0);
         }
       }
 
@@ -505,11 +500,12 @@ body {
         top: 0;
         left: 0;
         z-index: 1;
+        transition: transform 0.3s ease;
       }
 
       @media (min-width: $md2+px) {
         &:hover {
-          transform: scale(1.05);
+          transform: scale(1.02);
           box-shadow: 1px 1px 12px 0px rgba(0, 0, 0, 0.1);
           z-index: 2;
         }
@@ -517,6 +513,11 @@ body {
 
       @media (max-width: $md2+px) {
         @include setProp(padding, 15, 12, 0);
+        cursor: pointer;
+
+        &:active {
+          transform: scale(0.98);
+        }
       }
     }
   }
@@ -527,19 +528,6 @@ body {
     @include setProp(gap, 47, 20, 0);
     display: flex;
     align-items: center;
-
-    @media (max-width: $md2+px) {
-      @include setProp(padding-bottom, 60, 40, 0);
-      @include setProp(gap, 30, 15, 0);
-    }
-
-    @media (max-width: $md3+px) {
-      @include setProp(padding-top, 30, 20, 0);
-      @include setProp(padding-bottom, 40, 30, 0);
-      @include setProp(gap, 20, 10, 0);
-      flex-direction: column;
-      align-items: flex-start;
-    }
   }
 
   &__rating-text {
@@ -554,49 +542,28 @@ body {
 
   &__rating-title {
     font-family: $fontMedium;
-    @include setProp(font-size, 32, 24, 0);
+    @include setProp(font-size, 32, 18, 0); // Увеличиваем на мобилках
     line-height: 125%;
-    @include setProp(max-width, 400, 400, 0);
-
-    @media (max-width: $md3+px) {
-      @include setProp(font-size, 24, 20, 0);
-    }
+    @include setProp(max-width, 400, 300, 0);
   }
 
   &__rating-subtitle {
     font-family: $fontItalic;
     color: #A1A1A1;
-    @include setProp(font-size, 18, 14, 0);
-
-    @media (max-width: $md3+px) {
-      @include setProp(font-size, 14, 12, 0);
-    }
+    @include setProp(font-size, 18, 12, 0);
   }
 
   &__rating-img {
-    @include setProp(max-width, 121, 80, 0);
+    @include setProp(max-width, 121, 70, 0);
     height: auto;
-
-    @media (max-width: $md3+px) {
-      @include setProp(max-width, 80, 60, 0);
-    }
-
-    @media (max-width: $md4+px) {
-      @include setProp(max-width, 60, 50, 0);
-    }
   }
 
   &__title {
-    @include setProp(font-size, 80, 40, 0);
+    @include setProp(font-size, 80, 35, 0);
     @include setProp(max-width, 1328, 1328, 0);
-    @include setProp(margin-bottom, 66, 30, 0);
+    @include setProp(margin-bottom, 66, 20, 0);
     line-height: 110%;
     font-family: $fontMedium;
-
-    @media (max-width: $md3+px) {
-      @include setProp(font-size, 40, 32, 0);
-      @include setProp(margin-bottom, 30, 25, 0);
-    }
   }
 
   &__icon-subtitle {
@@ -609,14 +576,19 @@ body {
     }
   }
 
+  &__icon-subtitle-img {
+    @include setProp(max-width, 120, 60, 0);
+  }
+
   &__subtitle {
-    @include setProp(font-size, 54, 28, 0);
+    @include setProp(font-size, 54, 24, 0);
     @include setProp(max-width, 1328, 890, 0);
     line-height: 125%;
     font-family: $fontRoman;
 
     @media (max-width: $md3+px) {
-      @include setProp(font-size, 28, 24, 0);
+      @include setProp(font-size, 24, 20, 0);
+      line-height: 1.3;
     }
   }
 
@@ -624,18 +596,52 @@ body {
     display: grid;
     grid-template-columns: repeat(3, minmax(25rem, 1fr));
     justify-content: space-between;
-    @include setProp(gap, 110, 40, 0);
-    @include setProp(margin-bottom, 56, 30, 0);
+    @include setProp(gap, 110, 60, 0);
+    @include setProp(margin-bottom, 56, 0, 0);
 
     @media (max-width: $md2+px) {
       grid-template-columns: repeat(3, 1fr);
-      @include setProp(gap, 40, 20, 0);
+      justify-content: center;
     }
 
     @media (max-width: $md3+px) {
       grid-template-columns: 1fr;
-      @include setProp(gap, 30, 20, 0);
-      @include setProp(margin-bottom, 30, 25, 0);
+      max-width: 40rem;
+      margin-left: auto;
+      margin-right: auto;
+
+      .nums-about__item {
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        .nums-about__num {
+          justify-content: center;
+          align-items: flex-end;
+          margin: 0 auto;
+
+          // .nums-about__right {
+          //   .nums-about__plus {
+          //     line-height: 0.7;
+          //     margin-bottom: 2px;
+          //   }
+
+          //   .nums-about__label-plus {
+          //     margin-top: 0;
+          //     line-height: 1;
+          //   }
+          // }
+        }
+
+        .nums-about__description {
+          text-align: center;
+          max-width: 25rem;
+          margin-top: 1.5rem;
+          margin-left: auto;
+          margin-right: auto;
+        }
+      }
     }
 
     &._flex {
@@ -648,29 +654,20 @@ body {
       color: #A1A1A1;
       font-family: $fontRoman;
       line-height: 120%;
-      @include setProp(max-width, 450, 400, 0);
-
-      @media (max-width: $md3+px) {
-        @include setProp(font-size, 14, 12, 0);
-      }
+      @include setProp(max-width, 450, 250, 0);
     }
 
     &__num {
       display: flex;
       align-items: flex-end;
-      /* Выравниваем по нижнему краю */
       font-family: $fontLight;
-      @include setProp(font-size, 120, 56, 0);
+      @include setProp(font-size, 120, 50, 0);
       line-height: 0.8;
-      /* Уменьшаем межстрочный интервал для цифры */
 
-      @media (max-width: $md3+px) {
-        @include setProp(font-size, 56, 48, 0);
-      }
 
-      @media (max-width: $md4+px) {
-        @include setProp(font-size, 48, 40, 0);
-      }
+      // @media (max-width: $md3+px) {
+      //   justify-content: center;
+      // }
     }
 
     &__right {
@@ -678,74 +675,42 @@ body {
       flex-direction: column;
       align-items: flex-start;
       margin-left: 8px;
-      /* Отступ от цифры */
-      // height: 9.5rem;
-      @include setProp(height, 100, 65, 0);
+      @include setProp(height, 100, 60, 0);
       justify-content: space-between;
 
-      @media (max-width: $md3+px) {
-        margin-left: 0.6rem;
-      }
-
-      @media (max-width: $md4+px) {
-        margin-left: 0.4rem;
-      }
+      // @media (max-width: $md3+px) {
+      //   margin-left: 5px;
+      //   height: auto;
+      //   justify-content: flex-start;
+      // }
     }
 
     &__plus {
       @include setProp(font-size, 32, 24, 0);
-      // line-height: 0.7;
-      /* Делаем плюс компактнее */
       font-family: $fontLight;
       color: #fff;
-
-      @media (max-width: $md3+px) {
-        @include setProp(font-size, 36, 30, 0);
-      }
-
-      @media (max-width: $md4+px) {
-        @include setProp(font-size, 30, 24, 0);
-      }
+      line-height: 0.7;
     }
 
     &__label-plus {
-      @include setProp(font-size, 18, 16, 0);
+      @include setProp(font-size, 18, 14, 0);
       font-family: $fontMedium;
       color: #fff;
-      // line-height: 1;
       margin-top: auto;
-      /* Прижимаем к низу */
-
-      @media (max-width: $md3+px) {
-        @include setProp(font-size, 16, 14, 0);
-      }
-
-      @media (max-width: $md4+px) {
-        @include setProp(font-size, 14, 12, 0);
-      }
+      line-height: 1;
     }
 
     &__anim {
       margin: 0;
       line-height: 0.8;
       font-family: $fontRoman;
-      @include setProp(font-size, 130, 90, 0);
-      /* Совпадает с line-height родителя */
+      @include setProp(font-size, 130, 70, 0);
     }
 
     &__item {
       display: flex;
       flex-direction: column;
-      @include setProp(gap, 25, 20, 0);
-
-      @media (max-width: $md3+px) {
-        text-align: left;
-        /* Оставляем левое выравнивание */
-
-        .nums-about__num {
-          justify-content: flex-start;
-        }
-      }
+      @include setProp(gap, 25, 10, 0);
     }
   }
 }
@@ -881,7 +846,6 @@ body {
   }
 }
 
-//<АНАЛИТИКА>=============================================================================
 
 //<ЧТО МЫ ПРЕДЛАГАЕМ>=============================================================================
 .services-offer {
@@ -916,6 +880,12 @@ body {
     max-width: 80rem;
     overflow: visible;
     position: relative;
+
+    /* ВАЖНО: ограничиваем переполнение только для мобилок */
+    @media (max-width: $md3+px) {
+      overflow: hidden;
+      width: 100%;
+    }
   }
 
   &__right p {
@@ -926,7 +896,7 @@ body {
   }
 
   &__list li {
-    @include setProp(font-size, 20, 18, 0);
+    @include setProp(font-size, 20, 16, 0);
     line-height: 1.5;
     position: relative;
     @include setProp(padding-left, 24, 20, 0);
@@ -961,29 +931,44 @@ body {
     @include setProp(font-size, 22, 18, 16);
     line-height: 1.4;
     font-family: $fontRoman;
+
+    margin: 0;
+
+    @media (max-width: $md3+px) {
+      @include setProp(padding, 32, 24, 16);
+    }
   }
 
-  /* ==================== СЛАЙДЕР - ФИКСИРОВАННЫЕ РАЗМЕРЫ ==================== */
+  /* ==================== СЛАЙДЕР - ИСПРАВЛЕННАЯ ВЕРСИЯ ==================== */
   .services-offer__slider-wrapper {
     @include setProp(margin-top, 40, 30, 0);
     @include setProp(margin-bottom, 40, 30, 0);
     position: relative;
     width: 100%;
 
-    /* На мобильных */
     @media (max-width: $md3+px) {
-      margin-left: -20px;
-      margin-right: -20px;
-      width: calc(100% + 40px);
+      /* ВАЖНО: используем clip-path вместо негативных margin'ов */
+      width: 100%;
+      margin-left: 0;
+      margin-right: 0;
+
+      /* Разрешаем выход за границы только слайдеру */
+      overflow: visible;
+
+      /* Создаем "окно" для слайдера */
+      clip-path: inset(0 -2rem);
 
       .services-offer__slider {
-        padding-left: 20px;
+        padding-left: 2rem;
+        padding-right: 2rem;
+        width: auto;
       }
     }
   }
 
   .services-offer__slider {
     overflow: visible !important;
+    width: 100%;
 
     .swiper-wrapper {
       display: flex;
@@ -992,171 +977,165 @@ body {
 
     .swiper-slide {
       flex-shrink: 0;
+      box-sizing: border-box;
 
-      /* КЛЮЧЕВОЕ: ширина как у .services-offer__highlight */
-      width: 100%;
-      /* Занимает всю ширину правой колонки */
-      max-width: 80rem;
-      /* Максимальная ширина как у текстового блока */
+      @media (max-width: $md3+px) {
+        width: calc(85vw - 4rem) !important;
+        max-width: 40rem;
+
+        &:last-child {
+          position: relative;
+
+          /* Вместо margin-right используем псевдоэлемент */
+          &::after {
+            content: '';
+            position: absolute;
+            right: -2rem;
+            top: 0;
+            width: 2rem;
+            height: 0.1rem;
+            pointer-events: none;
+          }
+        }
+      }
 
       .slide-content {
         width: 100%;
         @include setProp(height, 397, 200, 0);
         background: #F5F5F5;
         @include setProp(padding, 25, 15, 0);
-
         overflow: hidden;
 
         .slider-image {
           width: 100%;
           height: 100%;
           object-fit: cover;
-          @include setProp(border-radius, 4, 3, 0);
         }
       }
     }
   }
+}
 
-  /* На десктопе - расширяем слайдер за пределы */
-  @media (min-width: 768px) {
-    .services-offer__slider-wrapper {
-      /* Сдвигаем слайдер влево, чтобы он начинался от правой колонки */
-      margin-left: 0;
-      width: calc(100% + 300px);
-      /* Фиксированное значение, не vw */
+.service-offer__numbered-list {
+  counter-reset: list-counter;
+  list-style: none;
+  padding-left: 0;
+  @include setProp(margin-top, 70, 54, 0);
+
+  li {
+    counter-increment: list-counter;
+    position: relative;
+    @include setProp(margin-bottom, 40, 32, 0);
+    @include setProp(padding-left, 68, 56, 0);
+
+    &:last-child {
+      margin-bottom: 0;
     }
 
-    .services-offer__slider .swiper-slide {
-      @include setProp(margin-right, 30, 15, 0);
-      width: 80rem;
-      /* Фиксированная ширина как у highlight блока */
+    &::before {
+      display: none;
+    }
+
+    &::after {
+      content: counter(list-counter);
+      position: absolute;
+      left: 0;
+      top: 0;
+      border: 1px solid #212121;
+      border-radius: 50%;
+      background: transparent;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: $fontBold;
+      @include setProp(font-size, 20, 16, 0);
+      @include setProp(width, 48, 40, 0);
+      @include setProp(height, 48, 40, 0);
     }
   }
 
-  /* Для маленьких экранов */
-  @media (max-width: 374px) {
-    .services-offer__slider .swiper-slide {
-      .slide-content {
-        @include setProp(height, 180, 160, 0);
-      }
-    }
+  .list-title {
+    @include setProp(font-size, 26, 20, 0);
+    @include setProp(margin-bottom, 8, 6, 0);
+    font-family: $fontBold;
+    line-height: 1.3;
+    display: flex;
+    align-items: center;
+    @include setProp(min-height, 48, 40, 0);
   }
 
-  // ==================== НУМЕРОВАННЫЙ СПИСОК ====================
-  .service-offer__numbered-list {
-    counter-reset: list-counter;
-    list-style: none;
-    padding-left: 0;
-    @include setProp(margin-top, 70, 54, 0);
+  .list-text {
+    @include setProp(font-size, 20, 18, 0);
+    line-height: 1.5;
+    margin: 0;
+    font-family: $fontRoman;
 
-    li {
-      counter-increment: list-counter;
-      position: relative;
-      @include setProp(margin-bottom, 40, 32, 0);
-      @include setProp(padding-left, 68, 56, 0);
+    p {
+      @include setProp(margin-bottom, 16, 14, 0);
 
       &:last-child {
         margin-bottom: 0;
       }
-
-      &::before {
-        display: none;
-      }
-
-      &::after {
-        content: counter(list-counter);
-        position: absolute;
-        left: 0;
-        top: 0;
-        border: 1px solid #212121;
-        border-radius: 50%;
-        background: transparent;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-family: $fontBold;
-        @include setProp(font-size, 20, 18, 0);
-        @include setProp(width, 48, 40, 0);
-        @include setProp(height, 48, 40, 0);
-      }
     }
+  }
+}
 
-    .list-title {
-      @include setProp(font-size, 26, 20, 0);
-      @include setProp(margin-bottom, 8, 6, 0);
-      font-family: $fontBold;
-      line-height: 1.3;
-      display: flex;
-      align-items: center;
-      @include setProp(min-height, 48, 40, 0);
-    }
+/* ==================== ВАЖНЫЙ FIX ДЛЯ АДАПТИВА ==================== */
+@media (max-width: $md2+px) {
+  .services-offer__right {
+    /* Фиксируем ширину контейнера */
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow: hidden !important;
 
-    .list-text {
-      @include setProp(font-size, 20, 18, 0);
-      line-height: 1.5;
-      margin: 0;
-      font-family: $fontRoman;
-
-      p {
-        @include setProp(margin-bottom, 16, 14, 0);
-
-        &:last-child {
-          margin-bottom: 0;
-        }
-      }
+    /* Все элементы кроме слайдера */
+    >*:not(.services-offer__slider-wrapper) {
+      /* Сбрасываем любые влияния */
+      position: relative !important;
+      width: 100% !important;
+      max-width: 100% !important;
+      left: 0 !important;
+      right: 0 !important;
+      margin-left: 0 !important;
+      margin-right: 0 !important;
+      padding-left: 0 !important;
+      padding-right: 0 !important;
+      transform: none !important;
+      float: none !important;
+      clear: both !important;
+      z-index: 2 !important;
     }
   }
 
-  // ==================== КОНЕЦ НУМЕРОВАННОГО СПИСКА ====================
+  .services-offer__slider-wrapper {
+    /* Изолируем слайдер от потока */
+    position: relative !important;
+    width: 100vw !important;
+    left: 50% !important;
+    right: 50% !important;
+    margin-left: -50vw !important;
+    margin-right: -50vw !important;
+    transform: none !important;
+
+    /* Ограничиваем влияние на высоту */
+    min-height: 0 !important;
+    height: fit-content !important;
+
+    .services-offer__slider {
+      padding-left: calc(50vw - 50% + 2rem) !important;
+      padding-right: calc(50vw - 50% + 2rem) !important;
+      width: 100% !important;
+    }
+  }
+
+  /* Все элементы после слайдера */
+  .services-offer__slider-wrapper~* {
+    /* Гарантированно очищаем float */
+    clear: both !important;
+    display: block !important;
+    overflow: visible !important;
+  }
 }
-
-// Альтернативный вариант для планшетов с более точным расчетом
-// @media (min-width: 768px) and (max-width: 1023px) {
-//   .services-offer {
-//     &__slider {
-//       .swiper-slide {
-//         // На планшетах уменьшаем ширину
-//         @include setProp(width, 500, 400, 0);
-//         @include setProp(padding, 20, 15, 0);
-
-//         .slider-image {
-//           @include setProp(height, 280, 220, 0);
-//         }
-//       }
-//     }
-//   }
-// }
-
-// Для очень узких мобильных
-// @media (max-width: 374px) {
-//   .services-offer {
-//     &__slider {
-//       .swiper-slide {
-//         width: calc(100vw - 40px - 10px);
-//       }
-
-//       .slider-image {
-//         @include setProp(height, 200, 150, 0);
-//       }
-//     }
-//   }
-// }
-
-// Медиа-запрос для контроля на очень больших экранах
-// @media (min-width: 1920px) {
-//   .services-offer {
-//     &__slider {
-//       .swiper-slide {
-//         width: 746px; // Фиксированная ширина на больших экранах
-//         padding: 25px;
-
-//         .slider-image {
-//           height: 397px; // Фиксированная высота на больших экранах
-//         }
-//       }
-//     }
-//   }
-// }
 
 //<ЧТО МЫ ПРЕДЛАГАЕМ>=============================================================================
 
