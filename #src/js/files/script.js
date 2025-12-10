@@ -318,6 +318,49 @@ if (document.querySelector('.cases-service__swiper')) {
 	});
 }
 
+// Слайдер тарифов
+if (document.querySelector('.pricing__swiper')) {
+    var sliderPricing = new Swiper('.pricing__swiper', {
+        // Основные настройки
+        slidesPerView: 'auto',
+        spaceBetween: 15, // ОТСТУП МЕЖДУ КАРТОЧКАМИ
+        freeMode: false, // Отключаем free mode для точного контроля
+        watchOverflow: true,
+        speed: 300,
+        
+        // Настройки для навигации мышкой/тачем
+        grabCursor: true,
+        
+        // Отключаем стандартные элементы
+        navigation: false,
+        pagination: false,
+        scrollbar: false,
+        
+        // Брейкпоинты
+        breakpoints: {
+            // Мобилки
+            320: {
+                spaceBetween: 20,
+                slidesPerView: 'auto',
+            },
+            // Планшеты
+            768: {
+                spaceBetween: 15,
+                slidesPerView: 'auto',
+            },
+            // Десктоп
+            1025: {
+                spaceBetween: 15,
+                slidesPerView: 'auto',
+                // На десктопе показываем 3 карточки
+                slidesPerView: 3,
+                // Но позволяем скроллить дальше
+                freeMode: true,
+            }
+        }
+    });
+}
+
 if (document.querySelector('.hero-about__swiper')) {
 	var sliderAbout = new Swiper('.hero-about__swiper', {
 		spaceBetween: 12,
