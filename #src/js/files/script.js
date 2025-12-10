@@ -391,3 +391,78 @@ if (document.querySelector('.history-about__swiper')) {
 		}
 	});
 }
+
+// Слайдер для раздела "Что мы предлагаем"
+// if (document.querySelector('.services-offer__slider')) {
+// 	var servicesOfferSlider = new Swiper('.services-offer__slider', {
+// 		direction: 'horizontal',
+// 		loop: false,
+// 		speed: 400,
+// 		spaceBetween: 20,
+// 		slidesPerView: 'auto',
+// 		freeMode: true,
+
+// 		// Настройки для мобильных
+// 		breakpoints: {
+// 			// Мобилки (до 768px)
+// 			320: {
+// 				slidesPerView: 1.1,
+// 				spaceBetween: 15,
+// 			},
+// 			// Планшеты (768px и выше)
+// 			768: {
+// 				slidesPerView: 'auto',
+// 				spaceBetween: 20,
+// 			}
+// 		}
+// 	});
+// }
+// Слайдер для раздела "Что мы предлагаем" - как в отзывах
+// Вариант как в отзывах
+// Вариант как в отзывах
+if (document.querySelector('.services-offer__slider')) {
+	var servicesOfferSlider = new Swiper('.services-offer__slider', {
+		spaceBetween: 20,
+		slidesPerView: 'auto',
+		watchOverflow: true,
+
+		// ВАЖНО: добавляем отступ слева
+		slidesOffsetBefore: 0, // На десктопе без отступа
+
+		breakpoints: {
+			// Мобилки
+			320: {
+				slidesPerView: 1.18,
+				spaceBetween: 20,
+				draggable: true,
+				// На мобилках добавляем отступ 2rem
+				slidesOffsetBefore: 6 // Примерно 2rem (32px)
+			},
+			// Планшеты
+			600: {
+				slidesPerView: 1.8,
+				spaceBetween: 20,
+				draggable: true,
+				slidesOffsetBefore: 0
+			},
+			// Десктоп
+			768: {
+				slidesPerView: 'auto',
+				spaceBetween: 20,
+				draggable: false,
+				slidesOffsetBefore: 0
+			}
+		},
+
+		direction: 'horizontal',
+		loop: false,
+		speed: 400,
+
+		draggable: true,
+		resistance: true,
+		resistanceRatio: 0.5,
+		momentum: true,
+		momentumBounce: true,
+		momentumBounceRatio: 0.3
+	});
+}
