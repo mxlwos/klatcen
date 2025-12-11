@@ -1,7 +1,7 @@
 .buttons-header {
   display: flex;
   align-items: center;
-  z-index: 15;
+  z-index: 6;
   position: relative;
   @include setProp(gap, 100, 24, 0);
 
@@ -13,8 +13,8 @@
     @media (max-width: $md3+px) {
       gap: 1rem;
       position: absolute;
-      right: 20px;
-      top: 20px;
+      right: 2rem;
+      top: 2rem;
     }
   }
 
@@ -63,7 +63,6 @@
 
     @media (max-width: $md3+px) {
       @include setProp(width, 200, 160, 120);
-      // Логотип остается слева вверху
     }
   }
 
@@ -77,10 +76,6 @@
     text-decoration: none;
     white-space: nowrap;
 
-    // На десктопе телефон в .buttons-header
-    // На мобилке будет перенесен под логотип
-
-    // Стили когда телефон уже перенесен (на мобилке)
     @media (max-width: $md3+px) {
       margin-top: 2rem;
       width: 100%;

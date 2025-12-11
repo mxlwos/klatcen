@@ -152,21 +152,7 @@ body {
   background-color: #212121;
   @include setProp(padding-top, 292, 130, 0);
   @include setProp(padding-bottom, 120, 100, 0);
-
-  // Добавляем минимальную высоту для десктопа
-  min-height: 80rem;
-
-  @media (max-width: $md2+px) {
-    min-height: 70rem;
-  }
-
-  @media (max-width: $md3+px) {
-    min-height: 60rem;
-  }
-
-  @media (max-width: $md4+px) {
-    min-height: 50rem;
-  }
+  @include setProp(min-height, 800, 700, 600);
 
   &__wrapper {
     position: relative;
@@ -176,11 +162,8 @@ body {
 
   &__title-container {
     position: relative;
-    z-index: 5;
     @include setProp(padding-bottom, 140, 100, 0);
     @include setProp(padding-top, 80, 60, 0);
-
-    // Растягиваем на всю высоту
     height: 100%;
     display: flex;
     flex-direction: column;
@@ -193,16 +176,11 @@ body {
     align-items: center;
     @include setProp(padding-top, 160, 80, 0);
     position: relative;
-    z-index: 5; // Текст выше картинки
 
     @media (max-width: $md2+px) {
       flex-direction: column;
       align-items: flex-start;
-      gap: 30px;
-    }
-
-    @media (max-width: $md3+px) {
-      gap: 20px;
+      @include setProp(gap, 30, 20, 0);
     }
   }
 
@@ -238,8 +216,7 @@ body {
       font-family: $fontFamily;
       @include setProp(font-size, 20, 18, 0);
       order: 3;
-      margin-top: 20px;
-      // Тень для текста на фоне картинки
+      margin-top: 2rem;
       text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
     }
 
@@ -251,21 +228,17 @@ body {
   &__img-banner {
     position: absolute;
     height: calc(100% - 4rem);
-    bottom: 4rem; // Занимает всю высоту
+    bottom: 4rem;
     top: 0;
     right: 0;
     bottom: 0;
     z-index: 1;
-    // width: 50%; // Занимает правую половину на десктопе
 
     @media (max-width: $md2+px) {
-      // На мобилке картинка становится фоновой на весь блок
       width: 100%;
       height: 100%;
-      opacity: 0.6; // Делаем полупрозрачной для читаемости текста
+      opacity: 0.6;
     }
-
-
   }
 
   &__img-banner-edit {
@@ -281,29 +254,23 @@ body {
     z-index: 4;
     @include setProp(gap, 50, 24, 0);
 
-
     @media (max-width: $md2+px) {
       flex-direction: column;
       align-items: flex-start;
-      gap: 20px;
+      @include setProp(gap, 20, 15, 0);
       order: 2;
-    }
-
-    @media (max-width: $md3+px) {
-      gap: 15px;
-      width: 100%;
     }
   }
 
   &__socials-subtitle {
     display: flex;
     align-items: center;
-    @include setProp(gap, 16, 12, 0);
+    @include setProp(gap, 16, 14, 0);
     cursor: pointer;
 
     @media (max-width: $md2+px) {
       &:first-child {
-        margin-bottom: 10px;
+        margin-bottom: 1rem;
       }
     }
   }
@@ -312,12 +279,6 @@ body {
     color: #fff;
     font-family: $fontFamily;
     @include setProp(font-size, 18, 16, 0);
-
-    // Тень для текста на фоне картинки
-    @media (max-width: $md2+px) {
-      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
-      @include setProp(font-size, 16, 14, 0);
-    }
   }
 
   ._line {
@@ -373,18 +334,6 @@ body {
     @include setProp(padding-left, 30, 20, 0);
     @include setProp(padding-right, 0, 20, 0);
     color: #fff;
-
-    @media (max-width: $md2+px) {
-      padding-left: 20px;
-      padding-right: 20px;
-    }
-
-    @media (max-width: $md3+px) {
-      @include setProp(padding-top, 60, 30, 0);
-      @include setProp(padding-bottom, 40, 30, 0);
-      padding-left: 20px;
-      padding-right: 20px;
-    }
   }
 
   &__home {
@@ -412,7 +361,6 @@ body {
     }
   }
 
-  /* ОБЕРТКА ДЛЯ КАРТИНОК, КОТОРАЯ ВЫШЛА ИЗ КОНТЕЙНЕРА */
   &__images-wrapper {
     position: absolute;
     top: 0;
@@ -429,11 +377,7 @@ body {
       top: auto;
       @include setProp(margin-top, 60, 40, 0);
       padding: 0;
-      max-width: 100%; // На всю ширину
-    }
-
-    @media (max-width: $md3+px) {
-      @include setProp(margin-top, 40, 30, 0);
+      max-width: 100%;
     }
   }
 
@@ -447,10 +391,10 @@ body {
 
     @media (max-width: $md2+px) {
       margin-left: 0;
-      grid-template-columns: 1fr; // Один столбик
+      grid-template-columns: 1fr;
       grid-auto-rows: minmax(20rem, auto);
-      max-width: 100%; // На всю ширину экрана
-      margin: 0; // Убираем центрирование
+      max-width: 100%;
+      margin: 0;
     }
   }
 
@@ -478,9 +422,10 @@ body {
       }
 
       .item-services__title {
-        @include setProp(font-size, 28, 18, 0);
+        @include setProp(font-size, 28, 24, 0);
         font-family: $fontBold;
         line-height: 1.2;
+
         color: #212121;
         position: relative;
         z-index: 2;
@@ -489,6 +434,7 @@ body {
 
         &._invert {
           color: #fff;
+          text-shadow: 0 2px 6px rgba(0, 0, 0, 0.8);
         }
       }
 
@@ -620,18 +566,6 @@ body {
           justify-content: center;
           align-items: flex-end;
           margin: 0 auto;
-
-          // .nums-about__right {
-          //   .nums-about__plus {
-          //     line-height: 0.7;
-          //     margin-bottom: 2px;
-          //   }
-
-          //   .nums-about__label-plus {
-          //     margin-top: 0;
-          //     line-height: 1;
-          //   }
-          // }
         }
 
         .nums-about__description {
@@ -663,26 +597,15 @@ body {
       font-family: $fontLight;
       @include setProp(font-size, 120, 50, 0);
       line-height: 0.8;
-
-
-      // @media (max-width: $md3+px) {
-      //   justify-content: center;
-      // }
     }
 
     &__right {
       display: flex;
       flex-direction: column;
       align-items: flex-start;
-      margin-left: 8px;
+      margin-left: 0.8rem;
       @include setProp(height, 100, 60, 0);
       justify-content: space-between;
-
-      // @media (max-width: $md3+px) {
-      //   margin-left: 5px;
-      //   height: auto;
-      //   justify-content: flex-start;
-      // }
     }
 
     &__plus {
@@ -906,7 +829,7 @@ body {
       content: "";
       position: absolute;
       left: 0;
-      top: 8px;
+      top: 0.8rem;
       background: url("data:image/svg+xml,%3Csvg viewBox='0 0 10 22' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0.190177 17.9854L4.6083 22C14.3774 12.5455 8.67286 3.39395 4.59942 0L0 4.17933C6.49635 9.62117 2.8336 15.6508 0.190177 17.9854Z' fill='%23212121'/%3E%3C/svg%3E") center no-repeat;
       background-size: contain;
       @include setProp(width, 10, 8, 0);
@@ -939,7 +862,6 @@ body {
     }
   }
 
-  /* ==================== СЛАЙДЕР - ИСПРАВЛЕННАЯ ВЕРСИЯ ==================== */
   .services-offer__slider-wrapper {
     @include setProp(margin-top, 40, 30, 0);
     @include setProp(margin-bottom, 40, 30, 0);
@@ -947,7 +869,6 @@ body {
     width: 100%;
 
     @media (max-width: $md3+px) {
-      /* ВАЖНО: используем clip-path вместо негативных margin'ов */
       width: 100%;
       margin-left: 0;
       margin-right: 0;
@@ -1732,730 +1653,6 @@ body {
 }
 
 //</ПОРТФОЛИО>====================================================================================================
-
-
-//<СФЕРЫ>====================================================================================================
-
-.clients-home {
-  &__container {}
-
-  &__item {
-    @include setProp(border-radius, 52, 52, 0);
-    @include setProp(padding, 8, 8, 0);
-    color: #212121;
-    border: 1px solid #212121;
-    display: block;
-    @include setProp(font-size, 16, 14, 0);
-    width: fit-content;
-
-    & ._number {
-      margin-left: 6px;
-    }
-  }
-
-  &__left {}
-
-  &__list {
-    display: flex;
-    flex-wrap: wrap;
-    @include setProp(gap, 8, 8, 0);
-  }
-
-  &__placeholder {
-    text-transform: uppercase;
-    opacity: 0.5;
-    @include setProp(margin-bottom, 56, 32, 0);
-    @include setProp(font-size, 24, 16, 0);
-  }
-
-  &__right {
-    @include setProp(max-width, 670, 670, 0);
-  }
-
-  &__subtitle {
-    @include setProp(margin-bottom, 16, 12, 0);
-    @include setProp(font-size, 24, 20, 0);
-    font-family: $fontRoman;
-    text-decoration: underline;
-    color: $mainColor;
-  }
-
-  &__text {
-    @include setProp(margin-top, 24, 24, 0);
-    @include setProp(font-size, 20, 18, 0);
-    font-family: $fontMedium;
-    line-height: 120%;
-  }
-
-  &__title {
-    @include setProp(font-size, 52, 32, 0);
-    line-height: 110%;
-    font-family: $fontMedium;
-  }
-
-  &__types {
-    display: flex;
-    flex-direction: column;
-    @include setProp(gap, 6, 5, 0);
-  }
-
-  &__wrapper {
-    @include setProp(margin-bottom, 70, 40, 0);
-    display: grid;
-    grid-template-columns: 1fr 2.5fr;
-    @include setProp(gap, 32, 32, 0);
-
-    @media (max-width: $md2+px) {
-      grid-template-columns: 1fr;
-    }
-  }
-}
-
-.separator {
-  height: 1px;
-  background-color: $mainColor;
-  opacity: 0.3;
-  /* Можете изменить на нужный оттенок серого */
-  // width: 90%;
-}
-
-.clients-logos {
-  &__image {
-    object-fit: contain;
-    @include setProp(width, 120, 80, 0);
-    @include setProp(height, 120, 80, 0);
-    filter: grayscale(1);
-    transition: 0.3s;
-
-    @media (min-width: $md2+px) {
-      &:hover {
-        filter: grayscale(0);
-      }
-    }
-  }
-
-  &__slide {}
-
-  &__swiper {}
-
-  &__wrapper {}
-}
-
-//</СФЕРЫ>====================================================================================================
-
-//<ОТЗЫВЫ>====================================================================================================
-
-.reviews {
-  &__bottom {
-    @include setProp(margin-top, 24, 24, 0);
-    display: flex;
-    justify-content: space-between;
-    width: 75%;
-
-    @media (max-width: $md2+px) {
-      width: 100%;
-    }
-  }
-
-  &__container {}
-
-  &__item {}
-
-  &__navigation {
-    display: flex;
-    align-items: center;
-    @include setProp(gap, 16, 16, 0);
-
-    @media (max-width: $md2+px) {
-      width: 100%;
-      justify-content: space-between;
-    }
-  }
-
-  // &__next,
-  // &__prev {
-  //   @include setProp(width, 46, 46, 0);
-  //   @include setProp(height, 46, 46, 0);
-  //   border-radius: 50%;
-  //   display: flex;
-  //   align-items: center;
-  //   justify-content: center;
-  //   position: relative;
-  //   border: 1px solid #212121;
-  //   cursor: pointer;
-
-  //   @media (max-width: $md2+px) {
-  //     border: none;
-  //     border-radius: 0px;
-  //   }
-
-  //   transition: 0.3s;
-
-  //   &.swiper-button-disabled {
-  //     opacity: 0.2;
-  //   }
-
-  //   & svg {
-  //     position: relative;
-  //     z-index: 2;
-  //     @include setProp(width, 15, 32, 0);
-  //     @include setProp(height, 10, 22, 0);
-
-  //     & path {
-  //       stroke: #212121;
-  //       stroke-width: 4.31px;
-  //       transition: 0.3s;
-  //     }
-
-  //     & rect {
-  //       fill: #212121;
-  //       width: 4.31px;
-  //       height: 21px;
-  //       transition: 0.3s;
-  //     }
-  //   }
-
-  //   &::before {
-  //     content: "";
-  //     display: block;
-  //     position: absolute;
-  //     width: 100%;
-  //     height: 100%;
-  //     border-radius: 50%;
-  //     background-color: #212121;
-  //     z-index: 1;
-  //     transition: 0.3s;
-  //     transform: scale(0);
-  //   }
-
-  //   @media (min-width: $md2+px) {
-  //     &:not(.swiper-button-disabled):hover {
-  //       &::before {
-  //         transform: scale(1);
-  //       }
-
-  //       & svg {
-  //         & path {
-  //           stroke: #fff;
-  //         }
-
-  //         & rect {
-  //           fill: #fff;
-  //         }
-  //       }
-  //     }
-  //   }
-  // }
-
-  // &__prev {
-  //   transform: scale(-1, 1);
-  // }
-
-  &__pagination {
-    width: fit-content;
-    display: flex;
-    align-items: flex-end;
-    @include setProp(font-size, 40, 32, 0);
-
-    & .swiper-pagination-current {
-      @include setProp(margin-right, 4, 4, 0);
-    }
-
-    & .swiper-pagination-total {
-      @include setProp(font-size, 18, 16, 0);
-      @include setProp(margin-left, 4, 4, 0);
-    }
-  }
-
-
-  &__slide {}
-
-  &__swiper {}
-
-  &__wrapper {}
-}
-
-.content-review {
-  &__job-title {
-    @include setProp(margin-top, 8, 8, 0);
-    @include setProp(font-size, 16, 12, 0);
-    color: #a1a1a1;
-  }
-
-  &__left {}
-
-  &__link {
-    color: #212121;
-    text-decoration: underline;
-  }
-
-  &__name {
-    @include setProp(font-size, 20, 14, 0);
-    font-family: $fontMedium;
-  }
-
-  &__namespace {
-    @include setProp(padding-left, 72, 72, 0);
-    @include setProp(margin-top, 40, 40, 0);
-
-    @media (max-width: $md2+px) {
-      padding-left: 0;
-    }
-  }
-
-  &__right {}
-
-  &__sphere {
-    color: #a1a1a1;
-  }
-
-  &__text {
-    line-height: 135%;
-    @include setProp(font-size, 16, 14, 0);
-
-    @include setProp(padding-left, 72, 72, 0);
-
-    @media (max-width: $md2+px) {
-      padding-left: 0;
-      @include setProp(padding-top, 48, 48, 0);
-    }
-
-    position: relative;
-
-    &::before {
-      content: "";
-      display: block;
-      background: url("../img/icons/quotes.svg") center no-repeat;
-      background-size: contain;
-      @include setProp(width, 48, 32, 0);
-      @include setProp(height, 48, 32, 0);
-
-      position: absolute;
-      left: 0;
-      top: 0;
-    }
-  }
-
-  &__title {
-    @include setProp(font-size, 32, 24, 0);
-    @include setProp(margin-bottom, 8, 8, 0);
-    font-family: $fontBold;
-  }
-
-  &__top {
-    @include setProp(margin-bottom, 28, 28, 0);
-    display: flex;
-    @include setProp(gap, 32, 32, 0);
-    justify-content: space-between;
-
-    @media (max-width: $md2+px) {
-      flex-direction: column;
-    }
-  }
-}
-
-.item-reviews {
-  background-color: #f5f5f5;
-  display: grid;
-  grid-template-columns: 2fr 1fr;
-
-  @media (max-width: $md2+px) {
-    grid-template-columns: 1fr;
-  }
-
-  &__content {}
-
-  &__left {
-    @include setProp(padding-top, 64, 32, 0);
-    @include setProp(padding-right, 48, 32, 0);
-    @include setProp(padding-bottom, 48, 24, 0);
-    @include setProp(padding-left, 64, 32, 0);
-  }
-
-  &__photo {
-    width: 100%;
-    @include setProp(min-height, 477, 385, 0);
-    object-fit: cover;
-  }
-
-  &__right {
-    position: relative;
-  }
-
-  &__tags {}
-}
-
-.tags-review {
-  @include setProp(padding, 32, 24, 0);
-  position: absolute;
-  width: 75%;
-  bottom: 0;
-  left: 0;
-  background-color: #f5ff82;
-
-  @media (max-width: $md2+px) {
-    width: 100%;
-  }
-
-  &__item {
-    @include setProp(border-radius, 52, 52, 0);
-    @include setProp(padding, 8, 8, 0);
-    color: #212121;
-    border: 1px solid #212121;
-    display: block;
-    @include setProp(font-size, 16, 14, 0);
-    width: fit-content;
-  }
-
-  &__list {
-    display: flex;
-    @include setProp(gap, 8, 8, 0);
-    flex-wrap: wrap;
-  }
-
-  &__title {
-    @include setProp(font-size, 24, 24, 0);
-    @include setProp(margin-bottom, 12, 12, 0);
-    font-family: $fontMedium;
-  }
-}
-
-//</ОТЗЫВЫ>====================================================================================================
-
-//<КАЛЬКУЛЯТОР>====================================================================================================
-
-.calculator {
-  &__background {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    position: absolute;
-  }
-
-  &__container {}
-
-  &__info {}
-
-  &__left {
-    background: #f5ff82;
-    @include setProp(padding-top, 80, 40, 0);
-    @include setProp(padding-right, 80, 24, 0);
-    @include setProp(padding-bottom, 40, 62, 0);
-    @include setProp(padding-left, 80, 24, 0);
-  }
-
-  &__right {
-    position: relative;
-    @include setProp(min-height, 460, 270, 0);
-  }
-
-  &__steps {}
-
-  &__wrapper {
-    display: grid;
-    grid-template-columns: 1fr 1.2fr;
-
-    @media (max-width: $md2+px) {
-      grid-template-columns: 1fr;
-    }
-  }
-}
-
-.info-calculator {
-  position: relative;
-  z-index: 2;
-  @include setProp(margin-top, 38, 24, 0);
-  @include setProp(margin-left, 72, 18, 0);
-  @include setProp(margin-right, 72, 18, 0);
-  @include setProp(margin-bottom, 72, 18, 0);
-
-  display: flex;
-  flex-direction: column;
-  @include setProp(gap, 18, 12, 0);
-
-  @media (max-width: $md2+px) {
-    flex-direction: row;
-  }
-
-  &__avatar {
-    @include setProp(width, 162, 64, 0);
-    @include setProp(height, 162, 64, 0);
-    object-fit: contain;
-  }
-
-  &__popup {
-    position: relative;
-    @include setProp(border-radius, 18, 8, 0);
-    background-color: #212121;
-    width: fit-content;
-    @include setProp(padding, 40, 20, 0);
-    @include setProp(padding-right, 64, 42, 0);
-    @include setProp(max-width, 430, 430, 0);
-    color: #fff;
-
-    &::before {
-      content: "";
-      display: block;
-      width: 0;
-      height: 0;
-
-      @include setProp(border-left-width, 25, 25, 0);
-      border-left-color: transparent;
-      border-left-style: solid;
-
-      @include setProp(border-right-width, 25, 25, 0);
-      border-right-color: transparent;
-      border-right-style: solid;
-
-      @include setProp(border-top-width, 40, 40, 0);
-      border-top-color: #212121;
-      border-top-style: solid;
-      position: absolute;
-
-      @include setProp(right, -16, -14, 0);
-      @include setProp(bottom, -16, -10, 0);
-      transform: rotate(-40deg);
-    }
-  }
-
-  &__text {
-    @include setProp(font-size, 20, 12, 0);
-    line-height: 125%;
-  }
-
-  &__title {
-    @include setProp(font-size, 24, 16, 0);
-    @include setProp(margin-bottom, 12, 12, 0);
-    font-family: $fontBold;
-  }
-}
-
-.steps-calculator {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  height: 100%;
-  @include setProp(gap, 56, 32, 0);
-
-  &__back {
-    transform: scale(-1, 1);
-    @include setProp(min-width, 56, 56, 0);
-    @include setProp(width, 56, 56, 0);
-    @include setProp(height, 56, 56, 0);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    border: 1px solid #212121;
-    cursor: pointer;
-
-    transition: 0.3s;
-
-    &.swiper-button-disabled {
-      opacity: 0.2;
-    }
-
-    & svg {
-      position: relative;
-      z-index: 2;
-      @include setProp(width, 15, 25, 0);
-      @include setProp(height, 10, 18, 0);
-
-      & path {
-        stroke: #212121;
-        stroke-width: 4.31px;
-        transition: 0.3s;
-      }
-
-      & rect {
-        fill: #212121;
-        width: 4.31px;
-        height: 21px;
-        transition: 0.3s;
-      }
-    }
-
-    &::before {
-      content: "";
-      display: block;
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      border-radius: 50%;
-      background-color: #212121;
-      z-index: 1;
-      transition: 0.3s;
-      transform: scale(0);
-    }
-
-    @media (min-width: $md2+px) {
-      &:not(.swiper-button-disabled):hover {
-        &::before {
-          transform: scale(1);
-        }
-
-        & svg {
-          & path {
-            stroke: #fff;
-          }
-
-          & rect {
-            fill: #fff;
-          }
-        }
-      }
-    }
-  }
-
-  &__buttons {
-    display: flex;
-    width: 100%;
-    @include setProp(gap, 12, 12, 0);
-  }
-
-  &__controller {}
-
-  &__current {
-    @include setProp(margin-right, 4, 4, 0);
-  }
-
-  &__item {
-    display: none;
-
-    &._active {
-      display: block;
-    }
-  }
-
-  &__navigation {
-    display: none;
-    // display: flex;
-    align-items: flex-end;
-    justify-content: space-between;
-    @include setProp(gap, 24, 24, 0);
-
-    @media (max-width: $md2+px) {
-      flex-direction: column;
-    }
-  }
-
-  &__next {}
-
-  &__options {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    @include setProp(gap, 24, 24, 0);
-  }
-
-  &__pagination {
-    @include setProp(font-size, 40, 32, 0);
-    display: flex;
-    align-items: flex-end;
-  }
-
-  &__radio {}
-
-  &__start {}
-
-  &__subtitle {
-    font-family: $fontBold;
-    @include setProp(font-size, 32, 24, 0);
-    @include setProp(margin-bottom, 24, 24, 0);
-    line-height: 125%;
-  }
-
-  &__title {
-    @include setProp(font-size, 52, 32, 0);
-    line-height: 110%;
-    @include setProp(margin-bottom, 56, 32, 0);
-    font-family: $fontMedium;
-  }
-
-  &__total {
-    @include setProp(font-size, 18, 16, 0);
-    @include setProp(margin-left, 4, 4, 0);
-  }
-}
-
-//</КАЛЬКУЛЯТОР>====================================================================================================
-
-.articles-home {
-  &__item {}
-
-  &__placeholder {
-    text-transform: uppercase;
-    opacity: 0.5;
-    @include setProp(font-size, 24, 16, 0);
-
-    @media (max-width: $md2+px) {
-      @include setProp(margin-bottom, 32, 32, 0);
-    }
-  }
-
-  &__slide {}
-
-  &__swiper {}
-
-  &__title {
-    @include setProp(font-size, 52, 32, 0);
-    font-family: $fontMedium;
-    height: 110%;
-  }
-
-  &__top {
-    width: 100%;
-    @include setProp(margin-bottom, 58, 32, 0);
-    display: grid;
-    grid-template-columns: 1fr 3fr;
-
-    @media (max-width: $md2+px) {
-      grid-template-columns: 1fr;
-    }
-  }
-
-  &__wrapper {}
-}
-
-.item-article {
-  transition: .5s;
-  display: block;
-
-  @media (min-width: $md2+px) {
-    &:hover {
-      opacity: .3;
-    }
-  }
-
-  &__content {
-    @include setProp(margin-top, 24, 16, 0);
-    @include setProp(padding-top, 16, 8, 0);
-    @include setProp(padding-right, 24, 24, 0);
-    border-top: 2px solid #212121;
-  }
-
-  &__date {
-    @include setProp(margin-top, 16, 8, 0);
-    @include setProp(font-size, 20, 16, 0);
-    font-family: $fontMedium;
-    display: block;
-    color: #A1A1A1;
-  }
-
-  &__image {
-    width: 100%;
-    @include setProp(max-height, 416, 218, 0);
-    aspect-ratio: 1/1;
-    object-fit: cover;
-  }
-
-  &__title {
-    @include setProp(font-size, 24, 18, 0);
-    line-height: 125%;
-    font-family: $fontMedium;
-    color: #212121;
-  }
-}
 
 
 // archive-service.html
