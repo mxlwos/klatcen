@@ -321,41 +321,66 @@ if (document.querySelector('.cases-service__swiper')) {
 // Слайдер тарифов
 if (document.querySelector('.pricing__swiper')) {
     var sliderPricing = new Swiper('.pricing__swiper', {
-        // Основные настройки
         slidesPerView: 'auto',
-        spaceBetween: 15, // ОТСТУП МЕЖДУ КАРТОЧКАМИ
-        freeMode: false, // Отключаем free mode для точного контроля
+        spaceBetween: 20,
+        freeMode: true,
         watchOverflow: true,
         speed: 300,
         
-        // Настройки для навигации мышкой/тачем
         grabCursor: true,
+        allowTouchMove: true,
         
-        // Отключаем стандартные элементы
+        resistance: true,
+        resistanceRatio: 1, 
+        edgeSwipeDetection: true,
+        edgeSwipeThreshold: 10,
+        
+        freeModeMomentum: true,
+        freeModeMomentumRatio: 0.5, 
+        freeModeMomentumBounce: false,
+        freeModeMomentumBounceRatio: 0,
+        freeModeSticky: false,
+        freeModeMinimumVelocity: 0.2,
+        
         navigation: false,
         pagination: false,
         scrollbar: false,
         
-        // Брейкпоинты
         breakpoints: {
-            // Мобилки
             320: {
+                slidesPerView: 2.3,
                 spaceBetween: 20,
-                slidesPerView: 'auto',
-            },
-            // Планшеты
-            768: {
-                spaceBetween: 15,
-                slidesPerView: 'auto',
-            },
-            // Десктоп
-            1025: {
-                spaceBetween: 15,
-                slidesPerView: 'auto',
-                // На десктопе показываем 3 карточки
-                slidesPerView: 3,
-                // Но позволяем скроллить дальше
                 freeMode: true,
+                resistanceRatio: 1, 
+            },
+            768: {
+                slidesPerView: 'auto',
+                spaceBetween: 15,
+                freeMode: true,
+                resistanceRatio: 0.9,
+            },
+            1025: {
+                slidesPerView: 'auto',
+                spaceBetween: 15,
+                freeMode: true,
+                resistanceRatio: 0.8,
+            }
+        },
+        
+        on: {
+            touchStart: function() {
+                this.startTranslate = this.translate;
+            },
+            touchMove: function() {
+                const maxTranslate = this.maxTranslate();
+                const minTranslate = this.minTranslate();
+                
+                if (this.translate > minTranslate) {
+                    this.translate = minTranslate;
+                }
+                if (this.translate < maxTranslate) {
+                    this.translate = maxTranslate;
+                }
             }
         }
     });
