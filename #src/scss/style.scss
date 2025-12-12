@@ -999,6 +999,10 @@ body {
     position: relative;
     z-index: 15;
     padding-right: 4rem;
+
+    @media (max-width: $md2+px) {
+      padding-right: 0;
+    }
   }
 
   &__title {
@@ -1013,21 +1017,16 @@ body {
   &__slider-wrapper {
     position: relative;
     width: 100%;
-    max-width: 140rem;
     overflow: visible;
     z-index: 1;
 
-    @media (min-width: $md2+px) {
-      width: calc(100% + 6rem);
-      padding-right: 10rem;
-      margin-right: -10rem;
-    }
-
     @media (max-width: $md2+px) {
-      padding-right: 5rem;
-      margin-left: -2.4rem;
-      width: calc(100% + 4.8rem);
-      max-width: none;
+      width: 100vw;
+      position: relative;
+      left: 50%;
+      right: 50%;
+      margin-left: -50vw;
+      margin-right: -50vw;
     }
   }
 
@@ -1035,6 +1034,7 @@ body {
   &__swiper {
     overflow: visible !important;
     width: 100%;
+    min-width: 0;
 
     .swiper-wrapper {
       display: flex;
@@ -1042,30 +1042,35 @@ body {
     }
 
     @media (max-width: $md2+px) {
-      padding-left: 2.4rem;
+      padding-left: 0;
+      padding-right: 24px;
     }
   }
 
   // СЛАЙД
   &__slide {
     height: auto;
-    margin-right: 1.5rem;
+    flex-shrink: 0;
+    box-sizing: border-box;
 
-    &:last-child {
-      margin-right: 0;
-    }
+    @media (max-width: $md2+px) {
+      width: calc(100vw - 1.2rem - 4rem) !important;
+      max-width: none;
 
-    @media (min-width: $md2+px) {
-      width: 42.4rem !important;
-    }
+      margin-right: 15px;
 
-    @media (max-width: $md3+px) {
-      width: calc(100vw - 4.8rem - 5rem) !important;
-
-      @media (max-width: $md4+px) {
-        width: calc(100vw - 4.8rem - 3rem) !important;
+      &:last-child {
+        margin-right: 0;
       }
     }
+
+    // @media (min-width: $md2+1px) {
+    //     width: calc(50% - 7.5px) !important;
+
+    //   @media (min-width: 1025px) {
+    //     width: calc(33.333% - 10px) !important;
+    //   }
+    // }
   }
 }
 
@@ -1184,7 +1189,14 @@ body {
   }
 }
 
+// Мобильные стили
 @media (max-width: $md2+px) {
+  .pricing {
+    &__container {
+      overflow: hidden;
+    }
+  }
+
   .pricing-card {
     &__content {
       padding: 0 1.6rem;
@@ -1199,10 +1211,15 @@ body {
         max-width: 100%;
       }
     }
+
+    &__link {
+      width: 100%;
+    }
   }
 }
 
 //<СТОИМОСТЬ И СРОКИ РЕАЛИЗАЦИИ>=====================================================================================
+
 
 //<СТОИМОСТЬ ВЕДЕНИЯ>=====================================================================================
 .pricing-lead {

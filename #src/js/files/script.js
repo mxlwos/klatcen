@@ -318,74 +318,6 @@ if (document.querySelector('.cases-service__swiper')) {
 	});
 }
 
-// Слайдер тарифов
-if (document.querySelector('.pricing__swiper')) {
-	var sliderPricing = new Swiper('.pricing__swiper', {
-		slidesPerView: 'auto',
-		spaceBetween: 20,
-		freeMode: true,
-		watchOverflow: true,
-		speed: 300,
-
-		grabCursor: true,
-		allowTouchMove: true,
-
-		resistance: true,
-		resistanceRatio: 1,
-		edgeSwipeDetection: true,
-		edgeSwipeThreshold: 10,
-
-		freeModeMomentum: true,
-		freeModeMomentumRatio: 0.5,
-		freeModeMomentumBounce: false,
-		freeModeMomentumBounceRatio: 0,
-		freeModeSticky: false,
-		freeModeMinimumVelocity: 0.2,
-
-		navigation: false,
-		pagination: false,
-		scrollbar: false,
-
-		breakpoints: {
-			320: {
-				slidesPerView: 2.3,
-				spaceBetween: 20,
-				freeMode: true,
-				resistanceRatio: 1,
-			},
-			768: {
-				slidesPerView: 'auto',
-				spaceBetween: 15,
-				freeMode: true,
-				resistanceRatio: 0.9,
-			},
-			1025: {
-				slidesPerView: 'auto',
-				spaceBetween: 15,
-				freeMode: true,
-				resistanceRatio: 0.8,
-			}
-		},
-
-		on: {
-			touchStart: function () {
-				this.startTranslate = this.translate;
-			},
-			touchMove: function () {
-				const maxTranslate = this.maxTranslate();
-				const minTranslate = this.minTranslate();
-
-				if (this.translate > minTranslate) {
-					this.translate = minTranslate;
-				}
-				if (this.translate < maxTranslate) {
-					this.translate = maxTranslate;
-				}
-			}
-		}
-	});
-}
-
 if (document.querySelector('.hero-about__swiper')) {
 	var sliderAbout = new Swiper('.hero-about__swiper', {
 		spaceBetween: 12,
@@ -528,6 +460,32 @@ if (document.querySelector('.services-offer__slider')) {
 			resize: function (swiper) {
 				// Swiper сам обновит все параметры
 				swiper.update();
+			}
+		}
+	});
+}
+
+if (document.querySelector('.pricing__swiper')) {
+	var sliderPricing = new Swiper('.pricing__swiper', {
+		slidesPerView: 'auto',
+		spaceBetween: 15,
+		slidesOffsetBefore: 24,
+
+		breakpoints: {
+			320: {
+				slidesPerView: 1.1,
+				spaceBetween: 15,
+				slidesOffsetBefore: 24
+			},
+			768: {
+				slidesPerView: 2,
+				spaceBetween: 15,
+				slidesOffsetBefore: 0
+			},
+			1025: {
+				slidesPerView: 3,
+				spaceBetween: 15,
+				slidesOffsetBefore: 0
 			}
 		}
 	});
