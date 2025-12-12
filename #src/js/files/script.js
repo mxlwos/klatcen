@@ -320,70 +320,70 @@ if (document.querySelector('.cases-service__swiper')) {
 
 // Слайдер тарифов
 if (document.querySelector('.pricing__swiper')) {
-    var sliderPricing = new Swiper('.pricing__swiper', {
-        slidesPerView: 'auto',
-        spaceBetween: 20,
-        freeMode: true,
-        watchOverflow: true,
-        speed: 300,
-        
-        grabCursor: true,
-        allowTouchMove: true,
-        
-        resistance: true,
-        resistanceRatio: 1, 
-        edgeSwipeDetection: true,
-        edgeSwipeThreshold: 10,
-        
-        freeModeMomentum: true,
-        freeModeMomentumRatio: 0.5, 
-        freeModeMomentumBounce: false,
-        freeModeMomentumBounceRatio: 0,
-        freeModeSticky: false,
-        freeModeMinimumVelocity: 0.2,
-        
-        navigation: false,
-        pagination: false,
-        scrollbar: false,
-        
-        breakpoints: {
-            320: {
-                slidesPerView: 2.3,
-                spaceBetween: 20,
-                freeMode: true,
-                resistanceRatio: 1, 
-            },
-            768: {
-                slidesPerView: 'auto',
-                spaceBetween: 15,
-                freeMode: true,
-                resistanceRatio: 0.9,
-            },
-            1025: {
-                slidesPerView: 'auto',
-                spaceBetween: 15,
-                freeMode: true,
-                resistanceRatio: 0.8,
-            }
-        },
-        
-        on: {
-            touchStart: function() {
-                this.startTranslate = this.translate;
-            },
-            touchMove: function() {
-                const maxTranslate = this.maxTranslate();
-                const minTranslate = this.minTranslate();
-                
-                if (this.translate > minTranslate) {
-                    this.translate = minTranslate;
-                }
-                if (this.translate < maxTranslate) {
-                    this.translate = maxTranslate;
-                }
-            }
-        }
-    });
+	var sliderPricing = new Swiper('.pricing__swiper', {
+		slidesPerView: 'auto',
+		spaceBetween: 20,
+		freeMode: true,
+		watchOverflow: true,
+		speed: 300,
+
+		grabCursor: true,
+		allowTouchMove: true,
+
+		resistance: true,
+		resistanceRatio: 1,
+		edgeSwipeDetection: true,
+		edgeSwipeThreshold: 10,
+
+		freeModeMomentum: true,
+		freeModeMomentumRatio: 0.5,
+		freeModeMomentumBounce: false,
+		freeModeMomentumBounceRatio: 0,
+		freeModeSticky: false,
+		freeModeMinimumVelocity: 0.2,
+
+		navigation: false,
+		pagination: false,
+		scrollbar: false,
+
+		breakpoints: {
+			320: {
+				slidesPerView: 2.3,
+				spaceBetween: 20,
+				freeMode: true,
+				resistanceRatio: 1,
+			},
+			768: {
+				slidesPerView: 'auto',
+				spaceBetween: 15,
+				freeMode: true,
+				resistanceRatio: 0.9,
+			},
+			1025: {
+				slidesPerView: 'auto',
+				spaceBetween: 15,
+				freeMode: true,
+				resistanceRatio: 0.8,
+			}
+		},
+
+		on: {
+			touchStart: function () {
+				this.startTranslate = this.translate;
+			},
+			touchMove: function () {
+				const maxTranslate = this.maxTranslate();
+				const minTranslate = this.minTranslate();
+
+				if (this.translate > minTranslate) {
+					this.translate = minTranslate;
+				}
+				if (this.translate < maxTranslate) {
+					this.translate = maxTranslate;
+				}
+			}
+		}
+	});
 }
 
 if (document.querySelector('.hero-about__swiper')) {
@@ -485,52 +485,50 @@ if (document.querySelector('.history-about__swiper')) {
 // 		}
 // 	});
 // }
-// Слайдер для раздела "Что мы предлагаем" - как в отзывах
-// Вариант как в отзывах
-// Вариант как в отзывах
+// Слайдер для раздела "Что мы предлагаем"
 if (document.querySelector('.services-offer__slider')) {
-	var servicesOfferSlider = new Swiper('.services-offer__slider', {
-		spaceBetween: 20,
+	const servicesOfferSlider = new Swiper('.services-offer__slider', {
+		// Основные настройки
+		direction: 'horizontal',
+		loop: false,
+		speed: 300,
+
+		// Автоматическая ширина слайдов
 		slidesPerView: 'auto',
+
+		// Отступы между слайдами
+		spaceBetween: 20,
+
+		// Количество слайдов для показа (устанавливается через breakpoints)
+		slidesPerView: 1,
+
+		// Разрешаем скролл даже если слайдов мало
 		watchOverflow: true,
 
-		// ВАЖНО: добавляем отступ слева
-		slidesOffsetBefore: 0, // На десктопе без отступа
-
+		// Брейкпоинты
 		breakpoints: {
-			// Мобилки
 			320: {
-				slidesPerView: 1.18,
-				spaceBetween: 20,
-				draggable: true,
-				// На мобилках добавляем отступ 2rem
-				slidesOffsetBefore: 6 // Примерно 2rem (32px)
+				slidesPerView: 1.16, // Показать 1.16 слайда (немного следующего видно)
+				spaceBetween: 15,
 			},
-			// Планшеты
-			600: {
-				slidesPerView: 1.8,
-				spaceBetween: 20,
-				draggable: true,
-				slidesOffsetBefore: 0
-			},
-			// Десктоп
+			// Планшеты (768px и выше)
 			768: {
-				slidesPerView: 'auto',
+				slidesPerView: 1,
 				spaceBetween: 20,
-				draggable: false,
-				slidesOffsetBefore: 0
 			}
 		},
 
-		direction: 'horizontal',
-		loop: false,
-		speed: 400,
+		// События (минимально необходимые)
+		on: {
+			init: function (swiper) {
+				console.log('Слайдер инициализирован нормально');
+			},
 
-		draggable: true,
-		resistance: true,
-		resistanceRatio: 0.5,
-		momentum: true,
-		momentumBounce: true,
-		momentumBounceRatio: 0.3
+			// При изменении размера окна
+			resize: function (swiper) {
+				// Swiper сам обновит все параметры
+				swiper.update();
+			}
+		}
 	});
 }
